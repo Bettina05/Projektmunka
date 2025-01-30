@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Security.Cryptography;
 
 namespace Nyelvtanulas.Models
 {

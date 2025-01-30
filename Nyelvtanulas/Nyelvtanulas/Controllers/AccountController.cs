@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Nyelvtanulas.Models;
+using System.Security.Cryptography;
 
 namespace Nyelvtanulas.Controllers
 {
