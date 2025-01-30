@@ -1,0 +1,15 @@
+﻿@model NyelvtanuloMVC.Models.User
+
+<h2>Regisztráció</h2>
+    <form asp-action="Register" method="post">
+        <input asp-for="FullName" placeholder="Teljes név" required />
+        <input asp-for="Username" placeholder="Felhasználónév" required />
+        <input asp-for="Email" placeholder="E-mail" required />
+        <input asp-for="PasswordHash" type="password" placeholder="Jelszó" required />
+
+        <img src="/Captcha/GenerateCaptcha" alt="CAPTCHA" />
+        <input type="text" name="CaptchaInput" placeholder="Írd be a képen látható szöveget" required />
+
+        <button type="submit">Regisztráció</button>
+    </form>
+

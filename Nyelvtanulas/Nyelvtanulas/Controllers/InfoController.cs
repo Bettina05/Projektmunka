@@ -2,11 +2,17 @@
 
 namespace Nyelvtanulas.Controllers
 {
-    public class StatisztikaController : Controller
+    public class InfoController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
+        public IActionResult Tips()
+        {
+            return View();
+        }
     }
 }
+
+
