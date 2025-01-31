@@ -1,9 +1,31 @@
+using Nyelvtanulas;
+using Nyelvtanulas.Models;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+// Session regisztráció
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.IsEssential = true;
+    options.Cookie.HttpOnly = true;
+});
+
+// IoC container - C#-ban beépített - Inversion of Control
+builder.Services.AddScoped<IUserManager, DatabaseUserManager>();
+
+builder.Services.AddScoped<IEncryptionService, SHA256EncryptionService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceWithSession>();
+
+
+builder.Services.AddDbContext<UserDbContext>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Security.Cryptography;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Nyelvtanulas.Models
 {
@@ -19,6 +20,7 @@ namespace Nyelvtanulas.Models
 
         [Required]
         public string PasswordHash { get; set; }
+        public User users { get; set; }
 
         public string HashPassword(string password)
         {
