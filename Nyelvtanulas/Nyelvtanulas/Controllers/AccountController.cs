@@ -22,9 +22,9 @@ namespace Nyelvtanulas.Controllers
 
             if (ModelState.IsValid)
             {
-                user.PasswordHash = User.HashPassword(user.PasswordHash);
-                _context.Users.Add(user);
-                _context.SaveChanges();
+                user.PasswordHash = user.HashPassword(user.PasswordHash);
+               // _context.Users.Add(user);
+                //_context.SaveChanges();
                 return RedirectToAction("Login");
             }
             return View(user);
@@ -37,10 +37,10 @@ namespace Nyelvtanulas.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(string username, string password)
+        public IActionResult Login(User user, string username, string password)
         {
-            var hashedPassword = User.HashPassword(password);
-            var user = _context.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hashedPassword);
+            var hashedPassword = user.HashPassword(password);
+            //var users = _context.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hashedPassword);
 
             if (user != null)
             {
