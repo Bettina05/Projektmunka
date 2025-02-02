@@ -51,6 +51,19 @@ namespace Nyelvtanulas.Controllers
             ViewBag.Error = "Hibás felhasználónév vagy jelszó!";
             return View();
         }
+        [HttpPost]
+        public IActionResult ValidateCaptcha(string captchaInput)
+        {
+            string correctCaptcha = HttpContext.Session.GetString("CaptchaCode");
 
+            if (captchaInput == correctCaptcha)
+            {
+                return Json(new { success = true });
+            }
+            else
+            {
+                return Json(new { success = false, message = "Hibás CAPTCHA!" });
+            }
+        }
     }
 }
