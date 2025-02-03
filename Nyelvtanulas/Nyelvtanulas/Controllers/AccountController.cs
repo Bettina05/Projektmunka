@@ -10,27 +10,7 @@ namespace Nyelvtanulas.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Register(User user, string CaptchaInput)
-        {
-            string storedCaptcha = HttpContext.Session.GetString("Captcha");
-            if (CaptchaInput != storedCaptcha)
-            {
-                ModelState.AddModelError("", "Helytelen CAPTCHA!");
-                return View(user);
-            }
-
-            if (ModelState.IsValid)
-            {
-                user.PasswordHash = user.HashPassword(user.PasswordHash);
-               // _context.Users.Add(user);
-                //_context.SaveChanges();
-                return RedirectToAction("Login");
-            }
-            return View(user);
-        }
-
-
+        
         public IActionResult Login()
         {
             return View();
