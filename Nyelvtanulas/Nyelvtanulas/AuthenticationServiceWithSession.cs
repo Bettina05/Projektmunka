@@ -46,7 +46,7 @@ namespace Nyelvtanulas
         public bool TryLogIn(string email, string password)
         {
             User? foundUser = userManager.GetAll()
-                .FirstOrDefault(user => user.EmailAddress == email);
+                .FirstOrDefault(user => user.Email == email);
 
             if (foundUser is null) // Ha nincs az email az adatbázisban
             {
@@ -54,7 +54,7 @@ namespace Nyelvtanulas
             }
 
             string hashedPassword = encryptionService.HashPassword(password);
-            if (foundUser.Password != hashedPassword) // Nem jó jelszót adott meg
+            if (foundUser.PasswordHash != hashedPassword) // Nem jó jelszót adott meg
             {
                 return false;
             }

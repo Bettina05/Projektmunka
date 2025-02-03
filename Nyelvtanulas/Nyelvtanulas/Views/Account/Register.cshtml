@@ -3,20 +3,30 @@
 
 <h2>Regisztráció</h2>
     <form asp-action="Register" method="post">
-        <input asp-for="FullName" placeholder="Teljes név" required />
-        <input asp-for="Username" placeholder="Felhasználónév" required />
-        <input asp-for="Email" placeholder="E-mail" required />
-        <input asp-for="PasswordHash" type="password" placeholder="Jelszó" required />
+        <h3>Adja meg a teljes nevét: </h3>
+            <input type="text" name="FullName" placeholder="Teljes név" required />
+        <h3>Adja meg a felhasználónevét: </h3>
+            <input type="text" name="UserName" placeholder="Felhasználónév" required />
+        <h3>Adja meg az email címét: </h3>
+            <input type="email" name="Email" placeholder="E-mail" required />
+        <h3>Adja meg a jelszavát: </h3>
+	        <input type="password" name="password" placeholder="Jelszó" required />
+        <br />
+        <br />
         <button type="submit">Regisztráció</button>
     </form>
-<h1>CAPTCHA Ellenőrzés</h1>
 
+@section Scripts 
+{
+    <script src="~/js/captcha.js"></script>
+}
+<h2>CAPTCHA Ellenőrzés</h2>
 <div class="cap">
     <div class="container">
         <form id="captchaForm">
             <input type="text" id="captchaTxtArea" readonly>
-            <br />
-            <input type="text" id="CaptchaEnter" placeholder="Enter the captcha code">
+            <input type="text" id="CaptchaEnter" placeholder="Írd be a kódot">
+            <img src="~/images/cap.jpg" alt="CAPTCHA">
             <br />
             <input type="button" value="REFRESH" id="refreshbtn" onclick="genNewCaptcha()">
             <input type="button" value="CHECK" id="checkbtn" onclick="checkCaptcha()">
@@ -24,7 +34,4 @@
     </div>
 </div>
 
-@section Scripts {
-    <script src="~/js/captcha.js"></script>
-}
 

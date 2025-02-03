@@ -1,15 +1,4 @@
-﻿.navigacio {
-    background-color: #AF70FF;
-    text-align: center;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    border-radius: 7px;
-    height: 75px;
-    font-size: 1cm;
-    font-weight: bolder;
-}
-
-#cap {
+﻿#cap {
     height: 500px;
 }
 
@@ -33,7 +22,7 @@ h1 {
 }
 
 #captchaTxtArea {
-    background-image: url("cap.jpg");
+    background-image: url("/images/cap.jpg");
     color: #FF4500;
     font-size: 30px;
     font-weight: bold;
