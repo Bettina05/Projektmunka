@@ -1,8 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Nyelvtanulas.Models;
+﻿using Microsoft.AspNetCore.Http;
 using System.Text;
 
-namespace Nyelvtanulas
+namespace Nyelvtanulas.Models
 {
     public class AuthenticationServiceWithSession : IAuthenticationService
     {
@@ -16,8 +15,6 @@ namespace Nyelvtanulas
             this.userManager = userManager;
             this.encryptionService = encryptionService;
         }
-
-        // Van-e a sessionben bejegyzés az emailre
 
         public bool IsAuthenticated =>
             httpContextAccessor.HttpContext.Session.TryGetValue("email", out byte[] values);

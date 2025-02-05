@@ -1,6 +1,4 @@
-﻿using Nyelvtanulas.Models;
-
-namespace Nyelvtanulas
+﻿namespace Nyelvtanulas.Models
 {
     public class DatabaseUserManager : IUserManager
     {
@@ -19,7 +17,7 @@ namespace Nyelvtanulas
 
         public IQueryable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Users.AsQueryable();
         }
     }
 }

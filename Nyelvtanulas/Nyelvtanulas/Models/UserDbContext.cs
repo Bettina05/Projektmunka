@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Nyelvtanulas.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Nyelvtanulas
+namespace Nyelvtanulas.Models
 {
     public class UserDbContext : DbContext
     {
