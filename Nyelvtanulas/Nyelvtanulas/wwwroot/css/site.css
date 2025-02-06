@@ -20,4 +20,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+container {
+    background-image: url("~/images/cap.png");
+    background-size: cover;
+}
 
