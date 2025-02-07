@@ -1,6 +1,4 @@
-﻿using Nyelvtanulas.Models;
-
-namespace Nyelvtanulas
+﻿namespace Nyelvtanulas.Models
 {
     public class DatabaseUserManager : IUserManager
     {

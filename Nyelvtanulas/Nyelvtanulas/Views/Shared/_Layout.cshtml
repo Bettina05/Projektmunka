@@ -1,4 +1,4 @@
-﻿@using Nyelvtanulas.Models
+﻿@    using Nyelvtanulas.Models
 @inject IAuthenticationService authService
 
 <!DOCTYPE html>
@@ -28,6 +28,9 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Statistics" asp-action="Index">Statisztika</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index">Statisztika</a>
                             </li>
                         }
                         else

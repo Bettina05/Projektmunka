@@ -1,8 +1,7 @@
-﻿using Nyelvtanulas;
-using System.Text;
+﻿using System.Text;
 using System.Security.Cryptography;
 
-namespace Nyelvtanulas
+namespace Nyelvtanulas.Models
 {
     public class SHA256EncryptionService : IEncryptionService
     {

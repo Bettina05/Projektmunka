@@ -1,5 +1,4 @@
-﻿using Nyelvtanulas;
-using Nyelvtanulas.Models;
+﻿using Nyelvtanulas.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

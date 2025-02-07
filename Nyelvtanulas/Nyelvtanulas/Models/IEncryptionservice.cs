@@ -1,4 +1,4 @@
-﻿namespace Nyelvtanulas
+﻿namespace Nyelvtanulas.Models
 {
     public interface IEncryptionService
     {

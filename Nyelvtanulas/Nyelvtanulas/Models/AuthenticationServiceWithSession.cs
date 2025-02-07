@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Nyelvtanulas.Models;
 using System.Text;
 
-namespace Nyelvtanulas
+namespace Nyelvtanulas.Models
 {
     public class AuthenticationServiceWithSession : IAuthenticationService
     {
