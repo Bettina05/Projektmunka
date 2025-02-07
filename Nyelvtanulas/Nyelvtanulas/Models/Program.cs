@@ -5,7 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// 🔹 Session regisztráció
+// Session regisztráció
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession(options =>
 {
@@ -14,18 +14,18 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
 });
 
-// 🔹 IoC container - Dependency Injection
+// IoC container - Dependency Injection
 builder.Services.AddScoped<IUserManager, DatabaseUserManager>();
 builder.Services.AddScoped<IEncryptionService, SHA256EncryptionService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceWithSession>();
 
-// 🔹 Adatbázis beállítás
+// Adatbázis beállítás
 builder.Services.AddDbContext<UserDbContext>();
 
-// 🔹 Itt kell befejezni a konfigurációt!
+// Itt kell befejezni a konfigurációt!
 var app = builder.Build();
 
-// 🔹 Middleware konfiguráció
+// Middleware konfiguráció
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -34,7 +34,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseSession();  // Fontos, hogy itt legyen!
+app.UseSession();  
 app.UseRouting();
 app.UseAuthorization();
 

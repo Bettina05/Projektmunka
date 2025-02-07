@@ -17,7 +17,7 @@
 
         public IQueryable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Users.AsQueryable();
         }
     }
 }

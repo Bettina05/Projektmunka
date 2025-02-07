@@ -1,29 +1,56 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SixLabors.ImageSharp;
+using System.Net;
+using System.Text.Json;
 
 namespace Nyelvtanulas.Controllers
 {
     public class CaptchaController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpPost]
-        public IActionResult ValidateCaptcha([FromBody] CaptchaModel model)
+        public async Task<IActionResult> SubmitForm(string captchaResponse)
         {
-            string correctCaptcha = HttpContext.Session.GetString("CaptchaCode");
-            if (model.CaptchaInput == correctCaptcha)
+            // Ha nem kaptunk választ a reCAPTCHA-tól, akkor nem engedjük a form elküldését
+            if (string.IsNullOrEmpty(captchaResponse))
             {
-                return Json(new { success = true });
+                ModelState.AddModelError(string.Empty, "Captcha validation failed.");
+                return View();
             }
-            else
+
+            // Ellenőrzés a Google reCAPTCHA API-n keresztül
+            var secretKey = "6LeTpc4qAAAAAHrJ7ODeujPihfPlIVSVDyKK0eF8";
+            var verificationUrl = "https://www.google.com/recaptcha/api/siteverify";
+
+            using (var client = new HttpClient())
             {
-                return Json(new { success = false, message = "Hibás CAPTCHA!" });
+                var content = new FormUrlEncodedContent(new[]
+                {
+                new KeyValuePair<string, string>("secret", secretKey),
+                new KeyValuePair<string, string>("response", captchaResponse)
+            });
+
+                var response = await client.PostAsync(verificationUrl, content);
+                var responseString = await response.Content.ReadAsStringAsync();
+
+                // Deszerializáljuk a választ JSON formátumban
+                var jsonResponse = JsonSerializer.Deserialize<JsonElement>(responseString);
+
+                // Ellenőrizzük, hogy a sikeres válasz mellett a score eléri-e a küszöbértéket
+                var success = jsonResponse.GetProperty("success").GetBoolean();
+                var score = jsonResponse.GetProperty("score").GetSingle();
+
+                if (success && score >= 0.5f)
+                {
+                    // Ha sikeres és a pontszám elfogadható, folytathatjuk a kérést
+                    return RedirectToAction("Success");
+                }
+                else
+                {
+                    // Ha a validálás nem sikerült
+                    ModelState.AddModelError(string.Empty, "Captcha validation failed.");
+                    return View();
+                }
             }
         }
-        public class CaptchaModel
-        {
-            public string CaptchaInput { get; set; }
-        }
-    }        
+    } 
 }
