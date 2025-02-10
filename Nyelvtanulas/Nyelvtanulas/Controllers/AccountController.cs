@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Nyelvtanulas.Models;
 using System.Security.Cryptography;
 
@@ -6,6 +8,16 @@ namespace Nyelvtanulas.Controllers
 {
     public class AccountController : Controller
     {
+        private IUserManager userManager;
+        private IEncryptionService encryptionService;
+        private Models.IAuthenticationService authenticationService;
+
+        public AccountController(IUserManager userManager, IEncryptionService encryptionService, Models.IAuthenticationService authenticationService)
+        {
+            this.userManager = userManager;
+            this.encryptionService = encryptionService;
+            this.authenticationService = authenticationService;
+        }
         public IActionResult Register()
         {
             return View();
@@ -20,7 +32,7 @@ namespace Nyelvtanulas.Controllers
         public IActionResult Login(User user, string username, string password)
         {
             var hashedPassword = user.HashPassword(password);
-            //var users = _context.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hashedPassword);
+            var users = dbContext.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hashedPassword);
 
             if (user != null)
             {
@@ -44,6 +56,11 @@ namespace Nyelvtanulas.Controllers
             {
                 return Json(new { success = false, message = "Hibás CAPTCHA!" });
             }
+        }
+        public IActionResult Logout()
+        {
+            authenticationService.LogOut();
+            return RedirectToAction("Index");
         }
     }
 }

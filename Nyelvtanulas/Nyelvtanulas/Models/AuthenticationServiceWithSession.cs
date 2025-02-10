@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+﻿using Microsoft.AspNetCore.Identity;
+=======
 ﻿using Microsoft.AspNetCore.Http;
+>>>>>>> 45d224c5b1ca2aefc378d16d0aada990d3351ce3
 using System.Text;
 
 namespace Nyelvtanulas.Models
