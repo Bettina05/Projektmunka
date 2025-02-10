@@ -5,7 +5,7 @@
 </head>
 
 <h2>Regisztráció</h2>
-    <form asp-action="Register" method="post">
+    <form asp-action="Register" method="post" id="myForm">
         <h3>Adja meg a teljes nevét: </h3>
             <input type="text" name="FullName" placeholder="Teljes név" required />
         <h3>Adja meg a felhasználónevét: </h3>
@@ -28,7 +28,7 @@
 
 <script>
     grecaptcha.ready(function () {
-        grecaptcha.execute('YOUR_SITE_KEY', { action: 'submit' }).then(function (token) {
+        grecaptcha.execute('6LeTpc4qAAAAAO40xdkyQ3K6DduAE4UmnjiYVDh-', { action: 'submit' }).then(function (token) {
             // Token hozzáadása a formhoz
             var form = document.getElementById('myForm');
             var input = document.createElement('input');
