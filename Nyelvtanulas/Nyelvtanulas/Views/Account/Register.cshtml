@@ -3,9 +3,32 @@
 }
 <!-- A captcha css része -->
 <style>
+    body{
+        text-align:left;
+        margin: 0;
+        padding: 0;
+
+    }
+    form{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    h3{
+        text-align: left;
+        margin-left:0;
+    }
+
+    input[type="text"], 
+    input[type="email"], 
+    input[type="password"], 
+    #CaptchaEnter {
+        text-align: left;
+    }
     /*CAPTCHA*/
     .navigacio {
-        text-align: center;
+        text-align: left;
         padding-top: 12px;
 
         border-radius: 7px;
@@ -16,45 +39,44 @@
 
     #cap {
         height: 250px;
-    }
-
-    h1 {
-        margin-top: 40px;
-        font-family: sans-serif;
-        text-transform: uppercase;
-        font-size: 40px;
+        text-align: left;
     }
 
     .container {
         margin-top: 15px;
         height: 50px;
-        /*display: flex;*/
-        align-items: center;
-        justify-content: center;
+        text-align:left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         background: white;
-        width: 300px;
+        width: 100%;
+        max-width: 300px;
         border-radius: 20px;
     }
 
     #captchaTxtArea {
-        background-image: "cap.jpg"; 
+        background-image: url("cap.jpg"); 
         color: #FF4500;
         font-size: 30px;
         font-weight: bold;
         cursor: pointer;
         border: none;
         outline: none;
-        border: 3px solid black;
+        border: 2px solid black;
         margin-top: 15px;
-        width: 120px;
+        width: 150px;
+        text-align:left;
     }
 
     #CaptchaEnter {
+        
         margin-top: 15px;
         width: 303px;
-        height: 30px;
-        border: 3px solid black;
-        font-size: 27px;
+        height: 50px;
+        border: 2px solid black;
+        font-size: 24px;
+        text-align: left;
     }
 
     #CaptchaEnter::placeholder {
@@ -64,17 +86,38 @@
     }
 
     #refreshbtn {
+        background-color: darkblue;
+        color:white;
         width: 100px;
         height: 30px;
         border: 2px solid black;
         font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
     }
 
     #checkbtn {
+        background-color:darkblue;
+        color: white;
         width: 100px;
         height: 30px;
         border: 2px solid black;
         font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: green;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        margin-top: 15px;
+        cursor: pointer;
+        text-align: center;
     }
 </style>
 
@@ -94,15 +137,15 @@
     <input type="password" name="Password" placeholder="Jelszó" required />
 
     <!-- CAPTCHA -->
-    <h3>Adja meg a kódot a képről: </h3>
     <div class="cap">
-        <h1><a name="captchaCode"> Captcha Code </a></h1>
+        <h3> Captcha Code </h3>
         <div class="container">
             <form name="form1">
                 <input type="text" id="captchaTxtArea" name="text" value="" />
-                <br />
+                <br/>
                 <input type="text" id="CaptchaEnter" name="CaptchaInput" placeholder="Adja meg a kódot" required />
-                <br />
+                <br/>
+                <br/>
                 <input type="button" value="Frissítés" id="refreshbtn" onclick="genNewCaptcha()" />
                 <input type="button" value="Ellenőrzés" id="checkbtn" onclick="checkCaptcha()" />
             </form>

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Net.NetworkInformation;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Nyelvtanulas.Models
@@ -13,7 +14,7 @@ namespace Nyelvtanulas.Models
             // 1-N kapcsolatnál ide jön az 1-nél lévő
             // Kapcsoaltot fogunk definiálni a tanár táblán
             modelBuilder.Entity<User>()
-                .HasOne(user => user.users)
+                .HasOne(usering => usering.users)
                 .WithOne(profile => profile.users)
                 .HasForeignKey<User>(profile => profile.Id)
                 .IsRequired(); 
