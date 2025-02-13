@@ -12,7 +12,6 @@ namespace Nyelvtanulas.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // 1-N kapcsolatnál ide jön az 1-nél lévő
-            // Kapcsoaltot fogunk definiálni a tanár táblán
             modelBuilder.Entity<User>()
                 .HasOne(usering => usering.users)
                 .WithOne(profile => profile.users)
