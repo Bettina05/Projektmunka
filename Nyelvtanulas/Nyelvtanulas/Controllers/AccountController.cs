@@ -33,7 +33,7 @@ namespace Nyelvtanulas.Controllers
         public IActionResult Login(User user, string username, string password)
         {
             var hashedPassword = user.HashPassword(password);
-            var users = dbContext.Users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hashedPassword);
+            var users = userManager.GetAll().FirstOrDefault(u => u.Username == username && u.PasswordHash == hashedPassword);
 
             if (user != null)
             {
