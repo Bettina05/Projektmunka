@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Identity;
-=======
 ﻿using Microsoft.AspNetCore.Http;
->>>>>>> 45d224c5b1ca2aefc378d16d0aada990d3351ce3
 using System.Text;
 
 namespace Nyelvtanulas.Models
@@ -48,14 +45,17 @@ namespace Nyelvtanulas.Models
         {
             User? foundUser = userManager.GetAll()
                 .FirstOrDefault(user => user.Email == email);
-
-            if (foundUser is null) // Ha nincs az email az adatbázisban
+            
+            // Ha nincs az email az adatbázisban
+            if (foundUser is null) 
             {
                 return false;
             }
 
             string hashedPassword = encryptionService.HashPassword(password);
-            if (foundUser.PasswordHash != hashedPassword) // Nem jó jelszót adott meg
+            
+            // Nem jó jelszót adott meg
+            if (foundUser.PasswordHash != hashedPassword)
             {
                 return false;
             }

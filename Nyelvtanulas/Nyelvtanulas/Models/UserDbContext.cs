@@ -16,7 +16,8 @@ namespace Nyelvtanulas.Models
                 .HasOne(user => user.users)
                 .WithOne(profile => profile.users)
                 .HasForeignKey<User>(profile => profile.Id)
-                .IsRequired(); // Kötelező kapcsolat
+                .IsRequired(); 
+                // Kötelező kapcsolat
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -24,10 +25,8 @@ namespace Nyelvtanulas.Models
             // Ha még nem volt konfigurálva az adatbázis
             if (!optionsBuilder.IsConfigured)
             {
-                // akkor állítsuk be a connection stringet -> csatlakozás
-                // (localdb)\\MSSQLLocalDB -> beépített Visual Studio lokál MSSQL server
-                // StudentsDatabase -> adatbázis neve
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=StudentsDatabase");
+                // UsersDatabase -> adatbázis neve
+                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase");
             }
         }
     }

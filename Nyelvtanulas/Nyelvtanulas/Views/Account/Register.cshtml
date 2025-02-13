@@ -1,45 +1,123 @@
-﻿@using Nyelvtanulas.Models
-@model User
-<head>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LeTpc4qAAAAAO40xdkyQ3K6DduAE4UmnjiYVDh-"></script>
-</head>
+﻿@{
+    ViewData["Title"] = "Regisztráció";
+}
+<!-- A captcha css része -->
+<style>
+    /*CAPTCHA*/
+    .navigacio {
+        background-color: #AF70FF;
+        text-align: center;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        border-radius: 7px;
+        height: 75px;
+        font-size: 1cm;
+        font-weight: bolder;
+    }
 
-<h2>Regisztráció</h2>
-    <form asp-action="Register" method="post" id="myForm">
-        <h3>Adja meg a teljes nevét: </h3>
-            <input type="text" name="FullName" placeholder="Teljes név" required />
-        <h3>Adja meg a felhasználónevét: </h3>
-            <input type="text" name="UserName" placeholder="Felhasználónév" required />
-        <h3>Adja meg az email címét: </h3>
-            <input type="email" name="Email" placeholder="E-mail" required />
-        <h3>Adja meg a jelszavát: </h3>
-	        <input type="password" name="password" placeholder="Jelszó" required />
-        <br />
-        <br />
-        <button type="submit">Regisztráció</button>
-    </form>
+    #cap {
+        height: 500px;
+    }
 
-<h2>CAPTCHA Ellenőrzés</h2>
-<!-- Google reCAPTCHA form -->
+    h1 {
+        margin-top: 40px;
+        font-family: sans-serif;
+        text-transform: uppercase;
+        font-size: 40px;
+    }
 
-<form method="post" id="myForm">
-    <input type="submit" value="Submit" />
+    .container {
+        margin-top: 15px;
+        height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: white;
+        width: 450px;
+        border-radius: 20px;
+        margin-bottom: 100px;
+    }
+
+    #captchaTxtArea {
+        background-image: url("cap.jpg");
+        color: #FF4500;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border: 3px solid black;
+        margin-top: 15px;
+        width: 154px;
+    }
+
+    #CaptchaEnter {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        width: 303px;
+        height: 40px;
+        border: 3px solid black;
+        font-size: 27px;
+    }
+
+        #CaptchaEnter::placeholder {
+            color: black;
+            font-size: 24px;
+            text-align: center;
+        }
+
+    #refreshbtn {
+        background: #AF70FF;
+        width: 150px;
+        height: 35px;
+        border: 2px solid black;
+        font-weight: bold;
+    }
+
+    #checkbtn {
+        background: #AF70FF;
+        width: 150px;
+        height: 35px;
+        border: 2px solid black;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Regisztráció és captcha -->
+<h2>@ViewData["Title"]</h2>
+<form asp-action="Register" method="post" id="myForm">
+    <h3>Adja meg a teljes nevét: </h3>
+    <input type="text" name="FullName" placeholder="Teljes név" required />
+
+    <h3>Adja meg a felhasználónevét: </h3>
+    <input type="text" name="UserName" placeholder="Felhasználónév" required />
+
+    <h3>Adja meg az email címét: </h3>
+    <input type="email" name="Email" placeholder="E-mail" required />
+
+    <h3>Adja meg a jelszavát: </h3>
+    <input type="password" name="Password" placeholder="Jelszó" required />
+
+    <!-- CAPTCHA -->
+    <h3>Adja meg a kódot a képről: </h3>
+    <div class="cap">
+        <h1><a name="captchaCode"> Captcha Code </a></h1>
+        <div class="container">
+            <form name="form1">
+                <input type="text" id="captchaTxtArea" name="text" value="" />
+                <br />
+                <input type="text" id="CaptchaEnter" name="CaptchaInput" placeholder="Adja meg a kódot" required />
+                <br />
+                <input type="button" value="Frissítés" id="refreshbtn" onclick="genNewCaptcha()" />
+                <input type="button" value="Ellenőrzés" id="checkbtn" onclick="checkCaptcha()" />
+            </form>
+        </div>
+    </div>
+    <br />
+    <br />
+    <button type="submit">Regisztráció</button>
 </form>
 
-<script>
-    grecaptcha.ready(function () {
-        grecaptcha.execute('6LeTpc4qAAAAAO40xdkyQ3K6DduAE4UmnjiYVDh-', { action: 'submit' }).then(function (token) {
-            // Token hozzáadása a formhoz
-            var form = document.getElementById('myForm');
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'g-recaptcha-response';
-            input.value = token;
-            form.appendChild(input);
-        });
-    });
-</script>
-
-
-
-
+<!-- Külső js -->
+<!-- wwwroot/js/Captcha.js    mappában van-->
+<script src="~/js/Captcha.js"></script>
