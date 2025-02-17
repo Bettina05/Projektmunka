@@ -9,6 +9,17 @@
   <ItemGroup>
     <Content Remove="Views\Information\Index.cshtml" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Account\cap.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Account\cap.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
