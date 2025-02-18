@@ -1,11 +1,157 @@
-﻿<h2>Bejelentkezés</h2>
-<form asp-action="Login" method="post">
+﻿@{
+    ViewData["Title"] = "Bejelentkezés";
+}
+
+<!-- A captcha css része -->
+<style>
+    body {
+        text-align: left;
+        margin: 0;
+        padding: 0;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    h3 {
+        text-align: left;
+        margin-left: 0;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    #CaptchaEnter {
+        text-align: left;
+    }
+    /*CAPTCHA*/
+    .navigacio {
+        text-align: left;
+        padding-top: 12px;
+        border-radius: 7px;
+        height: 75px;
+        font-size: 1cm;
+        font-weight: bolder;
+    }
+
+    #cap {
+        height: 250px;
+        text-align: left;
+    }
+
+    .container {
+        margin-top: 15px;
+        height: 50px;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background: white;
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    #captchaTxtArea {
+        background-image: url("cap.jpg");
+        color: #FF4500;
+        font-size: 30px;
+        font-weight: bold;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        border: 2px solid black;
+        margin-top: 15px;
+        width: 150px;
+        text-align: left;
+    }
+
+    #CaptchaEnter {
+        margin-top: 15px;
+        width: 303px;
+        height: 50px;
+        border: 2px solid black;
+        font-size: 24px;
+        text-align: left;
+    }
+
+        #CaptchaEnter::placeholder {
+            color: black;
+            font-size: 24px;
+            text-align: center;
+        }
+
+    #refreshbtn {
+        background-color: darkblue;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border: 2px solid black;
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    #checkbtn {
+        background-color: darkblue;
+        color: white;
+        width: 100px;
+        height: 30px;
+        border: 2px solid black;
+        font-weight: bold;
+        margin-top: 10px;
+        display: inline-block;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color: green;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        margin-top: 15px;
+        cursor: pointer;
+        text-align: center;
+    }
+</style>
+
+<!--HTML kód része-->
+<h1>@ViewData["Title"]</h1>
+<form asp-action="Login" method="post" id="myForm">
     <h3>Adja meg a felhaszálónevét: </h3>
-    <input name="username" placeholder="Felhasználónév" required />
+    <input type="text" name="username" placeholder="Felhasználónév" required />
 
     <h3>Adja meg a jelszavát: </h3>
-    <input name="password" type="password" placeholder="Jelszó" required />
+    <input type="password" name="password" placeholder="Jelszó" required />
     <br/>
     <br/>
     <button type="submit">Belépés</button>
+
+    <hr />
+
+    <!-- CAPTCHA -->
+    <div class="cap">
+        <h3> Captcha Code </h3>
+        <div class="container">
+            <form name="form1">
+                <input type="text" id="captchaTxtArea" name="text" value="" />
+                <br />
+                <input type="text" id="CaptchaEnter" name="CaptchaInput" placeholder="Adja meg a kódot" required />
+                <br />
+                <br />
+                <input type="button" value="Frissítés"   id="refreshbtn"    onclick="genNewCaptcha()" />
+                <input type="button" value="Ellenőrzés"  id="checkbtn"      onclick="checkCaptcha()" />
+            </form>
+        </div>
+    </div>
+    <button type="submit">Regisztráció</button>
 </form>
+
+<!-- Külső js -->
+<!-- wwwroot/js/Captcha.js    mappában van-->
+<script src="~/js/Captcha.js"></script>

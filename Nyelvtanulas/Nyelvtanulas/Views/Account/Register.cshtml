@@ -121,7 +121,7 @@
 </style>
 
 <!-- Regisztráció és captcha -->
-<h2>@ViewData["Title"]</h2>
+<h1>@ViewData["Title"]</h1>
 <form asp-action="Register" method="post" id="myForm">
     <h3>Adja meg a teljes nevét: </h3>
     <input type="text" name="FullName" placeholder="Teljes név" required />
@@ -135,6 +135,8 @@
     <h3>Adja meg a jelszavát: </h3>
     <input type="password" name="Password" placeholder="Jelszó" required />
 
+    <hr />
+    
     <!-- CAPTCHA -->
     <div class="cap">
         <h3> Captcha Code </h3>
