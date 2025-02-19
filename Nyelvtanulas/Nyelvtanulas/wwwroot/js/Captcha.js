@@ -2,7 +2,8 @@
 
 // CAPTCHA kód generálása
 function genNewCaptcha() {
-    fetch('/Account/GenerateCaptcha')  //Register.cshtml-ből hívjuk meg a GenerateCaptcha metódust
+    //Register.cshtml-ből hívjuk meg a GenerateCaptcha metódust
+    fetch('/Account/GenerateCaptcha')
         .then(response => response.json())
         .then(data => {
             captcha = data.captcha;
@@ -14,14 +15,12 @@ function genNewCaptcha() {
 // CAPTCHA ellenőrzés
 function checkCaptcha() {
     var check = document.getElementById("CaptchaEnter").value;
-    if (captcha == check)
-    {
-        alert("Valid captcha, success");
+    if (captcha == check) {
+        alert("Érvényes captcha :) ");
         document.getElementById("CaptchaEnter").value = "";
     }
-    else
-    {
-        alert("Invalid captcha, try again");
+    else {
+        alert("Érvénytelen captcha, próbálja újra! :( ");
         document.getElementById("CaptchaEnter").value = "";
     }
     genNewCaptcha();
