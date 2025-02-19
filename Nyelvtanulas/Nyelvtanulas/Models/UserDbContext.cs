@@ -12,12 +12,13 @@ namespace Nyelvtanulas.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // 1-N kapcsolatnál ide jön az 1-nél lévő
-            modelBuilder.Entity<User>()
+            /*modelBuilder.Entity<User>()
                 .HasOne(usering => usering.users)
                 .WithOne(profile => profile.users)
                 .HasForeignKey<User>(profile => profile.Id)
                 .IsRequired(); 
                 // Kötelező kapcsolat
+            */
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
