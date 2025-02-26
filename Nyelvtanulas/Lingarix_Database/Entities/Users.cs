@@ -15,13 +15,6 @@ namespace Lingarix_Database.Entities
         public string Fullname { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public string HashPassword(string password)
-        {
-            using (SHA256 sha256 = SHA256.Create())
-            {
-                byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return Convert.ToBase64String(hashedBytes);
-            }
-        }
+        
     }
 }

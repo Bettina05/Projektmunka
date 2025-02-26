@@ -1,4 +1,5 @@
 ﻿using Lingarix_Database;
+using Microsoft.EntityFrameworkCore;
 using Nyelvtanulas.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,11 @@ builder.Services.AddScoped<IUserManager, DatabaseUserManager>();
 builder.Services.AddScoped<IEncryptionService, SHA256EncryptionService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceWithSession>();
 
+builder.Services.AddDbContext<LingarixDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddSession(); // Szükséges a CAPTCHA tárolásához
+builder.Services.AddHttpContextAccessor();
 
 // Adatbázis beállítás
 builder.Services.AddDbContext<LingarixDbContext>();
