@@ -7,6 +7,10 @@ namespace Lingarix_Database
     {
         public DbSet<Users> users;
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
