@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nyelvtanulas.Models;
 using System.Security.Cryptography;
+using Lingarix_Database;
+using Lingarix_Database.Entities;
 
 namespace Nyelvtanulas.Controllers
 {
@@ -30,7 +32,7 @@ namespace Nyelvtanulas.Controllers
 
         //Bejelentkezés feldolgozása
         [HttpPost]
-        public IActionResult Login(User user, string username, string password)
+        public IActionResult Login(Users user, string username, string password)
         {
             var hashedPassword = user.HashPassword(password);
             var users = userManager.GetAll().FirstOrDefault(u => u.Username == username && u.PasswordHash == hashedPassword);

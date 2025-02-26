@@ -1,4 +1,5 @@
-﻿using Nyelvtanulas.Models;
+﻿using Lingarix_Database;
+using Nyelvtanulas.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,8 +20,9 @@ builder.Services.AddScoped<IUserManager, DatabaseUserManager>();
 builder.Services.AddScoped<IEncryptionService, SHA256EncryptionService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceWithSession>();
 
+
 // Adatbázis beállítás
-builder.Services.AddDbContext<UserDbContext>();
+builder.Services.AddDbContext<LingarixDbContext>();
 
 // Itt kell befejezni a konfigurációt!
 var app = builder.Build();

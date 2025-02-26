@@ -1,7 +1,9 @@
-﻿namespace Nyelvtanulas.Models
+﻿using Lingarix_Database.Entities;
+
+namespace Nyelvtanulas.Models
 {
     public interface IUserValidator
     {
-        bool ValidateUser(User user);
+        bool ValidateUser(Users user);
     }
 }

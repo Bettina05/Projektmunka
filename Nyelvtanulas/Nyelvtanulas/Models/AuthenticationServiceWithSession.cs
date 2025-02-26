@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 ﻿using Microsoft.AspNetCore.Http;
+using Lingarix_Database;
 using System.Text;
+using Lingarix_Database.Entities;
 
 namespace Nyelvtanulas.Models
 {
@@ -43,7 +45,7 @@ namespace Nyelvtanulas.Models
 
         public bool TryLogIn(string email, string password)
         {
-            User? foundUser = userManager.GetAll()
+            Users? foundUser = userManager.GetAll()
                 .FirstOrDefault(user => user.Email == email);
             
             // Ha nincs az email az adatbázisban
