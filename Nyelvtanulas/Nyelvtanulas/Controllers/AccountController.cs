@@ -18,8 +18,6 @@ namespace Nyelvtanulas.Controllers
         private IEncryptionService encryptionService;
         private Models.IAuthenticationService authenticationService;
         private readonly LingarixDbContext DBcontext;
-        //A fájl helye
-        private readonly string statisztikaFajl = "wwwroot/statistics.txt"; 
 
         public AccountController(IUserManager userManager, IEncryptionService encryptionService, Models.IAuthenticationService authenticationService, LingarixDbContext DBcontext)
         {
@@ -37,66 +35,34 @@ namespace Nyelvtanulas.Controllers
         {
             return View();
         }
-
+        public List<Users> ReadAllUsers()
+        {
+            return userManager.GetAll().ToList();
+        }
+        // Regisztrációs form feldolgozása
+        public IActionResult RegisterUser(Users user)
+        {
+            user.PasswordHash = encryptionService.HashPassword(user.PasswordHash);
+            userManager.Add(user);
+            return RedirectToAction("Login"); 
+        }
+        
         //Bejelentkezés feldolgozása
         [HttpPost]
-        public IActionResult Login(Users user, string username, string password, string captchaInput)
+        public IActionResult Login(string username, string password)
         {
-            if (!ModelState.IsValid)
+            if (authenticationService.TryLogIn(username, password))
             {
-                return View();
+                // Sikerült a bejelentkezés
+                return RedirectToAction("Index");
             }
 
-            // CAPTCHA ellenőrzése
-            var captcha = HttpContext.Session.GetString("CaptchaCode");
-            if (captcha != captchaInput)
-            {
-                ModelState.AddModelError("Captcha", "Hibás kód, próbáld újra!");
-                return View();
-            }
-
-
-            var hashedPassword = HashPassword(password);
-            var users = DBcontext.users.FirstOrDefault(u => u.Username == username && u.PasswordHash == hashedPassword);
-
-            if (user == null)
-            {
-                ModelState.AddModelError("Captcha", "Hibás kód, próbáld újra!");
-                return View();
-            }
-
-                HttpContext.Session.SetString("Username", user.Username);
-                
-                // Bejelentkezés után statisztika oldalra irányít
-                return RedirectToAction("Statistics");  
+            // Nem sikerült a bejelentkezés
+            return RedirectToAction("Register");
         }
 
         //Statisztika oldal - csak bejelentkezve látható
-        public IActionResult Statistics()
-        {
-            var userName = HttpContext.Session.GetString("UserName");
-            if (string.IsNullOrEmpty(userName))
-            {
-                return RedirectToAction("Login"); // Ha nincs bejelentkezve, visszadob a login oldalra
-            }
-
-            List<string> userStats = new List<string>();
-
-            if (System.IO.File.Exists(statisztikaFajl))
-            {
-                // Beolvassuk a fájl tartalmát
-                var lines = System.IO.File.ReadAllLines(statisztikaFajl);
-
-                // Szűrjük az aktuális bejelentkezett felhasználóra
-                userStats = lines
-                    .Where(line => line.StartsWith(userName + ";")) // Csak az ő adatait vegye figyelembe
-                    .Select(line => line.Replace(";", " - ")) // Szebb formázás
-                    .ToList();
-            }
-
-            ViewData["Statistics"] = userStats;
-            return View();
-        }
+        
 
         //Captcha validáció
         [HttpPost]
@@ -112,62 +78,6 @@ namespace Nyelvtanulas.Controllers
             {
                 return Json(new { success = false, message = "Hibás CAPTCHA!" });
             }
-        }
-
-        //Kijelentkezés, majd az Index nézetre visszatér
-        public IActionResult Logout()
-        {
-            authenticationService.LogOut();
-            return RedirectToAction("Index");
-        }
-
-        // Regisztrációs form feldolgozása
-        [HttpPost]
-
-        public IActionResult Register(string fullName, string userName, string email, string password, string captchaInput)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-
-            // CAPTCHA ellenőrzése
-            var captcha = HttpContext.Session.GetString("CaptchaCode");
-            if (captcha != captchaInput)
-            {
-                ModelState.AddModelError("Captcha", "Hibás kód, próbáld újra!");
-                return View();
-            }
-
-            //Ellenőrzi a felhasználónevet
-            if (DBcontext.users.Any(u => u.Username == userName))
-            {
-                ModelState.AddModelError("UserName", "Ez a felhasználónév már foglalt.");
-                return View();
-            }
-            //Jelszó hashelése
-            string hashedPassword = HashPassword(password);
-
-            //Új felhasználó hozzáadása
-            var user = new Users
-            {
-                Fullname = fullName,
-                Username = userName,
-                Email = email,
-                PasswordHash = hashedPassword
-            };
-
-            DBcontext.users.Add(user);
-            DBcontext.SaveChanges();
-
-            // Regisztráció sikeres
-            return RedirectToAction("Success");
-        }
-
-        // Sikeres regisztráció után
-        public IActionResult Success()
-        {
-            return View();
         }
 
         // CAPTCHA kód generálása
@@ -204,6 +114,13 @@ namespace Nyelvtanulas.Controllers
                 }
                 return builder.ToString();
             }
+        }
+
+        //Kijelentkezés, majd az Index nézetre visszatér
+        public IActionResult Logout()
+        {
+            authenticationService.LogOut();
+            return RedirectToAction("Index");
         }
     }
 }

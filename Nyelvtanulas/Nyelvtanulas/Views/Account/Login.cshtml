@@ -104,15 +104,19 @@
 
 <!--HTML kód része-->
 <h1>@ViewData["Title"]</h1>
-<form asp-action="Login" method="post" id="myForm">
-    <h3>Adja meg a felhaszálónevét: </h3>
-    <input type="text" name="username" placeholder="Felhasználónév" required />
-
-    <h3>Adja meg a jelszavát: </h3>
-    <input type="password" name="password" placeholder="Jelszó" required />
+@using (Html.BeginForm("Login", "Teacher"))
+{
+    <label>Felhasználónév:</label>
+    <input type="text" name="username" />
     <br />
+
+    <label>Jelszó:</label>
+    <input type="password" name="password" />
+    <br />
+    <hr />
+
     <!-- CAPTCHA -->
-    <div class="cap">
+    @* <div class="cap">
         <h3> Captcha Code </h3>
         <div class="container">
             <form name="form1">
@@ -125,9 +129,9 @@
                 <input type="button" value="Ellenőrzés" id="checkbtn" onclick="checkCaptcha()" />
             </form>
         </div>
-    </div>
-</form>
-<button type="submit">Belépés</button>
+    </div> *@
+    <input type="submit"/>
+}
 
 <!-- Külső js -->
 <!-- wwwroot/js/Captcha.js    mappában van-->

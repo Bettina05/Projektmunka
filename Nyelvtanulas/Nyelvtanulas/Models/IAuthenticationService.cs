@@ -6,7 +6,7 @@
         void LogOut();
 
         // Bejelentkezés
-        bool TryLogIn(string email, string password);
+        bool TryLogIn(string username, string password);
 
         bool IsAuthenticated { get; }
 

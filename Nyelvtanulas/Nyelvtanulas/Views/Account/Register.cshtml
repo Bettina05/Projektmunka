@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Regisztráció";
 }
+@model User
 <!-- A captcha css része -->
 <style>
     body
@@ -114,38 +115,44 @@
 
 <!-- Regisztráció és captcha -->
 <h1>@ViewData["Title"]</h1>
-<form asp-action="Register" method="post" id="myForm">
-    <h3>Adja meg a teljes nevét: </h3>
-    <input type="text" name="FullName" placeholder="Teljes név" required />
 
-    <h3>Adja meg a felhasználónevét: </h3>
-    <input type="text" name="UserName" placeholder="Felhasználónév" required />
+@using (Html.BeginForm("RegisterUser", "Account"))
+{
+    <label>Adja meg a teljes nevét: </label>
+    @Html.TextBoxFor(x => x.Fullname)
+    <br />
 
-    <h3>Adja meg az email címét: </h3>
-    <input type="email" name="Email" placeholder="E-mail" required />
+    <label>Adja meg a felhasználónevét: </label>
+    @Html.TextBoxFor(x => x.Username)
+    <br />
 
-    <h3>Adja meg a jelszavát: </h3>
-    <input type="password" name="Password" placeholder="Jelszó" required />
+    <label>Adja meg az email címét: </label>
+    @Html.TextBoxFor(x => x.Email)
+    <br />
+
+    <label>Adja meg a jelszavát: </label>
+    @Html.PasswordFor(x => x.PasswordHash)
+    <br />
 
     <hr />
 
     <!-- CAPTCHA -->
-    <div class="cap">
+    @* <div class="cap">
         <h3> Captcha Code </h3>
         <div class="container">
             <form name="form1">
                 <input type="text" id="captchaTxtArea" name="text" value=""/>
                 <br/>
+                <label>Adja meg a captcha kódot: </label>
                 <input type="text" id="CaptchaEnter" name="CaptchaInput" placeholder="Adja meg a kódot" required />
                 <br/>
-                <input type="button" value="Frissítés" id="refreshbtn" onclick="genNewCaptcha()" /> 
-                <input type="button" value="Ellenőrzés" id="checkbtn" onclick="checkCaptcha()" />
+                <button value="Frissítés" id="refreshbtn" onclick="genNewCaptcha()" /> 
+                <button value="Ellenőrzés" id="checkbtn" onclick="checkCaptcha()" />
             </form>
         </div>
-    </div>
-    <button type="submit">Regisztráció</button>
-</form>
-
+    </div> *@
+    <input type="submit" />
+}
 <!-- Külső js -->
 <!-- wwwroot/js/Captcha.js    mappában van-->
 <script src="~/js/Captcha.js"></script>
