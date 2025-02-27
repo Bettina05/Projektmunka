@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Nyelvtanulas.Models;
@@ -17,14 +18,12 @@ namespace Nyelvtanulas.Controllers
         private IUserManager userManager;
         private IEncryptionService encryptionService;
         private Models.IAuthenticationService authenticationService;
-        private readonly LingarixDbContext DBcontext;
 
-        public AccountController(IUserManager userManager, IEncryptionService encryptionService, Models.IAuthenticationService authenticationService, LingarixDbContext DBcontext)
-        {
+        public AccountController(IUserManager userManager, IEncryptionService encryptionService, Models.IAuthenticationService authenticationService)
+        { 
             this.userManager = userManager;
             this.encryptionService = encryptionService;
             this.authenticationService = authenticationService;
-            this.DBcontext = DBcontext;
         }
         public IActionResult Register()
         {
@@ -44,6 +43,7 @@ namespace Nyelvtanulas.Controllers
         {
             user.PasswordHash = encryptionService.HashPassword(user.PasswordHash);
             userManager.Add(user);
+            ViewBag.Message = "Sikeres regisztráció!";
             return RedirectToAction("Login"); 
         }
         
@@ -54,15 +54,14 @@ namespace Nyelvtanulas.Controllers
             if (authenticationService.TryLogIn(username, password))
             {
                 // Sikerült a bejelentkezés
+                ViewBag.Message = "Sikeres bejelentkezés!";
                 return RedirectToAction("Index");
             }
 
             // Nem sikerült a bejelentkezés
-            return RedirectToAction("Register");
+            ViewBag.Message = "Sikertelen bejelentkezés!";
+            return RedirectToAction("Login");
         }
-
-        //Statisztika oldal - csak bejelentkezve látható
-        
 
         //Captcha validáció
         [HttpPost]
