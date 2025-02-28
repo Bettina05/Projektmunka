@@ -1,0 +1,12 @@
+﻿body {
+    margin-bottom: auto;
+    background-color: rgb(161, 186, 214);
+}
+
+hr {
+    border: none;
+    border-top: 3px solid #1c2939;
+    width: 80%;
+    margin: 20px auto;
+}
+

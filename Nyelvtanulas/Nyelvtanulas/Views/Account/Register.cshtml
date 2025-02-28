@@ -2,7 +2,7 @@
     ViewData["Title"] = "Regisztráció";
 }
 @model User
-<!-- A captcha css része -->
+@* <!-- A captcha css része -->
 <style>
     body
     {
@@ -111,7 +111,7 @@
         cursor: pointer;
         text-align: center;
     }
-</style>
+</style> *@
 
 <!-- Regisztráció és captcha -->
 <h1>@ViewData["Title"]</h1>
@@ -133,8 +133,6 @@
     <label>Adja meg a jelszavát: </label>
     @Html.PasswordFor(x => x.PasswordHash)
     <br />
-
-    <hr />
 
     <!-- CAPTCHA -->
     @* <div class="cap">

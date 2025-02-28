@@ -20,7 +20,6 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<IUserManager, DatabaseUserManager>();
 builder.Services.AddScoped<IEncryptionService, SHA256EncryptionService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceWithSession>();
-builder.Services.AddScoped<AlertService>();
 
 builder.Services.AddDbContext<LingarixDbContext>();
 
