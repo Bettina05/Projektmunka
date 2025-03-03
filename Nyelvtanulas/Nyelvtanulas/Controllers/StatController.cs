@@ -5,23 +5,23 @@ using Lingarix_Database;
 
 namespace NyelvtanuloMVC.Controllers
 {
-    public class StatsController : Controller
+    public class StatController : Controller
     {
         private readonly LingarixDbContext DBcontext;
 
-        public StatsController(LingarixDbContext context)
+        public StatController(LingarixDbContext context)
         {
             DBcontext = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Statistics()
         {
             var userName = User.Identity.Name; // Bejelentkezett felhasználó neve
             var statistics = DBcontext.UserStatistics
                                     .Where(s => s.UserName == userName)
                                     .OrderByDescending(s => s.Date)
                                     .ToList();
-            return View(statistics);
+            return View();
         }
     }
 }

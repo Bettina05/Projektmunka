@@ -115,11 +115,11 @@ namespace Nyelvtanulas.Controllers
             }
         }
 
-        //Kijelentkezés, majd az Index nézetre visszatér
+        //Kijelentkezés, majd a Logout nézetre visszatér
         public IActionResult Logout()
         {
             authenticationService.LogOut();
-            return RedirectToAction("Index");
+            return RedirectToAction("Logout", "Home");
         }
     }
 }
