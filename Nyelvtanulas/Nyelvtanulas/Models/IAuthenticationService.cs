@@ -10,6 +10,6 @@
 
         bool IsAuthenticated { get; }
 
-        string EmailAddress { get; }
+        string UserName { get; }
     }
 }

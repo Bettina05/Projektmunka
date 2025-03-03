@@ -20,13 +20,13 @@ namespace Nyelvtanulas.Models
         }
 
         public bool IsAuthenticated =>
-            httpContextAccessor.HttpContext.Session.TryGetValue("email", out byte[] values);
+            httpContextAccessor.HttpContext.Session.TryGetValue("username", out byte[] values);
 
-        public string EmailAddress
+        public string UserName
         {
             get
             {
-                httpContextAccessor.HttpContext.Session.TryGetValue("email", out byte[] values);
+                httpContextAccessor.HttpContext.Session.TryGetValue("username", out byte[] values);
 
                 if (values is null)
                 {
@@ -43,10 +43,10 @@ namespace Nyelvtanulas.Models
             httpContextAccessor.HttpContext.Session.Clear();
         }
 
-        public bool TryLogIn(string email, string password)
+        public bool TryLogIn(string userName, string password)
         {
             Users? foundUser = userManager.GetAll()
-                .FirstOrDefault(user => user.Email == email);
+                .FirstOrDefault(user => user.Username == userName);
             
             // Ha nincs az email az adatbázisban
             if (foundUser is null) 
@@ -63,7 +63,7 @@ namespace Nyelvtanulas.Models
             }
 
             // Sikerült, letároljuk a sessionbe
-            httpContextAccessor.HttpContext.Session.Set("email", Encoding.UTF8.GetBytes(email));
+            httpContextAccessor.HttpContext.Session.Set("username", Encoding.UTF8.GetBytes(userName));
 
             return true;
         }

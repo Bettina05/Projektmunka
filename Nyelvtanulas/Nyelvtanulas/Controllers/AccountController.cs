@@ -55,7 +55,7 @@ namespace Nyelvtanulas.Controllers
             {
                 // Sikerült a bejelentkezés
                 ViewBag.Message = "Sikeres bejelentkezés!";
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","Home");
             }
 
             // Nem sikerült a bejelentkezés
