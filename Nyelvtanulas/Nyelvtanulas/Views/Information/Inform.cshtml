@@ -1,51 +1,78 @@
-﻿<style>
-    html
-    {
-		scroll-behavior: smooth;
-    }
+﻿<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html{scroll-behavior: smooth;}
 
-    p
-    {
-        font-size:14pt;
-    }
+        p{font-size:14pt;}
 
-    #koszonesek
-    {
-        float:right;
-    }
+        #koszonesek,
+        #alap,
+        #modszer,
+        #elony,
+        #tipp
+        {
+            float:right;
+        }
 
-    .sidebar {
-        width: 250px;
-        top: 60px; 
-        left: 0;
-        bottom: 0;
-        background-color: rgb(240, 248, 255);
-        padding-top: 20px;
+        .sidebar 
+        {
+            display: flex;
+            flex-direction: column;
+            width: 250px;
+            top: 60px; 
+            left: 0;
+            bottom: 0;
+            background-color: rgb(240, 248, 255);
+            padding-top: 20px;
+        }
+        .navbar
+        {
+            order:1;
+        }
 
-    }
+        .image-container 
+        {
+            order: 2;
+        }
 
-        .sidebar a {
+        .image-container img 
+        {
+            float: right; /* Kép jobbra igazítása */
+            width: 100%;
+            height: auto;
+        }
+        
+        /* Kép középre igazítása mobil nézetben */
+        .image-container img 
+        {
+            display: block;
+            margin: 0 auto;
+            float: none;
+        }
+
+        .sidebar a 
+        {
             display: block;
             padding: 10px;
             color: #333;
             text-decoration: none;
+            text-align: left;
         }
 
-            .sidebar a:hover {
-                background-color: #ddd;
-            }
+        .sidebar a:hover {background-color: #ddd;}
 
-    /* Tartalom terület */
-    .content {
-        margin-left: 270px;
-        padding: 20px;
-    }
+        /* Tartalom terület */
+        .content 
+        {
+            margin-left: 270px;
+            padding: 20px;
+        }
 
-    section {
-        margin-bottom: 30px;
-    }
+        section {margin-bottom: 30px;}
 
-</style>
+    </style>
+</head>
+
 @{
     ViewData["Title"] = "Információk";
 }
@@ -54,28 +81,34 @@
     A nyelvtanulás egy olyan folyamat, amely során elsajátítjuk egy új nyelv beszéd- és íráskészségeit, valamint megismerkedünk annak grammatikájával, szókincsével és kiejtésével. A nyelvtanulásnak számos előnye van, és rengeteg módszer létezik, amelyek segítségével hatékonyan sajátíthatunk el egy idegen nyelvet.
 </p>
 <hr />
-<img id="koszonesek" src="~/images/koszonesek.png" alt="Köszönések" width="300px" title="Köszönések különböző nyelven">
+<div class="kepKoszonesek">
+    <img id="koszonesek" src="~/images/koszonesek.png" alt="Köszönések" width="300px" title="Köszönések különböző nyelven" style="max-width: 100%; height: auto;">
+</div>
 
 <div class="sidebar">
     <h4>Az oldal tartalma</h4>
-        <ul class="navbar-nav">
-            <li>
-                <a href="#nyelvtanulas_alapja">A nyelvtanulás alapjai</a>
-            </li>
-            <li>
-                <a href="#nyelvtanulas_modszerei">A nyelvtanulás módszerei</a>
-            </li>
-            <li>
-                <a href="#nyelvtanulashoz_tipp">Tippek a sikeres nyelvtanuláshoz</a>
-            </li>
-            <li>
-                <a href="#nyelvtanulas_elonyei">A nyelvtanulás előnyei</a>
-            </li>
-        </ul>
+        <div class="navbar">
+            <ul class="navbar-nav">
+                <li>
+                    <a href="#nyelvtanulas_alapja">A nyelvtanulás alapjai</a>
+                </li>
+                <li>
+                    <a href="#nyelvtanulas_modszerei">A nyelvtanulás módszerei</a>
+                </li>
+                <li>
+                    <a href="#nyelvtanulashoz_tipp">Tippek a sikeres nyelvtanuláshoz</a>
+                </li>
+                <li>
+                    <a href="#nyelvtanulas_elonyei">A nyelvtanulás előnyei</a>
+                </li>
+            </ul>
+        </div>
     </div>
     <hr />
 <section id="nyelvtanulas_alapja">
     <h2>A nyelvtanulás alapjai</h2>
+    <img id="alap" src="~/images/nyelvtanulas_alapja_szofelho.png" alt="Nyelvtanulás alapjai" width="300px" title="A nyelvtanulás alapjai" style="max-width: 100%; height: auto;">
+
     <dl>
         <dt>Motiváció és célok</dt> 
         <dd>
@@ -108,6 +141,8 @@
 
 <section id="nyelvtanulas_modszerei">
     <h2>A nyelvtanulás módszerei</h2>
+    <img id="modszer" src="~/images/nyelvtanulas_modszerei_szofelho.png" alt="Nyelvtanulás módszerei" width="300px" title="A nyelvtanulás módszerei" style="max-width: 100%; height: auto;">
+
     <ul>
         <li>
             <strong>Szókincsfejlesztő alkalmazások: </strong>
@@ -152,6 +187,8 @@
 
 <section id="nyelvtanulashoz_tipp">
     <h2>Tippek a sikeres nyelvtanuláshoz</h2>
+    <img id="tipp" src="~/images/tippek_nyelvtanulashoz_szofelho.png" alt="Nyelvtanuláshoz tippek" width="300px" title="A nyelvtanuláshoz tippek" style="max-width: 100%; height: auto;">
+
     <ul>
         <li>Tarts szüneteket</li>
         <ul>
@@ -179,24 +216,26 @@
 
 <section id="nyelvtanulas_elonyei">
     <h2>A nyelvtanulás előnyei</h2>
+    <img id="elony" src="~/images/nyelvtanulas_elonyei_szofelho.png" alt="Nyelvtanulás előnyei" width="300px" title="A nyelvtanulás előnyei" style="max-width: 100%; height: auto;">
+
     <ol>
         <li>
-		    <strong>Kulturális gazdagodás</strong>
+		    <strong>Kulturális gazdagodás:</strong>
 		    A nyelvek tanulásával betekintést nyerhetünk más kultúrákba, szokásokba és életmódokba.
 	    </li>
 
         <li>
-            <strong>Karrier lehetőségek</strong>
+            <strong>Karrier lehetőségek:</strong>
             A több nyelven beszélő személyek nagyobb eséllyel találnak munkát nemzetközi cégeknél.
 	    </li>
 
         <li>
-            <strong>Mentális előnyök</strong>
+            <strong>Mentális előnyök:</strong>
             A nyelvtanulás javítja a memóriát, a koncentrációt, és késlelteti a mentális hanyatlást.
         </li>
 
         <li>
-            <strong>Társas kapcsolatok</strong>
+            <strong>Társas kapcsolatok:</strong>
             Lehetőséget ad arra, hogy más országok embereivel barátkozz, és másokkal kommunikálj.
         </li>
     </ol>
