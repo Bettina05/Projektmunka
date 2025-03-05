@@ -1,18 +1,52 @@
 ﻿@{
     ViewData["Title"] = "Főoldal";
 }
-
+<style>
+    #logo
+    {
+        margin-right: 10pt;
+        width: 250px;
+    }
+    #koszontes,
+    #leiras
+    {
+        font-size:14pt;
+        text-align: justify;
+    }
+    #kivanas
+    {  
+        margin-top:20pt;
+        background-color:rgb(95, 143, 158);
+        font-size:14pt;    
+    }
+</style>
 <div class="text-left">
     <h1 class="display-4">Lingarix - a nyelvtanuló program</h1>
-    <h2 class="display-4">Köszöntünk oldalunkon!</h2>
-    <table style="text-align: left">
-        <tr>
-            <td>
-                <img src="~/images/logo.png" alt="Lingarix logó" width="250px" title="Lingarix logó">
-            </td>
-            <td>
-                Ez egy példa szöveg a kép mellé.
-            </td>
-        </tr>
-    </table>
+    <h1>Köszöntünk oldalunkon!</h1>
+    <img id="logo" src="~/images/logo.png" alt="Lingarix logó" title="Lingarix logó">
+    <p id="koszontes">
+        Ez a nyelvtanulást segítő projekt, feladatmegoldás a technikusi vizsgánk részeként jön létre.
+        Projekt leírásnak azt kaptuk, hogy egy mai, valós problémát segítő alkalmazást kell készítenünk. 
+        Mindkettőnknek az egyik legfontosabb a nyelvtanulás, egyikünk rendelkezik már nyelvvizsgáal, míg a csapat másik tagja májusban fogja megszerezni.
+        Fontosnak tartjuk, hogy nem csak a fiataloknak, hanem minden korosztálynak legyen lehetősége nyelvet tanulni, és eddigi tapasztalataink alapján a tanulás legjobban kreatív és interaktív módon történik. 
+        Erre törekszünk projektünk alatt is.
+    </p>
+    
+    <h2>Az oldalról: </h2>
+    <p id="leiras">
+        A feladatmegoldás elkezdéséhez elsőnek regisztrálni kell, majd bejelentkezni. 
+        <br />Bejelentkezés után meg fog jelenni a menüpontban a gyakorlás megkezdése gomb, melyre kattintva megkezdheti a gyakorlást.
+        <br />A gyakorlás elvégzése után statisztikát készítünk a napi gyakorlásről, amit a <span>Statisztika</span> menüpontban tekinthet meg.
+    </p>
+    <hr />
+    <p id="leiras">
+        Oldalunkon egyaránt olvashat hasznos tippekről és információkról a nyelvtanulás alapjairól, módszereiről és annak előnyeiről is.
+        <br /> Célunk, hogy egy kellemes környezetet és felhasználóbarát kinézetet adjunk Önnek, a minél könnyebb tanuláshoz.
+    </p>
+    <div id="kivanas">
+        <h2>Sikeres tanulást kívánnak a készítők:<br /> Gunics Bettina & Páll Márk</h2>
+    </div>
+    
+
+    
 </div>

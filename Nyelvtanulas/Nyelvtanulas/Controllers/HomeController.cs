@@ -7,10 +7,10 @@ namespace Nyelvtanulas.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpGet("api/chrome")]
+        [HttpGet("api/app")]
         public void StartChrome()
         {
-            Process.Start("notepad");
+            Process.Start("C:\\Users\\User\\Documents\\Gunics Bettina 13.B\\Technikusi 2025\\KonzolLingarix\\Lingarix\\Lingarix\\Lingarix.sln");
         }
         public IActionResult Index()
         {
