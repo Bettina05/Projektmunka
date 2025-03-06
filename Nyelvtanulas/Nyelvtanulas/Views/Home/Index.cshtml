@@ -7,7 +7,6 @@
         margin-right: 10pt;
         width: 250px;
     }
-    #koszontes,
     #leiras
     {
         font-size:14pt;
@@ -19,30 +18,56 @@
         background-color:rgb(95, 143, 158);
         font-size:14pt;    
     }
+    ul 
+    {
+        list-style-type: square;
+    }
+    ul li, 
+    ol li
+    {
+            font-size: 20px;
+    }
 </style>
 <div class="text-left">
     <h1 class="display-4">Lingarix - a nyelvtanuló program</h1>
     <h1>Köszöntünk oldalunkon!</h1>
     <img id="logo" src="~/images/logo.png" alt="Lingarix logó" title="Lingarix logó">
-    <p id="koszontes">
+    <p id="leiras">
         Ez a nyelvtanulást segítő projekt, feladatmegoldás a technikusi vizsgánk részeként jön létre.
-        Projekt leírásnak azt kaptuk, hogy egy mai, valós problémát segítő alkalmazást kell készítenünk. 
-        Mindkettőnknek az egyik legfontosabb a nyelvtanulás, egyikünk rendelkezik már nyelvvizsgáal, míg a csapat másik tagja májusban fogja megszerezni.
-        Fontosnak tartjuk, hogy nem csak a fiataloknak, hanem minden korosztálynak legyen lehetősége nyelvet tanulni, és eddigi tapasztalataink alapján a tanulás legjobban kreatív és interaktív módon történik. 
-        Erre törekszünk projektünk alatt is.
+        A nyelvtanuló webalkalmazásunk célja, hogy hatékonyan támogassa a nyelvtanulást egy interaktív felületen keresztül. 
+        <br />Az oldal és az alkalmazás két fő részből áll: egy webes felületből és egy konzolalkalmazásból, amelyek együttműködnek a felhasználók fejlődésének nyomon követésében.
     </p>
+        
+    <h2>1. Regisztráció és bejelentkezés</h2>
+        <ol>
+            <li>A használat megkezdéséhez regisztráció szükséges, ahol meg kell adni egy felhasználónevet, teljes nevet, e-mail címet és jelszót.</li>
+            <li>A jelszavak biztonságát a SHA-256 titkosítás biztosítja.</li>
+            <li>A bejelentkezés során az adatok ellenőrzése az adatbázisból történik.</li>
+            <li>A bejelentkezés során az adatok ellenőrzése az adatbázisból történik.</li>
+            <li>A belépési folyamat részeként egy egyszerű CAPTCHA ellenőrzés is van, hogy kizárjuk a robotokat.</li>
+        </ol>
     
-    <h2>Az oldalról: </h2>
-    <p id="leiras">
-        A feladatmegoldás elkezdéséhez elsőnek regisztrálni kell, majd bejelentkezni. 
-        <br />Bejelentkezés után meg fog jelenni a menüpontban a gyakorlás megkezdése gomb, melyre kattintva megkezdheti a gyakorlást.
-        <br />A gyakorlás elvégzése után statisztikát készítünk a napi gyakorlásről, amit a <span>Statisztika</span> menüpontban tekinthet meg.
-    </p>
-    <hr />
-    <p id="leiras">
-        Oldalunkon egyaránt olvashat hasznos tippekről és információkról a nyelvtanulás alapjairól, módszereiről és annak előnyeiről is.
-        <br /> Célunk, hogy egy kellemes környezetet és felhasználóbarát kinézetet adjunk Önnek, a minél könnyebb tanuláshoz.
-    </p>
+    <h2>2. Információk és tippek</h2>
+        <p id="leiras">
+            Az oldalon található egy Információk és egy Tippek menüpont, ahol hasznos tanácsokat és útmutatókat lehet olvasni a hatékony nyelvtanulásról.
+        </p>
+        
+    <h2>3. Feladatmegoldás és statisztikák</h2>
+        <p id="leiras">
+            A konzolalkalmazás segítségével a felhasználók különböző nyelvi feladatokat oldhatnak meg.
+            Az elért eredmények és statisztikák eddig egy .txt fájlban tárolódtak, de ezeket egy adatbázis váltja fel, amely lehetővé teszi az adatok egyszerűbb kezelését.
+            A weboldalon a Statisztika oldalon követhető a napi teljesítmény, amely csak bejelentkezés után érhető el.
+            A rendszer célja, hogy 
+            <ul>
+                <li>kényelmes,</li>
+                <li>biztonságos és</li>
+                <li>hatékony </li>
+            </ul>
+        </p>
+        <p id="leiras">
+            módot nyújtson a nyelvtanulásra, miközben folyamatos visszajelzést ad a felhasználók fejlődéséről.
+        </p>
+    
     <div id="kivanas">
         <h2>Sikeres tanulást kívánnak a készítők:<br /> Gunics Bettina & Páll Márk</h2>
     </div>
