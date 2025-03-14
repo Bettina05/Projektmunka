@@ -1,0 +1,21 @@
+﻿@* @model
+
+@{
+    ViewData["Title"] = "Ranglista";
+}
+
+<h3></h3>
+<table>
+    <tr>
+        <th>Dátum</th>
+        <th>Pontszám</th>
+    </tr>
+    @foreach (var stat in Model)
+    {
+        <tr>
+            <td>@stat.Date.ToShortDateString()</td>
+            <td>@stat.Score</td>
+        </tr>
+    }
+</table>
+ *@
