@@ -8,7 +8,8 @@ namespace Lingarix_Database
         public DbSet<Users> users { get; set; }
 
         public DbSet<UserStatistics> UserStatistics { get; set; }
-       
+        public DbSet<UserRangList> UserRangList { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase");
