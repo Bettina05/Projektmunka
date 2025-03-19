@@ -15,18 +15,18 @@ namespace Lingarix
             ///<summary>
             /// Osztályok példányosítása
             /// </summary>
-            
-            Angol angol = new Angol();
-            //Angol angol = new Angol();
+
+            Angol english = new Angol();
+            //Angol english = new Angol();
             //Olasz olasz = new Olasz();
             //Francia francia = new Francia();
             //Spanyol spanyol = new Spanyol();
             //Nemet nemet = new Nemet();
 
-            Dictionary<string, string> hasznaltak = new Dictionary<string, string>();
+            Dictionary<string, string> used = new Dictionary<string, string>();
 
             string username = "Márk";
-            string nyelv;
+            string language;
             Stopwatch stopwatch = Stopwatch.StartNew();
 
 
@@ -52,11 +52,11 @@ namespace Lingarix
                 Console.WriteLine(" -- Kilépéshez írjon be egy 'x' karaktert");
                 Console.ResetColor();
                 Console.Write(" -- Nyelv: ");
-                nyelv = Console.ReadLine();
-                switch (nyelv)
+                language = Console.ReadLine();
+                switch (language)
                 {
-                    case "angol":
-                        angol.Beolvas(username);
+                    case "english":
+                        english.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
                         Console.WriteLine(" 1. ABC választási lehetőség");
@@ -65,29 +65,29 @@ namespace Lingarix
                         Console.WriteLine(" 4. Szó kereső");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
-                        int szamANGOL = Convert.ToInt16(Console.ReadLine());
+                        int intENGLISH = Convert.ToInt16(Console.ReadLine());
                         Console.WriteLine("-----------------------------------------");
-                        if (szamANGOL == 1)
+                        if (intENGLISH == 1)
                         {
-                            hasznaltak.Add("Angol_ABC", "igen");
-                            angol.ABC();
+                            used.Add("Angol_ABC", "igen");
+                            english.ABC();
                         }
-                        if (szamANGOL == 2)
+                        if (intENGLISH == 2)
                         {
-                            hasznaltak.Add("Angol_Akasztofa", "igen");
-                            angol.Akasztofa();
+                            used.Add("Angol_Akasztofa", "igen");
+                            english.Akasztofa();
                         }
-                        if (szamANGOL == 3)
+                        if (intENGLISH == 3)
                         {
-                            hasznaltak.Add("Angol", "SzoParositas");
-                            angol.SzoParositas();
+                            used.Add("Angol", "SzoParositas");
+                            english.SzoParositas();
                         }
-                        if (szamANGOL == 4)
+                        if (intENGLISH == 4)
                         {
-                            hasznaltak.Add("Angol_SzoKereso", "igen");
-                            angol.SzoKereso();
+                            used.Add("Angol_SzoKereso", "igen");
+                            english.SzoKereso();
                         }
-                        angol.Pontok();
+                        english.Pontok();
                         break;
 
                     case "német":
@@ -100,26 +100,26 @@ namespace Lingarix
                         Console.WriteLine(" 4. Szó kereső");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
-                        int szamNEMET = Convert.ToInt16(Console.ReadLine());
+                        int IntGERMAN = Convert.ToInt16(Console.ReadLine());
                         Console.WriteLine("-----------------------------------------");
-                        if (szamNEMET == 1)
+                        if (IntGERMAN == 1)
                         {
-                            hasznaltak.Add("Nemet_ABC", "igen");
+                            used.Add("Nemet_ABC", "igen");
                             nemet.ABC();
                         }
-                        if (szamNEMET == 2)
+                        if (IntGERMAN == 2)
                         {
-                            hasznaltak.Add("Nemet_Akasztofa", "igen");
+                            used.Add("Nemet_Akasztofa", "igen");
                             nemet.Akasztofa();
                         }
-                        if (szamNEMET == 3)
+                        if (IntGERMAN == 3)
                         {
-                            hasznaltak.Add("Nemet_SzoParositas", "igen");
+                            used.Add("Nemet_SzoParositas", "igen");
                             nemet.SzoParositas();
                         }
-                        if (szamNEMET == 4)
+                        if (IntGERMAN == 4)
                         {
-                            hasznaltak.Add("Nemet_SzoKereso", "igen");
+                            used.Add("Nemet_SzoKereso", "igen");
                             nemet.SzoKereso();
                         }
                         nemet.Pontok();
@@ -135,26 +135,26 @@ namespace Lingarix
                         Console.WriteLine(" 4. Szó kereső");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
-                        int szamSPANYOL = Convert.ToInt16(Console.ReadLine());
+                        int intSPAIN = Convert.ToInt16(Console.ReadLine());
                         Console.WriteLine("-----------------------------------------");
-                        if (szamSPANYOL == 1)
+                        if (intSPAIN == 1)
                         {
-                            hasznaltak.Add("Spanyol_ABC", "igen");
+                            used.Add("Spanyol_ABC", "igen");
                             spanyol.ABC();
                         }
-                        if (szamSPANYOL == 2)
+                        if (intSPAIN == 2)
                         {
-                            hasznaltak.Add("Spanyol_Akasztofa", "igen");
+                            used.Add("Spanyol_Akasztofa", "igen");
                             spanyol.Akasztofa();
                         }
-                        if (szamSPANYOL == 3)
+                        if (intSPAIN == 3)
                         {
-                            hasznaltak.Add("Spanyol_SzoParositas", "igen");
+                            used.Add("Spanyol_SzoParositas", "igen");
                             spanyol.SzoParositas();
                         }
-                        if (szamSPANYOL == 4)
+                        if (intSPAIN == 4)
                         {
-                            hasznaltak.Add("Spanyol_SzoKereso", "igen");
+                            used.Add("Spanyol_SzoKereso", "igen");
                             spanyol.SzoKereso();
                         }
                         spanyol.Pontok();
@@ -170,26 +170,26 @@ namespace Lingarix
                         Console.WriteLine(" 4. Szó kereső");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
-                        int szamOLASZ = Convert.ToInt16(Console.ReadLine());
+                        int intITALY = Convert.ToInt16(Console.ReadLine());
                         Console.WriteLine("-----------------------------------------");
-                        if (szamOLASZ == 1)
+                        if (intITALY == 1)
                         {
-                            hasznaltak.Add("Olasz_ABC", "igen");
+                            used.Add("Olasz_ABC", "igen");
                             olasz.ABC();
                         }
-                        if (szamOLASZ == 2)
+                        if (intITALY == 2)
                         {
-                            hasznaltak.Add("Olasz_Akasztofa", "igen");
+                            used.Add("Olasz_Akasztofa", "igen");
                             olasz.Akasztofa();
                         }
-                        if (szamOLASZ == 3)
+                        if (intITALY == 3)
                         {
-                            hasznaltak.Add("Olasz_SzoParositas", "igen");
+                            used.Add("Olasz_SzoParositas", "igen");
                             olasz.SzoParositas();
                         }
-                        if (szamOLASZ == 4)
+                        if (intITALY == 4)
                         {
-                            hasznaltak.Add("Olasz_SzoKereso", "igen");
+                            used.Add("Olasz_SzoKereso", "igen");
                             olasz.SzoKereso();
                         }
                         olasz.Pontok();
@@ -205,33 +205,33 @@ namespace Lingarix
                         Console.WriteLine(" 4. Szó kereső");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
-                        int szamFRANCIA = Convert.ToInt16(Console.ReadLine());
+                        int intFRENCH = Convert.ToInt16(Console.ReadLine());
                         Console.WriteLine("-----------------------------------------");
-                        if (szamFRANCIA == 1)
+                        if (intFRENCH == 1)
                         {
-                            hasznaltak.Add("Francia_ABC", "igen");
+                            used.Add("Francia_ABC", "igen");
                             francia.ABC();
                         }
-                        if (szamFRANCIA == 2)
+                        if (intFRENCH == 2)
                         {
-                            hasznaltak.Add("Francia_ABC", "igen");
+                            used.Add("Francia_ABC", "igen");
                             francia.Akasztofa();
                         }
-                        if (szamFRANCIA == 3)
+                        if (intFRENCH == 3)
                         {
-                            hasznaltak.Add("Francia_ABC", "igen");
+                            used.Add("Francia_ABC", "igen");
                             francia.SzoParositas();
                         }
-                        if (szamFRANCIA == 4)
+                        if (intFRENCH == 4)
                         {
-                            hasznaltak.Add("Francia_ABC", "igen");
+                            used.Add("Francia_ABC", "igen");
                             francia.SzoKereso();
                         }
                         francia.Pontok();
                         break;
                 }
             }
-            while (nyelv != "x");
+            while (language != "x");
             {
                 Console.WriteLine("Köszönjük " + username + ", hogy a Lingarixet választotta!");
                 Console.WriteLine("Készítők: Gunics Bettina Virág, Páll Márk Hunor");
@@ -240,15 +240,15 @@ namespace Lingarix
                 double elapsedHours = stopwatch.Elapsed.TotalMinutes;
                 Console.WriteLine($"A program futásának ideje: {Math.Round(elapsedHours),4} perc");
                 DateTime Date = DateTime.Now;
-                int Score = angol.Pontok() + olasz.Pontok() + francia.Pontok() + nemet.Pontok() + spanyol.Pontok();
+                int Score = english.Pontok() + olasz.Pontok() + francia.Pontok() + nemet.Pontok() + spanyol.Pontok();
                 Console.WriteLine("Elért pontok:" + Score);
-                foreach (var item in hasznaltak)
+                foreach (var item in used)
                 {
                     Console.Write($"{item.Key}: {item.Value}\n");
                 }
                 using (StreamWriter writer = new StreamWriter("Hasznaltnyelv_es_feladatok"))
                 {
-                    foreach (var pair in hasznaltak)
+                    foreach (var pair in used)
                     {
                         writer.WriteLine($"{pair.Key}: {pair.Value}");
                     }
@@ -257,4 +257,5 @@ namespace Lingarix
             Console.ReadKey();
         }
     }
+}
 
