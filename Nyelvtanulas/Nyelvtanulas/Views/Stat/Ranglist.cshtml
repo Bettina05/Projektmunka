@@ -7,13 +7,13 @@
 <h3></h3>
 <table>
     <tr>
-        <th>Dátum</th>
+        <th>Felhasználónév</th>
         <th>Pontszám</th>
     </tr>
     @foreach (var stat in Model)
     {
         <tr>
-            <td>@stat.Date.ToShortDateString()</td>
+            <td>@stat.Username</td>
             <td>@stat.Score</td>
         </tr>
     }
