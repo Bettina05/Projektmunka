@@ -10,18 +10,18 @@ namespace Lingarix
     internal class Nemet
     {
         //Idegennyelvű szavak
-        List<string> csalad_nemet = new List<string>();
-        List<string> info_nemet = new List<string>();
-        List<string> utazas_nemet = new List<string>();
-        List<string> idojaras_nemet = new List<string>();
-        List<string> lakohely_nemet = new List<string>();
+        List<string> family_german = new List<string>();
+        List<string> it_german = new List<string>();
+        List<string> travel_german = new List<string>();
+        List<string> weather_german = new List<string>();
+        List<string> home_german = new List<string>();
 
         //Magyar szavak
-        List<string> csalad_magyar = new List<string>();
-        List<string> info_magyar = new List<string>();
-        List<string> utazas_magyar = new List<string>();
-        List<string> idojaras_magyar = new List<string>();
-        List<string> lakohely_magyar = new List<string>();
+        List<string> family_hun = new List<string>();
+        List<string> it_hun = new List<string>();
+        List<string> travel_hun = new List<string>();
+        List<string> weather_hun = new List<string>();
+        List<string> home_hun = new List<string>();
 
         ///<summary>
         /// A felhasználó felhasználóneve
@@ -29,96 +29,96 @@ namespace Lingarix
         string username = "";
         /// A pontokat itt számoljuk az ABC feladatnál
         /// </summary>
-        int pontszamABC;
+        int scoreABC;
 
         /// <summary>
         /// A pontokat itt számoljuk a szópárosításos feladatnál
         /// </summary>
-        int pontszamPAROSITAS;
+        int scorePAROSITAS;
 
         /// <summary>
         /// A pontokat itt számoljuk az akasztófa feladathoz
         /// </summary>
-        int pontszamAKASZTOFA;
+        int scoreAKASZTOFA;
 
         /// <summary>
         /// A pontokat itt számoljuk a szókereső feladathoz
         /// </summary>
-        int pontszamSZOKERESO;
+        int scoreSZOKERESO;
 
         /// <summary>
         /// Itt adják meg a feladat sorszámát
         /// </summary>
-        int sorszam;
+        int serial_number;
 
         /// <summary>
         /// A kitalálandó szavakat tároljuk benne, minden egyes feladatban idegennyelvű
         /// </summary>
-        string szo = "";
+        string word = "";
 
         /// <summary>
         /// A kitalálandó szavak magyar megfelelőjét, megfejtését tároljuk benne
         /// </summary>
-        string megfejtes;
+        string answer;
 
         /// <summary>
         /// A kitalálandó szavakat tároljuk benne, minden egyes feladatban magyar nyelvű
         /// </summary>
-        string magyarSzo;
+        string hun_word;
 
         int index = 0;
 
         /// <summary>
         /// A szópárosításhoz tartozó szavak betűi abc sorrendbe rendezve
         /// </summary>
-        string abc_rendezett_betuk;
+        string abc_sorted_char;
 
         /// <summary>
         /// A szópárosításhoz tartozó megoldás a felhasználó által beírva
         /// </summary>
-        string szokereso;
+        string word_finder;
 
         /// <summary>
         /// Témaköröket tároljuk benne
         /// </summary>
-        string temakor = "";
+        string topic = "";
 
         /// <summary>
         /// Megakadályozza, hogy a megfejtendő szavak ismétlődjenek
         /// </summary>
-        static Random szam = new Random();
+        static Random rnd = new Random();
         //A dokumentumból beolvassuk a szavakat és a témaköröket
         public void Beolvas(string felhasznalonev)
         {
-            string[] adatok = File.ReadAllLines("nemet.txt");
+            string[] datas = File.ReadAllLines("nemet.txt");
             username = felhasznalonev;
-            for (int i = 0; i < adatok.Length; i++)
+            for (int i = 0; i < datas.Length; i++)
             {
-                string[] sor = adatok[i].Split(';');
+                string[] sor = datas[i].Split(';');
                 if (sor[2] == "család")
                 {
-                    csalad_nemet.Add(sor[0]);
-                    csalad_magyar.Add(sor[1]);
+                    family_german.Add(sor[0]);
+                    family_hun.Add(sor[1]);
                 }
                 if (sor[2] == "informatika")
                 {
-                    info_nemet.Add(sor[0]);
-                    info_magyar.Add(sor[1]);
+                    it_german.Add(sor[0]);
+                    it_hun.Add(sor[1]);
                 }
                 if (sor[2] == "utazás")
                 {
-                    utazas_nemet.Add(sor[0]);
-                    utazas_magyar.Add(sor[1]);
+                    travel_german.Add(sor[0]);
+                    travel_hun.Add(sor[1]);
                 }
                 if (sor[2] == "időjárás")
                 {
-                    idojaras_nemet.Add(sor[0]);
-                    idojaras_magyar.Add(sor[1]);
+                    weather_german.Add(sor[0]);
+                    weather_hun.Add(sor[1]);
                 }
                 if (sor[2] == "lakóhely")
                 {
-                    lakohely_nemet.Add(sor[0]);
-                    lakohely_magyar.Add(sor[1]);
+                    home_german.Add(sor[0]);
+                    home_hun.Add(sor[1]);
                 }
             }
 
@@ -127,8 +127,8 @@ namespace Lingarix
         //Első feladatunk: A-B-C lehetőség van a kiírt fordítás helyes megfejtésére
         public void ABC()
         {
-            Random szam = new Random();
-            HashSet<int> hasznaltIndexek = new HashSet<int>(); // Tárolja a már kiválasztott szavakat
+            Random rnd = new Random();
+            HashSet<int> used_index = new HashSet<int>(); // Tárolja a már kiválasztott szavakat
 
             do
             {
@@ -142,44 +142,44 @@ namespace Lingarix
                 Console.WriteLine("6.  Kilépés      ");
                 Console.WriteLine("--------------------");
                 Console.Write(" -- Téma sorszáma: ");
-                sorszam = Convert.ToInt16(Console.ReadLine());
+                serial_number = Convert.ToInt16(Console.ReadLine());
 
-                if (sorszam == 6) break;
+                if (serial_number == 6) break;
 
-                List<string> temakor_francia = new List<string>();
-                List<string> temakor_magyar = new List<string>();
-                string temakor = "";
+                List<string> topic_german = new List<string>();
+                List<string> topic_hun = new List<string>();
+                string topic = "";
 
-                switch (sorszam)
+                switch (serial_number)
                 {
                     case 1:
-                        temakor_francia = csalad_nemet;
-                        temakor_magyar = csalad_magyar;
-                        temakor = "család";
+                        topic_german = family_german;
+                        topic_hun = family_hun;
+                        topic = "család";
                         break;
 
                     case 2:
-                        temakor_francia = info_nemet;
-                        temakor_magyar = info_magyar;
-                        temakor = "informatika";
+                        topic_german = it_german;
+                        topic_hun = it_hun;
+                        topic = "informatika";
                         break;
 
                     case 3:
-                        temakor_francia = utazas_nemet;
-                        temakor_magyar = utazas_magyar;
-                        temakor = "utazás";
+                        topic_german = travel_german;
+                        topic_hun = travel_hun;
+                        topic = "utazás";
                         break;
 
                     case 4:
-                        temakor_francia = idojaras_nemet;
-                        temakor_magyar = idojaras_magyar;
-                        temakor = "időjárás";
+                        topic_german = weather_german;
+                        topic_hun = weather_hun;
+                        topic = "időjárás";
                         break;
 
                     case 5:
-                        temakor_francia = lakohely_nemet;
-                        temakor_magyar = lakohely_magyar;
-                        temakor = "lakóhely";
+                        topic_german = home_german;
+                        topic_hun = home_hun;
+                        topic = "lakóhely";
                         break;
                     case 6:
                         Console.WriteLine("Köszönjük, hogy velünk tanultál, {0}!", username);
@@ -188,51 +188,50 @@ namespace Lingarix
                         Console.WriteLine("Érvénytelen választás, próbáld újra!");
                         continue;
                 }
-
-                hasznaltIndexek.Clear(); // Minden új témánál töröljük a korábbi szavakat
+                used_index.Clear(); // Minden új témánál töröljük a korábbi szavakat
 
                 for (int i = 0; i < 5; i++) // 5 szó bekérése egy témából
                 {
-                    if (hasznaltIndexek.Count == temakor_francia.Count) // Ha minden szó elfogyott, újra kezdjük
+                    if (used_index.Count == topic_german.Count) // Ha minden szó elfogyott, újra kezdjük
                     {
-                        hasznaltIndexek.Clear();
+                        used_index.Clear();
                     }
 
                     int index;
                     do
                     {
-                        index = szam.Next(temakor_francia.Count);
-                    } while (hasznaltIndexek.Contains(index)); // Ellenőrizzük, hogy ne ismétlődjön
+                        index = rnd.Next(topic_german.Count);
+                    } while (used_index.Contains(index)); // Ellenőrizzük, hogy ne ismétlődjön
 
-                    hasznaltIndexek.Add(index); // Elmentjük a felhasznált indexet
+                    used_index.Add(index); // Elmentjük a felhasznált indexet
 
-                    szo = temakor_francia[index];
-                    magyarSzo = temakor_magyar[index];
+                    word = topic_german[index];
+                    hun_word = topic_hun[index];
 
-                    Console.WriteLine("\nA {0} témában válassza ki a megfelelő választ az 'a/b/c' lehetőségek közül!", temakor);
-                    Console.WriteLine("A német szó: " + szo);
+                    Console.WriteLine("\nA {0} témában válassza ki a megfelelő választ az 'a/b/c' lehetőségek közül!", topic);
+                    Console.WriteLine("A német szó: " + word);
 
-                    List<string> masikMagyarok = temakor_magyar.Where((value, idx) => idx != index).ToList();
-                    string masikMagyar1 = masikMagyarok[szam.Next(masikMagyarok.Count)];
-                    masikMagyarok.Remove(masikMagyar1);
-                    string masikMagyar2 = masikMagyarok[szam.Next(masikMagyarok.Count)];
+                    List<string> antoher_HUN = topic_hun.Where((value, idx) => idx != index).ToList();
+                    string another_HUN2 = antoher_HUN[rnd.Next(antoher_HUN.Count)];
+                    antoher_HUN.Remove(another_HUN2);
+                    string another_HUN3 = antoher_HUN[rnd.Next(antoher_HUN.Count)];
 
-                    int helyesValaszIndex = szam.Next(3);
-                    string[] valaszok = { masikMagyar1, masikMagyar2, magyarSzo };
-                    (valaszok[helyesValaszIndex], valaszok[2]) = (valaszok[2], valaszok[helyesValaszIndex]);
+                    int correct_answear_index = rnd.Next(3);
+                    string[] answears = { another_HUN2, another_HUN3, hun_word };
+                    (answears[correct_answear_index], answears[2]) = (answears[2], answears[correct_answear_index]);
 
-                    Console.WriteLine("a) " + valaszok[0]);
-                    Console.WriteLine("b) " + valaszok[1]);
-                    Console.WriteLine("c) " + valaszok[2]);
+                    Console.WriteLine("a) " + answears[0]);
+                    Console.WriteLine("b) " + answears[1]);
+                    Console.WriteLine("c) " + answears[2]);
 
-                    string megfejtes = Console.ReadLine();
-                    if (megfejtes == new[] { "a", "b", "c" }[helyesValaszIndex])
+                    string answear = Console.ReadLine();
+                    if (answear == new[] { "a", "b", "c" }[correct_answear_index])
                     {
-                        pontszamABC += 1;
+                        scoreABC += 1;
                     }
                 }
 
-                Console.WriteLine("\nEddigi pontok: " + pontszamABC + " pont\n");
+                Console.WriteLine("\nEddigi pontok: " + scoreABC + " pont\n");
             }
             while (true);
 
@@ -251,8 +250,8 @@ namespace Lingarix
         "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n / \\  |  \n      |  \n========="
     };
 
-            int maxEletSzam = 6;
-            int rajzIndex = maxEletSzam - Math.Max(0, Math.Min(maxEletSzam, eletSzam));
+            int max_HP = 6;
+            int rajzIndex = max_HP - Math.Max(0, Math.Min(max_HP, eletSzam));
             Console.WriteLine(akasztofaRajz[rajzIndex]);
         }
 
@@ -270,102 +269,102 @@ namespace Lingarix
                 Console.WriteLine("6.  Kilépés      ");
                 Console.WriteLine("--------------------");
                 Console.Write(" -- Téma sorszáma: ");
-                sorszam = Convert.ToInt16(Console.ReadLine());
+                serial_number = Convert.ToInt16(Console.ReadLine());
 
-                if (sorszam == 6) break; // Kilépés esetén kilépünk a ciklusból
+                if (serial_number == 6) break; // Kilépés esetén kilépünk a ciklusból
 
-                Random r = new Random();
-                List<string> szoLista = new List<string>();
-                string temaNeve = "";
+                Random rnd = new Random();
+                List<string> word_list = new List<string>();
+                string topic = "";
 
-                switch (sorszam)
+                switch (serial_number)
                 {
-                    case 1: szoLista = csalad_nemet; temaNeve = "Család"; break;
-                    case 2: szoLista = info_nemet; temaNeve = "Informatika"; break;
-                    case 3: szoLista = utazas_nemet; temaNeve = "Utazás"; break;
-                    case 4: szoLista = idojaras_nemet; temaNeve = "Időjárás"; break;
-                    case 5: szoLista = lakohely_nemet; temaNeve = "Lakóhely"; break;
+                    case 1: word_list = family_german; topic = "Család"; break;
+                    case 2: word_list = it_german; topic = "Informatika"; break;
+                    case 3: word_list = travel_german; topic = "Utazás"; break;
+                    case 4: word_list = weather_german; topic = "Időjárás"; break;
+                    case 5: word_list = home_german; topic = "Lakóhely"; break;
                     default: Console.WriteLine("Hibás választás!"); continue;
                 }
 
-                if (szoLista.Count == 0)
+                if (word_list.Count == 0)
                 {
                     Console.WriteLine("Nincs elérhető szó ebben a témakörben!");
                     continue;
                 }
 
-                string keresettSzo = szoLista[r.Next(szoLista.Count)];
-                int elet = keresettSzo.Length + 5;
-                HashSet<char> kiprobaltBetuk = new HashSet<char>();
-                HashSet<char> helyesTalalatok = new HashSet<char>();
+                string missing_word = word_list[rnd.Next(word_list.Count)];
+                int HP = missing_word.Length + 5;
+                HashSet<char> used_chars = new HashSet<char>();
+                HashSet<char> correct_chars = new HashSet<char>();
 
-                Console.WriteLine($"\nAkasztófa játék - Téma: {temaNeve}");
-                Console.WriteLine($"A szó {keresettSzo.Length} betűből áll. Kezdésre {elet} életed van.");
+                Console.WriteLine($"\nAkasztófa játék - Téma: {topic}");
+                Console.WriteLine($"A szó {missing_word.Length} betűből áll. Kezdésre {HP} életed van.");
 
-                while (elet > 0)
+                while (HP > 0)
                 {
-                    int hianyzoBetuk = 0;
+                    int missing_char = 0;
                     Console.Write("\nSzó: ");
-                    foreach (char kar in keresettSzo)
+                    foreach (char kar in missing_word)
                     {
-                        if (helyesTalalatok.Contains(kar))
+                        if (correct_chars.Contains(kar))
                         {
                             Console.Write(kar);
                         }
                         else
                         {
                             Console.Write("_");
-                            hianyzoBetuk++;
+                            missing_char++;
                         }
                     }
                     Console.WriteLine();
 
-                    if (hianyzoBetuk == 0)
+                    if (missing_char == 0)
                     {
                         Console.WriteLine("\n Gratulálok! Megnyerted a játékot! ");
-                        pontszamAKASZTOFA += keresettSzo.Length; // Pontszám növelése
+                        scoreAKASZTOFA += missing_word.Length; // Pontszám növelése
                         break;
                     }
 
                     Console.Write("\nÍrj be egy betűt: ");
-                    string tipp = Console.ReadLine().ToLower();
+                    string hint = Console.ReadLine().ToLower();
 
-                    if (string.IsNullOrWhiteSpace(tipp) || tipp.Length != 1 || !char.IsLetter(tipp[0]))
+                    if (string.IsNullOrWhiteSpace(hint) || hint.Length != 1 || !char.IsLetter(hint[0]))
                     {
                         Console.WriteLine(" Csak egy érvényes betűt adj meg!");
                         continue;
                     }
 
-                    char betu = tipp[0];
+                    char betu = hint[0];
 
-                    if (kiprobaltBetuk.Contains(betu))
+                    if (used_chars.Contains(betu))
                     {
                         Console.WriteLine(" Már próbálkoztál ezzel a betűvel!");
                         continue;
                     }
 
-                    kiprobaltBetuk.Add(betu);
+                    used_chars.Add(betu);
 
-                    if (keresettSzo.Contains(betu))
+                    if (missing_word.Contains(betu))
                     {
                         Console.WriteLine($" A(z) '{betu}' betű szerepel a szóban!");
-                        helyesTalalatok.Add(betu);
+                        correct_chars.Add(betu);
                     }
                     else
                     {
-                        elet--;
-                        Console.WriteLine($" Sajnos a(z) '{betu}' nincs a szóban! {elet} életed maradt.");
-                        RajzolAkasztofa(elet);
+                        HP--;
+                        Console.WriteLine($" Sajnos a(z) '{betu}' nincs a szóban! {HP} életed maradt.");
+                        RajzolAkasztofa(HP);
                     }
                 }
 
-                if (elet == 0)
+                if (HP == 0)
                 {
-                    Console.WriteLine($"\n Vesztettél! A keresett szó: {keresettSzo}");
+                    Console.WriteLine($"\n Vesztettél! A keresett szó: {missing_word}");
                 }
 
                 Console.WriteLine("\n***************************************");
-                Console.WriteLine($"Jelenlegi pontszámod: {pontszamAKASZTOFA} pont");
+                Console.WriteLine($"Jelenlegi pontszámod: {scoreAKASZTOFA} pont");
                 Console.WriteLine("***************************************\n");
 
             } while (true);
@@ -377,7 +376,7 @@ namespace Lingarix
 
         public void SzoParositas()
         {
-            Random szam = new Random();
+            Random rnd = new Random();
 
             do
             {
@@ -391,38 +390,38 @@ namespace Lingarix
                 Console.WriteLine("6.  Kilépés      ");
                 Console.WriteLine("--------------------");
                 Console.Write(" -- Téma sorszáma: ");
-                sorszam = Convert.ToInt16(Console.ReadLine());
+                serial_number = Convert.ToInt16(Console.ReadLine());
 
-                List<string> olaszLista = new List<string>();
-                List<string> magyarLista = new List<string>();
-                string temakor = "";
+                List<string> german_list = new List<string>();
+                List<string> hun_list = new List<string>();
+                string topic = "";
 
-                switch (sorszam)
+                switch (serial_number)
                 {
                     case 1:
-                        olaszLista = csalad_nemet;
-                        magyarLista = csalad_magyar;
-                        temakor = "család";
+                        german_list = family_german;
+                        hun_list = family_hun;
+                        topic = "család";
                         break;
                     case 2:
-                        olaszLista = info_nemet;
-                        magyarLista = info_magyar;
-                        temakor = "informatika";
+                        german_list = it_german;
+                        hun_list = it_hun;
+                        topic = "informatika";
                         break;
                     case 3:
-                        olaszLista = utazas_nemet;
-                        magyarLista = utazas_magyar;
-                        temakor = "utazás";
+                        german_list = travel_german;
+                        hun_list = travel_hun;
+                        topic = "utazás";
                         break;
                     case 4:
-                        olaszLista = idojaras_nemet;
-                        magyarLista = idojaras_magyar;
-                        temakor = "időjárás";
+                        german_list = weather_german;
+                        hun_list = weather_hun;
+                        topic = "időjárás";
                         break;
                     case 5:
-                        olaszLista = lakohely_nemet;
-                        magyarLista = lakohely_magyar;
-                        temakor = "lakóhely";
+                        german_list = home_german;
+                        hun_list = home_hun;
+                        topic = "lakóhely";
                         break;
                     case 6:
                         Console.WriteLine("Köszönjük, hogy velünk tanultál, {0}!", username);
@@ -432,37 +431,37 @@ namespace Lingarix
                         continue;
                 }
 
-                Console.WriteLine($"Adja meg az német szó magyar megfelelőjét a {temakor} témához kapcsolódva!");
+                Console.WriteLine($"Adja meg az német szó magyar megfelelőjét a {topic} témához kapcsolódva!");
 
                 for (int i = 0; i < 5; i++)  // 5 szót kérünk le
                 {
-                    int index = szam.Next(olaszLista.Count);  // Véletlenszerű index
-                    string szo = olaszLista[index];
-                    string magyarSzo = magyarLista[index];
+                    int index = rnd.Next(german_list.Count);  // Véletlenszerű index
+                    string word = german_list[index];
+                    string hun_word = hun_list[index];
 
-                    Console.Write(szo + " -- ");
-                    string megfejtes = Console.ReadLine();
+                    Console.Write(word + " -- ");
+                    string answear = Console.ReadLine();
 
-                    if (megfejtes.Trim().ToLower() == magyarSzo.ToLower())
+                    if (answear.Trim().ToLower() == hun_word.ToLower())
                     {
-                        pontszamPAROSITAS += 1;
+                        scorePAROSITAS += 1;
                         Console.WriteLine("  Helyes!");
                     }
                     else
                     {
-                        Console.WriteLine($" Hibás! A helyes válasz: {magyarSzo}");
+                        Console.WriteLine($" Hibás! A helyes válasz: {hun_word}");
                     }
                 }
 
-                Console.WriteLine("\nEddigi pontok: " + pontszamPAROSITAS + " pont");
+                Console.WriteLine("\nEddigi pontok: " + scorePAROSITAS + " pont");
                 Console.WriteLine();
 
-            } while (sorszam != 7);
+            } while (serial_number != 7);
         }
         //Negyedik feladatunk: A felhasználó kiválasztotta a témakört és a szót megkapja ABC sorrendbe állítva, majd ezután kell helyes srrendben állítania őket, hogy megkaphassa a helyes megfejtést
         public void SzoKereso()
         {
-            Random szam = new Random();
+            Random rnd = new Random();
 
             do
             {
@@ -476,38 +475,37 @@ namespace Lingarix
                 Console.WriteLine("6.  Kilépés      ");
                 Console.WriteLine("--------------------");
                 Console.Write(" -- Téma sorszáma: ");
-                sorszam = Convert.ToInt16(Console.ReadLine());
+                serial_number = Convert.ToInt16(Console.ReadLine());
 
-                if (sorszam == 6) break;
+                if (serial_number == 6) break;
 
-                List<string> temakor_francia = new List<string>();
-                string temakor = "";
-
-                switch (sorszam)
+                List<string> topic_german = new List<string>();
+                string topic = "";
+                switch (serial_number)
                 {
                     case 1:
-                        temakor_francia = csalad_nemet;
-                        temakor = "család";
+                        topic_german = family_german;
+                        topic = "család";
                         break;
 
                     case 2:
-                        temakor_francia = info_nemet;
-                        temakor = "informatika";
+                        topic_german = it_german;
+                        topic = "informatika";
                         break;
 
                     case 3:
-                        temakor_francia = utazas_nemet;
-                        temakor = "utazás";
+                        topic_german = travel_german;
+                        topic = "utazás";
                         break;
 
                     case 4:
-                        temakor_francia = idojaras_nemet;
-                        temakor = "időjárás";
+                        topic_german = weather_german;
+                        topic = "időjárás";
                         break;
 
                     case 5:
-                        temakor_francia = lakohely_nemet;
-                        temakor = "lakóhely";
+                        topic_german = home_german;
+                        topic = "lakóhely";
                         break;
                     case 6:
                         Console.WriteLine("Köszönjük, hogy velünk tanultál, {0}!", username);
@@ -517,28 +515,28 @@ namespace Lingarix
                         continue;
                 }
 
-                HashSet<int> hasznaltIndexek = new HashSet<int>();
+                HashSet<int> used_index = new HashSet<int>();
 
-                Console.WriteLine("\nTémakör: " + temakor);
+                Console.WriteLine("\nTémakör: " + topic);
                 Console.WriteLine("A megadott betűk alapján találja ki a szót és írja be a kijelölt helyre!");
 
                 for (int i = 0; i < 5; i++) // 5 különböző szó kiválasztása
                 {
-                    if (hasznaltIndexek.Count == temakor_francia.Count)
+                    if (used_index.Count == topic_german.Count)
                     {
-                        hasznaltIndexek.Clear();
+                        used_index.Clear();
                     }
 
                     int index;
                     do
                     {
-                        index = szam.Next(temakor_francia.Count);
-                    } while (hasznaltIndexek.Contains(index));
+                        index = rnd.Next(topic_german.Count);
+                    } while (used_index.Contains(index));
 
-                    hasznaltIndexek.Add(index);
-                    string szo = temakor_francia[index];
+                    used_index.Add(index);
+                    string word = topic_german[index];
 
-                    char[] betuk = szo.ToCharArray();
+                    char[] betuk = word.ToCharArray();
                     Array.Sort(betuk);
                     string abc_rendezett_betuk = new string(betuk);
 
@@ -548,22 +546,22 @@ namespace Lingarix
 
                     string szokereso = Console.ReadLine();
 
-                    if (szokereso == szo)
+                    if (szokereso == word)
                     {
-                        pontszamSZOKERESO++;
+                        scoreSZOKERESO++;
                         Console.WriteLine(" Helyes válasz!");
                     }
                     else
                     {
                         Console.WriteLine("********************");
                         Console.WriteLine("Nem jó :(");
-                        Console.WriteLine("A helyes válasz: " + szo);
+                        Console.WriteLine("A helyes válasz: " + word);
                         Console.WriteLine("********************");
                     }
                 }
 
                 Console.WriteLine();
-                Console.WriteLine("Eddigi pontok: " + pontszamSZOKERESO + " pont");
+                Console.WriteLine("Eddigi pontok: " + scoreSZOKERESO + " pont");
                 Console.WriteLine();
 
             } while (true);
@@ -575,7 +573,7 @@ namespace Lingarix
         //Összeszámolja, hogy összesen hány pontot gyűjtött a felhasználó a gyakorlással
         public int Pontok()
         {
-            int pontok = pontszamABC + pontszamAKASZTOFA + pontszamPAROSITAS + pontszamSZOKERESO;
+            int pontok = scoreABC + scoreAKASZTOFA + scorePAROSITAS + scoreSZOKERESO;
             return pontok;
         }
     }

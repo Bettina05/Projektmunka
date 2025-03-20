@@ -5,32 +5,58 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace Lingarix
 {
     internal class Program
     {
+        static async Task Main(string[] args)
+        {
+            Console.Write("Add meg a felhasználóneved: ");
+            string username = Console.ReadLine();
+
+            using (var client = new HttpClient())
+            {
+                string url = $"http://localhost:5130/api/users/{username}"; // Az MVC alkalmazásod URL-je
+                HttpResponseMessage response = await client.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseData = await response.Content.ReadAsStringAsync();
+                    var json = JObject.Parse(responseData);
+                    string fetchedUsername = json["username"]?.ToString();
+
+                    Console.WriteLine($"Üdvözlünk {fetchedUsername} a Lingarixben!");
+                }
+                else
+                {
+                    Console.WriteLine("Hiba: A felhasználó nem található.");
+                }
+            }
+        }
         static void Main(string[] args)
         {
             ///<summary>
             /// Osztályok példányosítása
             /// </summary>
 
-            Angol english = new Angol();
-            //Angol english = new Angol();
-            //Olasz olasz = new Olasz();
-            //Francia francia = new Francia();
-            //Spanyol spanyol = new Spanyol();
-            //Nemet nemet = new Nemet();
+            Angol English = new Angol();
+            Olasz Italy = new Olasz();
+            Francia French = new Francia();
+            Spanyol Spain = new Spanyol();
+            Nemet Deutsch = new Nemet();
 
             Dictionary<string, string> used = new Dictionary<string, string>();
 
-            string username = "Márk";
+            string username = args.Length > 0 ? args[0] : "Ismeretlen felhasználó";
+            StartConsoleApp(username);
             string language;
             Stopwatch stopwatch = Stopwatch.StartNew();
 
 
-            Console.WriteLine("               Üdvözlünk " + username + " a Lingarixben            ");
+            Console.WriteLine($"               Üdvözlünk {username} a Lingarixben!            ");
             Console.WriteLine("                 _______________________");
             Console.WriteLine("                 |                     |");
             Console.WriteLine("                 | Használati utasítás |");
@@ -55,8 +81,8 @@ namespace Lingarix
                 language = Console.ReadLine();
                 switch (language)
                 {
-                    case "english":
-                        english.Beolvas(username);
+                    case "English":
+                        English.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
                         Console.WriteLine(" 1. ABC választási lehetőség");
@@ -70,28 +96,28 @@ namespace Lingarix
                         if (intENGLISH == 1)
                         {
                             used.Add("Angol_ABC", "igen");
-                            english.ABC();
+                            English.ABC();
                         }
                         if (intENGLISH == 2)
                         {
                             used.Add("Angol_Akasztofa", "igen");
-                            english.Akasztofa();
+                            English.Akasztofa();
                         }
                         if (intENGLISH == 3)
                         {
                             used.Add("Angol", "SzoParositas");
-                            english.SzoParositas();
+                            English.SzoParositas();
                         }
                         if (intENGLISH == 4)
                         {
                             used.Add("Angol_SzoKereso", "igen");
-                            english.SzoKereso();
+                            English.SzoKereso();
                         }
-                        english.Pontok();
+                        English.Pontok();
                         break;
 
                     case "német":
-                        nemet.Beolvas(username);
+                        Deutsch.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
                         Console.WriteLine(" 1. ABC választási lehetőség");
@@ -105,28 +131,28 @@ namespace Lingarix
                         if (IntGERMAN == 1)
                         {
                             used.Add("Nemet_ABC", "igen");
-                            nemet.ABC();
+                            Deutsch.ABC();
                         }
                         if (IntGERMAN == 2)
                         {
                             used.Add("Nemet_Akasztofa", "igen");
-                            nemet.Akasztofa();
+                            Deutsch.Akasztofa();
                         }
                         if (IntGERMAN == 3)
                         {
                             used.Add("Nemet_SzoParositas", "igen");
-                            nemet.SzoParositas();
+                            Deutsch.SzoParositas();
                         }
                         if (IntGERMAN == 4)
                         {
                             used.Add("Nemet_SzoKereso", "igen");
-                            nemet.SzoKereso();
+                            Deutsch.SzoKereso();
                         }
-                        nemet.Pontok();
+                        Deutsch.Pontok();
                         break;
 
-                    case "spanyol":
-                        spanyol.Beolvas(username);
+                    case "Spain":
+                        Spain.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
                         Console.WriteLine(" 1. ABC választási lehetőség");
@@ -140,28 +166,28 @@ namespace Lingarix
                         if (intSPAIN == 1)
                         {
                             used.Add("Spanyol_ABC", "igen");
-                            spanyol.ABC();
+                            Spain.ABC();
                         }
                         if (intSPAIN == 2)
                         {
                             used.Add("Spanyol_Akasztofa", "igen");
-                            spanyol.Akasztofa();
+                            Spain.Akasztofa();
                         }
                         if (intSPAIN == 3)
                         {
                             used.Add("Spanyol_SzoParositas", "igen");
-                            spanyol.SzoParositas();
+                            Spain.SzoParositas();
                         }
                         if (intSPAIN == 4)
                         {
                             used.Add("Spanyol_SzoKereso", "igen");
-                            spanyol.SzoKereso();
+                            Spain.SzoKereso();
                         }
-                        spanyol.Pontok();
+                        Spain.Pontok();
                         break;
 
-                    case "olasz":
-                        olasz.Beolvas(username);
+                    case "Italy":
+                        Italy.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
                         Console.WriteLine(" 1. ABC választási lehetőség");
@@ -175,28 +201,28 @@ namespace Lingarix
                         if (intITALY == 1)
                         {
                             used.Add("Olasz_ABC", "igen");
-                            olasz.ABC();
+                            Italy.ABC();
                         }
                         if (intITALY == 2)
                         {
                             used.Add("Olasz_Akasztofa", "igen");
-                            olasz.Akasztofa();
+                            Italy.Akasztofa();
                         }
                         if (intITALY == 3)
                         {
                             used.Add("Olasz_SzoParositas", "igen");
-                            olasz.SzoParositas();
+                            Italy.SzoParositas();
                         }
                         if (intITALY == 4)
                         {
                             used.Add("Olasz_SzoKereso", "igen");
-                            olasz.SzoKereso();
+                            Italy.SzoKereso();
                         }
-                        olasz.Pontok();
+                        Italy.Pontok();
                         break;
 
-                    case "francia":
-                        francia.Beolvas();
+                    case "French":
+                        French.Beolvas();
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
                         Console.WriteLine(" 1. ABC választási lehetőség");
@@ -210,24 +236,24 @@ namespace Lingarix
                         if (intFRENCH == 1)
                         {
                             used.Add("Francia_ABC", "igen");
-                            francia.ABC();
+                            French.ABC();
                         }
                         if (intFRENCH == 2)
                         {
                             used.Add("Francia_ABC", "igen");
-                            francia.Akasztofa();
+                            French.Akasztofa();
                         }
                         if (intFRENCH == 3)
                         {
                             used.Add("Francia_ABC", "igen");
-                            francia.SzoParositas();
+                            French.SzoParositas();
                         }
                         if (intFRENCH == 4)
                         {
                             used.Add("Francia_ABC", "igen");
-                            francia.SzoKereso();
+                            French.SzoKereso();
                         }
-                        francia.Pontok();
+                        French.Pontok();
                         break;
                 }
             }
@@ -240,7 +266,7 @@ namespace Lingarix
                 double elapsedHours = stopwatch.Elapsed.TotalMinutes;
                 Console.WriteLine($"A program futásának ideje: {Math.Round(elapsedHours),4} perc");
                 DateTime Date = DateTime.Now;
-                int Score = english.Pontok() + olasz.Pontok() + francia.Pontok() + nemet.Pontok() + spanyol.Pontok();
+                int Score = English.Pontok() + Italy.Pontok() + French.Pontok() + Deutsch.Pontok() + Spain.Pontok();
                 Console.WriteLine("Elért pontok:" + Score);
                 foreach (var item in used)
                 {
@@ -255,6 +281,17 @@ namespace Lingarix
                 }
             }
             Console.ReadKey();
+        }
+        public static void StartConsoleApp (string username)
+        {
+            Console.WriteLine($"               Üdvözlünk {username} a Lingarixben!            ");
+            Console.WriteLine("                 _______________________");
+            Console.WriteLine("                 |                     |");
+            Console.WriteLine("                 | Használati utasítás |");
+            Console.WriteLine("                 |_____________________|");
+            Console.WriteLine("Írja be a nyelvet amiben szeretne tanulni \n majd azt a számot amilyen témában tanulni szeretne!");
+            Console.ResetColor();
+
         }
     }
 }

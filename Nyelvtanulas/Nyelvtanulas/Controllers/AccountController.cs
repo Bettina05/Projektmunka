@@ -121,5 +121,7 @@ namespace Nyelvtanulas.Controllers
             authenticationService.LogOut();
             return RedirectToAction("Logout", "Home");
         }
+
+
     }
 }
