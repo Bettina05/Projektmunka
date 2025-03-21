@@ -7,42 +7,61 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Lingarix_Database.Database;
+using Lingarix_Database.Database.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Lingarix
 {
     internal class Program
     {
-        static async Task Main(string[] args)
+        //static async Task Main(string[] args)
+        //{
+        //    Console.Write("Add meg a felhasználóneved: ");
+        //    string username = Console.ReadLine();
+
+        //    using (var client = new HttpClient())
+        //    {
+        //        string url = $"http://localhost:5130/api/users/{username}"; // Az MVC alkalmazásod URL-je
+        //        HttpResponseMessage response = await client.GetAsync(url);
+
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string responseData = await response.Content.ReadAsStringAsync();
+        //            var json = JObject.Parse(responseData);
+        //            string fetchedUsername = json["username"]?.ToString();
+
+        //            Console.WriteLine($"Üdvözlünk {fetchedUsername} a Lingarixben!");
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Hiba: A felhasználó nem található.");
+        //        }
+        //    }
+        //}
+        static void Main(string[] args)
         {
-            Console.Write("Add meg a felhasználóneved: ");
-            string username = Console.ReadLine();
-
-            using (var client = new HttpClient())
+            //Adatbázis kapcsolat beállítása
+            using (var context = new LingarixDbContext())
             {
-                string url = $"http://localhost:5130/api/users/{username}"; // Az MVC alkalmazásod URL-je
-                HttpResponseMessage response = await client.GetAsync(url);
+                // Jelenlegi bejelentkezett felhasználó keresése
+                var user = context.Users.FirstOrDefault(u => u.IsLoggedIn);
 
-                if (response.IsSuccessStatusCode)
+                if (user != null)
                 {
-                    string responseData = await response.Content.ReadAsStringAsync();
-                    var json = JObject.Parse(responseData);
-                    string fetchedUsername = json["username"]?.ToString();
-
-                    Console.WriteLine($"Üdvözlünk {fetchedUsername} a Lingarixben!");
+                    Console.WriteLine($"Üdvözlünk {user.Username} a Lingarixben!");
                 }
                 else
                 {
-                    Console.WriteLine("Hiba: A felhasználó nem található.");
+                    Console.WriteLine("Nem található bejelentkezett felhasználó.");
                 }
             }
-        }
-        static void Main(string[] args)
-        {
-            ///<summary>
-            /// Osztályok példányosítása
-            /// </summary>
+        
+        ///<summary>
+        /// Osztályok példányosítása
+        /// </summary>
 
-            Angol English = new Angol();
+        Angol English = new Angol();
             Olasz Italy = new Olasz();
             Francia French = new Francia();
             Spanyol Spain = new Spanyol();
@@ -280,7 +299,26 @@ namespace Lingarix
                     }
                 }
             }
+            Console.WriteLine("\nNyomj meg egy gombot a kilépéshez...");
             Console.ReadKey();
+        }
+        // Adatbázis kontextus osztály
+        public class UserDbContext : DbContext
+        {
+            public DbSet<User> Users { get; set; }
+
+            protected override void OnConfiguring(DbContextOptionsBuilder options)
+            {
+                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;");
+            }
+        }
+
+        // Felhasználó osztály
+        public class User
+        {
+            public int Id { get; set; }
+            public string Username { get; set; }
+            public bool IsLoggedIn { get; set; } // Ez az oszlop jelzi, ki van bejelentkezve
         }
         public static void StartConsoleApp (string username)
         {
