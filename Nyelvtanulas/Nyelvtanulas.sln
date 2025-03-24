@@ -5,9 +5,9 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nyelvtanulas", "Nyelvtanulas\Nyelvtanulas.csproj", "{050B6740-BB1F-4C5B-A750-65B73EF60D28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lingarix_Database", "Lingarix_Database\Lingarix_Database.csproj", "{AFCB2146-003E-4930-8F01-39AC0492E96F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lingarix_Database", "Lingarix_Database\Lingarix_Database.csproj", "{AFCB2146-003E-4930-8F01-39AC0492E96F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LingarixAPP", "LingarixAPP\LingarixAPP.csproj", "{870EB893-7B2C-4FA2-9841-3C00C4252CE9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LingarixApplication", "LingarixApplication\LingarixApplication.csproj", "{464617BD-DF64-4BEB-8D9B-01BFBB4DDA24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{AFCB2146-003E-4930-8F01-39AC0492E96F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFCB2146-003E-4930-8F01-39AC0492E96F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFCB2146-003E-4930-8F01-39AC0492E96F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{870EB893-7B2C-4FA2-9841-3C00C4252CE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{870EB893-7B2C-4FA2-9841-3C00C4252CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{870EB893-7B2C-4FA2-9841-3C00C4252CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{870EB893-7B2C-4FA2-9841-3C00C4252CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{464617BD-DF64-4BEB-8D9B-01BFBB4DDA24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{464617BD-DF64-4BEB-8D9B-01BFBB4DDA24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{464617BD-DF64-4BEB-8D9B-01BFBB4DDA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{464617BD-DF64-4BEB-8D9B-01BFBB4DDA24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

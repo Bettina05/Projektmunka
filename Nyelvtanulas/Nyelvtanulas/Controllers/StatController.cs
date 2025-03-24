@@ -19,14 +19,18 @@ namespace NyelvtanuloMVC.Controllers
         [HttpGet]
         public IActionResult GetStatistics()
         {
-            var stats = DBcontext.users.Select(u => new (u.Username, u.Points)).ToList();
+            var stats = DBcontext.users.Select(u => new
+            {
+                Username = u.Username,
+                Points = u.Points
+            }).ToList();
             return Ok(stats);
         }
 
         [HttpPost]
-        public IActionResultUpdateScore([FromBody] UserScoreUpdateModel model)
+        public IActionResult UpdateScore([FromBody] UserScoreUpdateModel model)
         {
-            var user = DBcontext.users.FirstOrDefault(u => u.Username == model.Username);
+            Lingarix_Database.Entities.Users? user = DBcontext.users.FirstOrDefault(u => u.Username == model.Username);
             if (user == null)
             {
                 return NotFound();

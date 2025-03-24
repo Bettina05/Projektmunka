@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Nyelvtanulas.Models;
 using System.Diagnostics;
-using LingarixAPP;
+
 
 namespace Nyelvtanulas.Controllers
 {
