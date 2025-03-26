@@ -63,44 +63,6 @@ namespace Nyelvtanulas.Controllers
             return RedirectToAction("Login");
         }
 
-        //Captcha validáció
-        [HttpPost]
-        public IActionResult ValidateCaptcha(string captchaInput)
-        {
-            string correctCaptcha = HttpContext.Session.GetString("CaptchaCode");
-
-            if (captchaInput == correctCaptcha)
-            {
-                return Json(new { success = true });
-            }
-            else
-            {
-                return Json(new { success = false, message = "Hibás CAPTCHA!" });
-            }
-        }
-
-        // CAPTCHA kód generálása
-        public IActionResult GenerateCaptcha()
-        {
-            var captcha = GenerateRandomCaptcha();
-
-            // CAPTCHA kód tárolása a session-ben
-            HttpContext.Session.SetString("CaptchaCode", captcha);
-
-            // Visszaadjuk a CAPTCHA kódot
-            return Json(new { captcha = captcha });
-        }
-
-        // Véletlenszerű CAPTCHA kód generálása
-        private string GenerateRandomCaptcha()
-        {
-            var chars = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-            var random = new Random();
-            var captcha = new string(Enumerable.Range(0, 6)
-                .Select(_ => chars[random.Next(chars.Length)])
-                .ToArray());
-            return captcha;
-        }
         public string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
