@@ -3,63 +3,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using Lingarix_Database;
 
 namespace Lingarix
 {
     internal class Program
     {
-        //static async Task Main(string[] args)
-        //{
-        //    Console.Write("Add meg a felhasználóneved: ");
-        //    string username = Console.ReadLine();
-
-        //    using (var client = new HttpClient())
-        //    {
-        //        string url = $"http://localhost:5130/api/users/{username}"; // Az MVC alkalmazásod URL-je
-        //        HttpResponseMessage response = await client.GetAsync(url);
-
-        //        if (response.IsSuccessStatusCode)
-        //        {
-        //            string responseData = await response.Content.ReadAsStringAsync();
-        //            var json = JObject.Parse(responseData);
-        //            string fetchedUsername = json["username"]?.ToString();
-
-        //            Console.WriteLine($"Üdvözlünk {fetchedUsername} a Lingarixben!");
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Hiba: A felhasználó nem található.");
-        //        }
-        //    }
-        //}
         static void Main(string[] args)
         {
-            Process.Start("LingarixApplication.exe " + name)
-            //Adatbázis kapcsolat beállítása
-            Console.WriteLine("Hello " + args[0]);
-            Console.WriteLine("Kor: " + args[1]);
-            using (var context = new LingarixDbContext())
+            string username = "";
+            if (args.Length > 0)
             {
-                //// Jelenlegi bejelentkezett felhasználó keresése
-                //var user = context.users.FirstOrDefault(u => u.Log);
-
-                //if (user != null)
-                //{
-                //    Console.WriteLine($"Üdvözlünk {user.Username} a Lingarixben!");
-                //}
-                //else
-                //{
-                //    Console.WriteLine("Nem található bejelentkezett felhasználó.");
-                //}
+                Console.WriteLine("Üdvözlünk" + args[0] + "!");
+                username = args[0];
+                return;
             }
-        
-        ///<summary>
-        /// Osztályok példányosítása
-        /// </summary>
+            ///<summary>
+            /// Osztályok példányosítása
+            /// </summary>
 
-        Angol English = new Angol();
+            Angol English = new Angol();
             Olasz Italy = new Olasz();
             Francia French = new Francia();
             Spanyol Spain = new Spanyol();
@@ -67,8 +30,6 @@ namespace Lingarix
 
             Dictionary<string, string> used = new Dictionary<string, string>();
 
-            string username = args.Length > 0 ? args[0] : "Ismeretlen felhasználó";
-            StartConsoleApp(username);
             string language;
             Stopwatch stopwatch = Stopwatch.StartNew();
 
@@ -301,34 +262,24 @@ namespace Lingarix
             Console.ReadKey();
         }
         // Adatbázis kontextus osztály
-        public class UserDbContext : DbContext
-        {
-            public DbSet<User> Users { get; set; }
+        //public class UserDbContext : DbContext
+        //{
+        //    public DbSet<User> Users { get; set; }
 
-            protected override void OnConfiguring(DbContextOptionsBuilder options)
-            {
-                options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;");
-            }
-        }
+        //    protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //    {
+        //        options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;");
+        //    }
+        //}
 
-        // Felhasználó osztály
-        public class User
-        {
-            public int Id { get; set; }
-            public string Username { get; set; }
-            public bool IsLoggedIn { get; set; } // Ez az oszlop jelzi, ki van bejelentkezve
-        }
-        public static void StartConsoleApp (string username)
-        {
-            Console.WriteLine($"               Üdvözlünk {username} a Lingarixben!            ");
-            Console.WriteLine("                 _______________________");
-            Console.WriteLine("                 |                     |");
-            Console.WriteLine("                 | Használati utasítás |");
-            Console.WriteLine("                 |_____________________|");
-            Console.WriteLine("Írja be a nyelvet amiben szeretne tanulni \n majd azt a számot amilyen témában tanulni szeretne!");
-            Console.ResetColor();
+        //// Felhasználó osztály
+        //public class User
+        //{
+        //    public int Id { get; set; }
+        //    public string Username { get; set; }
+        //    public bool IsLoggedIn { get; set; } // Ez az oszlop jelzi, ki van bejelentkezve
+        //}
 
-        }
     }
 }
 

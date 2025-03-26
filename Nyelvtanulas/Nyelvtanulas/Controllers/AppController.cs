@@ -1,45 +1,46 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.IO;
-using Lingarix_Database;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+using Nyelvtanulas.Models;
 
 namespace Nyelvtanulas.Controllers
 {
-    [Authorize]
     public class AppController : Controller
     {
+        private readonly IAuthenticationService authenticationService;
+        public AppController(IAuthenticationService authenticationService)
+        {
+            this.authenticationService = authenticationService;
+        }
         public IActionResult LaunchConsoleApp()
         {
+            // Bejelentkezett felhasználó neve
+            string username = authenticationService.UserName; 
+
             // A konzolos alkalmazás relatív elérési útja
-            string consoleAppPath = Path.Combine(Directory.GetCurrentDirectory(), "..", "LingarixAPP", "bin", "Debug", "net6.0", "LingarixAPP.exe");
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
 
-            if (System.IO.File.Exists(consoleAppPath))
-            {
-                var processStartInfo = new ProcessStartInfo
-                {
-                    FileName = consoleAppPath,
-                    UseShellExecute = true
-                };
+            string consoleAppPath = Path.Combine(basePath, "LingarixApplication.exe");
 
-                Process consoleProcess = Process.Start(processStartInfo);
-
-                if (consoleProcess != null)
-                {
-                    // Várakozás, amíg a konzolos app befejeződik
-                    consoleProcess.WaitForExit();
-                }
-
-                // Konzol bezárása után irányítás a statisztikai oldalra
-                return RedirectToAction("Stat", "Statistics");
-            }
-            else
+            if (!System.IO.File.Exists(consoleAppPath))
             {
                 return BadRequest("A konzolos alkalmazás nem található.");
             }
+
+            ProcessStartInfo processStartInfo = new ProcessStartInfo
+            {
+                FileName = "cmd.exe",
+                Arguments = $"/k \" {consoleAppPath} {username}\"",
+                UseShellExecute = true,
+                WindowStyle = ProcessWindowStyle.Normal
+            };
+
+            using (Process process = new Process { StartInfo = processStartInfo })
+            {
+                process.Start();
+                process.WaitForExit();  
+            }
+            // Visszairányítás a statisztika oldalára
+            return RedirectToAction("Stat", "Statistics");
         }
     }
 }

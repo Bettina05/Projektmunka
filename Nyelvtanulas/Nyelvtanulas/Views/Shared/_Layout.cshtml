@@ -10,7 +10,6 @@
     <title>@ViewData["Title"] - Lingarix</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/SajatCSS.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -33,11 +32,9 @@
                             </li>
 
                             <!-- Egy link/gomb lenne amivel el tudnánk indítani a konzolos felületünket-->
-                            <a href="@Url.Action("LaunchConsoleApp", "App")" class="btn btn-primary">Indítsd el a gyakorlást</a>
-
-                            @* <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="LaunchConsoleApp">Tanulás megkezdéséhez kattints ide!</a>
-                            </li> *@
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="App" asp-action="LaunchConsoleApp">Tanulás megkezdése</a>
+                            </li>
 
                             <!-- Hasznos tippek -->
                             <li class="nav-item">

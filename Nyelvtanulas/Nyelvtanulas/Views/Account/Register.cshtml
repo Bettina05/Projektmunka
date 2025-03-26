@@ -2,50 +2,51 @@
     ViewData["Title"] = "Regisztráció";
 }
 @model User
+
+<!DOCTYPE html>
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Külső CSS Példa</title>
-    <link rel="stylesheet" href="~/css/SajatCSS.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
-<!-- Regisztráció és captcha -->
-<h1>@ViewData["Title"]</h1>
+<body class=" bg-primary-subtle">
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="custom-card p-4 shadow-lg" style="max-width: 500px; width: 100%;">
+            <h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
-@using (Html.BeginForm("RegisterUser", "Account"))
-{
-    <label>Adja meg a teljes nevét: </label>
-    @Html.TextBoxFor(x => x.Fullname)
-    <br />
+            @using (Html.BeginForm("RegisterUser", "Account", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+            {
+                <div class="mb-3">
+                    <label for="fullname" class="form-label">Teljes név:</label>
+                    @Html.TextBoxFor(x => x.Fullname, new { @class = "form-control", required = "required", placeholder = "Pl.: Kovács Péter" })
+                </div>
 
-    <label>Adja meg a felhasználónevét: </label>
-    @Html.TextBoxFor(x => x.Username)
-    <br />
+                <div class="mb-3">
+                    <label for="username" class="form-label">Felhasználónév:</label>
+                    @Html.TextBoxFor(x => x.Username, new { @class = "form-control", required = "required", placeholder = "Pl.: kovacs_peter" })
+                </div>
 
-    <label>Adja meg az email címét: </label>
-    @Html.TextBoxFor(x => x.Email)
-    <br />
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail cím:</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", required = "required", type = "email", placeholder = "Pl.: email@example.com" })
+                </div>
 
-    <label>Adja meg a jelszavát: </label>
-    @Html.PasswordFor(x => x.PasswordHash)
-    <br />
+                <div class="mb-3">
+                    <label for="password" class="form-label">Jelszó:</label>
+                    @Html.PasswordFor(x => x.PasswordHash, new { @class = "form-control", required = "required", placeholder = "Adj meg egy erős jelszót" })
+                </div>
 
-    <!-- CAPTCHA -->
-    @* <div class="cap">
-        <h3> Captcha Code </h3>
-        <div class="captchacode">
-            <form name="form1">
-                <input type="text" id="captchaTxtArea" name="text" value=""/>
-                <br/>
-                <label>Adja meg a captcha kódot: </label>
-                <input type="text" id="CaptchaEnter" name="CaptchaInput" placeholder="Adja meg a kódot" required />
-                <br/>
-                <button value="Frissítés" id="refreshbtn" onclick="genNewCaptcha()" /> 
-                <button value="Ellenőrzés" id="checkbtn" onclick="checkCaptcha()" />
-            </form>
+                <button type="submit" class="btn btn-primary w-100">Regisztráció</button>
+            }
+
+            <div class="text-center mt-3">
+                <p>Már van fiókod? <a href="@Url.Action("Login", "Account")" class="text-primary">Jelentkezz be</a></p>
+            </div>
         </div>
-    </div> *@
-    <input type="submit" />
-}
-<!-- Külső js -->
-<!-- wwwroot/js/Captcha.js    mappában van-->
-<script src="~/js/Captcha.js"></script>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

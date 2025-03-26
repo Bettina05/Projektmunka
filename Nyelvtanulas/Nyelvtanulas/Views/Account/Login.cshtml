@@ -1,43 +1,34 @@
 ﻿@{
     ViewData["Title"] = "Bejelentkezés";
 }
+<!DOCTYPE html>
+<html lang="hu">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Külső CSS Példa</title>
-    <link rel="stylesheet" href="~/css/SajatCSS.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
-<!--HTML kód része-->
-<h1>@ViewData["Title"]</h1>
-@using (Html.BeginForm("Login", "Account"))
-{
-    <label>Felhasználónév:</label>
-    <input type="text" name="username" />
-    <br />
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
+            <h2 class="text-center mb-4">@ViewData["Title"]</h2>
 
-    <label>Jelszó:</label>
-    <input type="password" name="password" />
-    <br />
-    <hr />
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "needs-validation", novalidate = "true" }))
+            {
+                <div class="mb-3">
+                    <label for="username" class="form-label">Felhasználónév:</label>
+                    <input type="text" id="username" name="username" class="form-control" required />
+                </div>
 
-    <!-- CAPTCHA -->
-    @* <div class="cap">
-        <h3> Captcha Code </h3>
-        <div class="captchacode">
-            <form name="form1">
-                <input type="text" id="captchaTxtArea" name="text" value="" />
-                <br />
-                <input type="text" id="CaptchaEnter" name="CaptchaInput" placeholder="Adja meg a kódot" required />
-                <br />
-                <br />
-                <input type="button" value="Frissítés" id="refreshbtn" onclick="genNewCaptcha()" />
-                <input type="button" value="Ellenőrzés" id="checkbtn" onclick="checkCaptcha()" />
-            </form>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Jelszó:</label>
+                    <input type="password" id="password" name="password" class="form-control" required />
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Bejelentkezés</button>
+            }
         </div>
-    </div> *@
-    <input type="submit"/>
-}
+    </div>
 
-<!-- Külső js -->
-<!-- wwwroot/js/Captcha.js    mappában van-->
-<script src="~/js/Captcha.js"></script>
+</body>
+</html>
