@@ -1,6 +1,46 @@
 html {
     font-size: 14px;
+}
+
+body {
     background-color: #ADD8E6;
+}
+
+.custom-card {
+    background-color: #F0F8FF;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tip-box {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.highlight-text {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.benefit-card {
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: linear-gradient(135deg, #dfe9f3, #ffffff);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#kivanas {
+    background-color: #5f8f9e;
+    color: white;
+    font-size: 16px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
 }
 
 @media (min-width: 768px) 

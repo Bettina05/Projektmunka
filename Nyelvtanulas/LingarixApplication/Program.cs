@@ -56,10 +56,10 @@ namespace Lingarix
                 Console.WriteLine(" -- Kilépéshez írjon be egy 'x' karaktert");
                 Console.ResetColor();
                 Console.Write(" -- Nyelv: ");
-                language = Console.ReadLine();
+                language = Console.ReadLine().ToLower();
                 switch (language)
                 {
-                    case "English":
+                    case "angol":
                         English.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
@@ -129,7 +129,7 @@ namespace Lingarix
                         Deutsch.Pontok();
                         break;
 
-                    case "Spain":
+                    case "spanyol":
                         Spain.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
@@ -164,7 +164,7 @@ namespace Lingarix
                         Spain.Pontok();
                         break;
 
-                    case "Italy":
+                    case "olasz":
                         Italy.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
@@ -199,7 +199,7 @@ namespace Lingarix
                         Italy.Pontok();
                         break;
 
-                    case "French":
+                    case "francia":
                         French.Beolvas();
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");

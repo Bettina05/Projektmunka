@@ -1,87 +1,10 @@
-﻿<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        html{scroll-behavior: smooth;}
-
-        p{font-size:14pt;}
-
-        #koszonesek,
-        #alap,
-        #modszer,
-        #elony,
-        #tipp
-        {
-            float:right;
-        }
-
-        .sidebar 
-        {
-            display: flex;
-            flex-direction: column;
-            width: 250px;
-            top: 60px; 
-            left: 0;
-            bottom: 0;
-            background-color: rgb(240, 248, 255);
-            padding-top: 20px;
-        }
-        .navbar
-        {
-            order:1;
-        }
-
-        .image-container 
-        {
-            order: 2;
-        }
-
-        .image-container img 
-        {
-            float: right; /* Kép jobbra igazítása */
-            width: 100%;
-            height: auto;
-        }
-        
-        /* Kép középre igazítása mobil nézetben */
-        .image-container img 
-        {
-            display: block;
-            margin: 0 auto;
-            float: none;
-        }
-
-        .sidebar a 
-        {
-            display: block;
-            padding: 10px;
-            color: #333;
-            text-decoration: none;
-            text-align: left;
-        }
-
-        .sidebar a:hover {background-color: #ddd;}
-
-        /* Tartalom terület */
-        .content 
-        {
-            margin-left: 270px;
-            padding: 20px;
-        }
-
-        section {margin-bottom: 30px;}
-
-        #kivanas 
-        {
-            margin-top: 20pt;
-            background-color: rgb(95, 143, 158);
-            font-size: 14pt;
-        }
-    </style>
-</head>
-
-@{
+﻿@{
     ViewData["Title"] = "Információk";
 }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/SajatCSS.css" />
+
 <h2 id="tartalomjegyzek">Információk a nyelvtanulásról</h2>
 <p>
     A nyelvtanulás egy olyan folyamat, amely során elsajátítjuk egy új nyelv beszéd- és íráskészségeit, valamint megismerkedünk annak grammatikájával, szókincsével és kiejtésével. A nyelvtanulásnak számos előnye van, és rengeteg módszer létezik, amelyek segítségével hatékonyan sajátíthatunk el egy idegen nyelvet.
