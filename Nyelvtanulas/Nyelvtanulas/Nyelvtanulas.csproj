@@ -20,7 +20,7 @@
 		<PackageReference Include="System.Drawing.Common" Version="9.0.1" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\LingarixAPP\LingarixAPP.csproj" />
+	  <ProjectReference Include="..\LingarixApplication\LingarixApplication.csproj" />
 	  <ProjectReference Include="..\Lingarix_Database\Lingarix_Database.csproj" />
 	</ItemGroup>
 </Project>
