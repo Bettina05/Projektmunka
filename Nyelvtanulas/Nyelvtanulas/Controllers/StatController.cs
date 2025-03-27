@@ -22,7 +22,7 @@ namespace NyelvtanuloMVC.Controllers
             var stats = DBcontext.users.Select(u => new
             {
                 Username = u.Username,
-                Points = u.Points
+                //Points = u.Points
             }).ToList();
             return Ok(stats);
         }
@@ -35,7 +35,7 @@ namespace NyelvtanuloMVC.Controllers
             {
                 return NotFound();
             }
-            user.Points = model.Points;
+            //user.Points = model.Points;
             DBcontext.SaveChanges();
             return Ok(user);
         }

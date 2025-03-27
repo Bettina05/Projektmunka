@@ -1,180 +1,98 @@
 ﻿@{
     ViewData["Title"] = "Információk";
 }
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="~/css/SajatCSS.css" />
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="~/css/site.css">
+    </head>
 
-<h2 id="tartalomjegyzek">Információk a nyelvtanulásról</h2>
-<p>
-    A nyelvtanulás egy olyan folyamat, amely során elsajátítjuk egy új nyelv beszéd- és íráskészségeit, valamint megismerkedünk annak grammatikájával, szókincsével és kiejtésével. A nyelvtanulásnak számos előnye van, és rengeteg módszer létezik, amelyek segítségével hatékonyan sajátíthatunk el egy idegen nyelvet.
-</p>
-<hr />
-<div class="kepKoszonesek">
-    <img id="koszonesek" src="~/images/koszonesek.png" alt="Köszönések" width="300px" title="Köszönések különböző nyelven" style="max-width: 100%; height: auto;">
-</div>
+    <body class=" bg-primary-subtle">
+        <div class="container mt-4">
+            <h2 id="tartalomjegyzek" class="text-center">Információk a nyelvtanulásról</h2>
+            <p class="text-center">
+                A nyelvtanulás egy olyan folyamat, amely során elsajátítjuk egy új nyelv beszéd- és íráskészségeit, valamint megismerkedünk annak grammatikájával, szókincsével és kiejtésével.
+            </p>
+            <div class="text-center">
+                <img src="~/images/koszonesek.png" alt="Köszönések" class="img-fluid rounded shadow" title="Köszönések különböző nyelven">
+            </div>
 
-<div class="sidebar">
-    <h4>Az oldal tartalma</h4>
-        <div class="navbar">
-            <ul class="navbar-nav">
-                <li>
-                    <a href="#nyelvtanulas_alapja">A nyelvtanulás alapjai</a>
-                </li>
-                <li>
-                    <a href="#nyelvtanulas_modszerei">A nyelvtanulás módszerei</a>
-                </li>
-                <li>
-                    <a href="#nyelvtanulashoz_tipp">Tippek a sikeres nyelvtanuláshoz</a>
-                </li>
-                <li>
-                    <a href="#nyelvtanulas_elonyei">A nyelvtanulás előnyei</a>
-                </li>
-            </ul>
+            <hr>
+
+            <div class="row">
+                <aside class="col-md-3 d-none d-md-block">
+                    <div class="card p-3">
+                        <h4>Az oldal tartalma</h4>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a href="#nyelvtanulas_alapja">A nyelvtanulás alapjai</a></li>
+                            <li class="list-group-item"><a href="#nyelvtanulas_modszerei">A nyelvtanulás módszerei</a></li>
+                            <li class="list-group-item"><a href="#nyelvtanulashoz_tipp">Tippek a sikeres nyelvtanuláshoz</a></li>
+                            <li class="list-group-item"><a href="#nyelvtanulas_elonyei">A nyelvtanulás előnyei</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <main class="col-md-9">
+                    <section id="nyelvtanulas_alapja" class="mb-5">
+                        <h2 class="text-primary">A nyelvtanulás alapjai</h2>
+                        <img src="~/images/nyelvtanulas_alapja_szofelho.png" alt="Nyelvtanulás alapjai" class="img-fluid rounded shadow row col-md-6">
+                        <dl>
+                            <dt>Motiváció és célok</dt>
+                            <dd>A nyelvtanulás célja lehet munkahelyi előrelépés, utazás vagy kulturális felfedezés.</dd>
+                            <dt>Szókincs fejlesztése</dt>
+                            <dd>Az új szavak tanulása kulcsfontosságú a kommunikáció fejlesztésében.</dd>
+                            <dt>Grammatikai szabályok</dt>
+                            <dd>A helyes nyelvhasználat alapja a grammatikai szabályok elsajátítása.</dd>
+                            <dt>Kiejtés és hallás utáni megértés</dt>
+                            <dd>Az új nyelv hangzásának megértése segít a folyékony beszédben.</dd>
+                        </dl>
+                    </section>
+
+                    <hr>
+
+                    <section id="nyelvtanulas_modszerei" class="mb-5">
+                        <h2 class="text-primary">A nyelvtanulás módszerei</h2>
+                        <ul>
+                            <li><strong>Digitális alkalmazások</strong>: <a href="https://hu.duolingo.com/">Duolingo</a>, <a href="https://www.memrise.com/">Memrise</a>, <a href="https://apps.ankiweb.net/">Anki</a>.</li>
+                            <li><strong>Nyelvtanfolyamok</strong>: Online tanárok és kurzusok, például italki vagy Preply.</li>
+                            <li><strong>Filmnézés és zenehallgatás</strong>: Segítenek a hallás utáni megértés fejlesztésében.</li>
+                            <li><strong>Nyelvi csere</strong>: Anyanyelvi beszélőkkel való gyakorlás.</li>
+                        </ul>
+                    </section>
+
+                    <hr>
+
+                    <section id="nyelvtanulashoz_tipp" class="mb-5">
+                        <h2 class="text-primary">Tippek a sikeres nyelvtanuláshoz</h2>
+                        <ul>
+                            <li><strong>Tarts szüneteket</strong>: A folyamatos tanulás fárasztó lehet.</li>
+                            <li><strong>Légy türelmes</strong>: A nyelvtanulás hosszú távú folyamat.</li>
+                            <li><strong>Gyakorolj rendszeresen</strong>: Napi 10 perc is hatékony lehet.</li>
+                            <li><strong>Ne félj hibázni</strong>: A tanulás természetes része a hibázás.</li>
+                        </ul>
+                    </section>
+
+                    <hr>
+
+                    <section id="nyelvtanulas_elonyei">
+                        <h2 class="text-primary">A nyelvtanulás előnyei</h2>
+                        <ol>
+                            <li><strong>Kulturális gazdagodás</strong>: Más kultúrák megismerése.</li>
+                            <li><strong>Karrier lehetőségek</strong>: Több munkahelyi lehetőség.</li>
+                            <li><strong>Mentális fejlődés</strong>: Jobb memória és koncentráció.</li>
+                            <li><strong>Társas kapcsolatok</strong>: Új emberekkel való kommunikáció.</li>
+                        </ol>
+                    </section>
+                </main>
+            </div>
+            <hr>
+            <div class="text-center mt-3">
+                <p>A nyelvtanulás szélesíti a látókörünket és gazdagítja életünket!</p>
+                <a href="#tartalomjegyzek" class="btn btn-primary">Vissza az oldal elejére</a>
+            </div>
         </div>
-    </div>
-    <hr />
-<section id="nyelvtanulas_alapja">
-    <h2>A nyelvtanulás alapjai</h2>
-    <img id="alap" src="~/images/nyelvtanulas_alapja_szofelho.png" alt="Nyelvtanulás alapjai" width="300px" title="A nyelvtanulás alapjai" style="max-width: 100%; height: auto;">
-
-    <dl>
-        <dt>Motiváció és célok</dt> 
-        <dd>
-            A nyelvtanulásnak van egy egyéni indítéka, legyen az a munkahelyi előrelépés, utazás, vagy a kívánt kultúra felfedezése. Fontos, hogy világos célokat tűzzünk ki, hogy motiváltak maradjunk.
-        </dd>
-
-        <dt>Szókincs fejlesztése</dt>
-        <dd>
-            Az új szavak és kifejezések megtanulása az egyik legfontosabb lépés. A szókincs növelésével folyamatosan bővítjük a kommunikációs képességeinket.
-        </dd>
-    
-        <dt>Grammatikai szabályok</dt>
-        <dd>
-            A nyelvtani szabályok ismerete elengedhetetlen ahhoz, hogy helyesen fejezzük ki magunkat, és megértsük a nyelv struktúráját. Az alapvető igeidők, névmások és szórendek fontos részei a tanulási folyamatnak.
-        </dd>
-    
-        <dt>Kiejtés és hallás utáni megértés</dt>
-        <dd>
-            Az új nyelv kiejtésének elsajátítása gyakran kihívást jelent, mivel minden nyelvnek megvannak a saját hangzói, amelyek különböznek a saját anyanyelvünktől. A hallás utáni megértés fejlesztése segít abban, hogy könnyebben megértsük másokat.
-        </dd>
-    
-        <dt>Gyakorlás és ismétlés</dt>
-        <dd>
-            A nyelvtanulás nem egy gyors folyamat. Az ismétlés és a folyamatos gyakorlás kulcsfontosságúak. Minél többet használjuk a nyelvet, annál jobban elmélyül a tudásunk.
-        </dd>
-    </dl>
-</section>
-
-<hr />
-
-<section id="nyelvtanulas_modszerei">
-    <h2>A nyelvtanulás módszerei</h2>
-    <img id="modszer" src="~/images/nyelvtanulas_modszerei_szofelho.png" alt="Nyelvtanulás módszerei" width="300px" title="A nyelvtanulás módszerei" style="max-width: 100%; height: auto;">
-
-    <ul>
-        <li>
-            <strong>Szókincsfejlesztő alkalmazások: </strong>
-            <br />Olyan digitális eszközök, mint a
-            <ul>
-                <li>
-                    <a href="https://hu.duolingo.com/">Duolingo</a>,
-                </li>
-                <li>
-                    <a href="https://www.memrise.com/">Memrise</a> vagy
-                </li>
-                <li>
-                    <a href="https://apps.ankiweb.net/">Anki</a>
-                </li>
-            </ul>
-            segíthetnek a szókincs gyors bővítésében, és lehetővé teszik a tanulást bárhol és bármikor.
-        </li>
-
-        <li>
-            <strong>Nyelvtanfolyamok és tanárok: </strong>
-            <br />Személyes tanárok vagy online tanfolyamok, mint a italki vagy a Preply segítenek abban, hogy strukturált módon tanuljunk, és valós beszélgetéseket folytassunk anyanyelvi beszélőkkel.
-        </li>
-
-        <li>
-            <strong>Filmnézés és zenehallgatás: </strong>
-            <br />Idegen nyelvű filmek, sorozatok és zene hallgatása segíthet az autentikus nyelvhasználat elsajátításában. Ezen kívül segít fejleszteni a hallás utáni megértést és a kulturális ismereteket.
-        </li>
-
-        <li>
-            <strong>Párbeszédek és nyelvi csere: </strong>
-            <br />Az egyik legjobb módszer a beszédfejlesztésre a nyelvcsere, amikor egy másik nyelvet beszélő emberrel beszélgetsz, hogy mindketten gyakorolhassátok a másik nyelvet.
-        </li>
-
-        <li>
-            <strong>Könyvek és írásbeli gyakorlatok: </strong>
-            <br />Az olvasás és a gyakorló feladatok segítenek a nyelv struktúráinak mélyebb megértésében. Az írás is fontos, mivel segít rögzíteni a tanult szavakat és kifejezéseket.
-        </li>
-    </ul>
-</section>
- 
-<hr />
-
-<section id="nyelvtanulashoz_tipp">
-    <h2>Tippek a sikeres nyelvtanuláshoz</h2>
-    <img id="tipp" src="~/images/tippek_nyelvtanulashoz_szofelho.png" alt="Nyelvtanuláshoz tippek" width="300px" title="A nyelvtanuláshoz tippek" style="max-width: 100%; height: auto;">
-
-    <ul>
-        <li>Tarts szüneteket</li>
-        <ul>
-            <li>A túl sok tanulás egyben frusztráló lehet. Érdemes rendszeres szüneteket beiktatni, hogy ne veszítsük el a lelkesedésünket.</li>
-        </ul>
-
-        <li>Légy türelmes</li>
-        <ul>
-            <li>A nyelvtanulás hosszú távú elkötelezettséget igényel. Ne várj azonnali eredményeket, hanem élvezd a tanulási folyamatot.</li>
-        </ul>
-
-        <li>Legyél következetes</li>
-        <ul>
-            <li>Még ha napi 10 percet is tanulsz, fontos, hogy minden nap gyakorolj, hogy a nyelv szokássá váljon..</li>
-        </ul>
-
-        <li>Fogadd el a hibákat</li>
-        <ul>
-            <li>A hibák természetesek a tanulás során. Ne félj beszélni, még ha nem vagy tökéletes. A gyakorlás révén egyre jobb leszel.</li>
-        </ul>
-    </ul>
-</section>
-
-<hr />
-
-<section id="nyelvtanulas_elonyei">
-    <h2>A nyelvtanulás előnyei</h2>
-    <img id="elony" src="~/images/nyelvtanulas_elonyei_szofelho.png" alt="Nyelvtanulás előnyei" width="300px" title="A nyelvtanulás előnyei" style="max-width: 100%; height: auto;">
-
-    <ol>
-        <li>
-		    <strong>Kulturális gazdagodás:</strong>
-		    A nyelvek tanulásával betekintést nyerhetünk más kultúrákba, szokásokba és életmódokba.
-	    </li>
-
-        <li>
-            <strong>Karrier lehetőségek:</strong>
-            A több nyelven beszélő személyek nagyobb eséllyel találnak munkát nemzetközi cégeknél.
-	    </li>
-
-        <li>
-            <strong>Mentális előnyök:</strong>
-            A nyelvtanulás javítja a memóriát, a koncentrációt, és késlelteti a mentális hanyatlást.
-        </li>
-
-        <li>
-            <strong>Társas kapcsolatok:</strong>
-            Lehetőséget ad arra, hogy más országok embereivel barátkozz, és másokkal kommunikálj.
-        </li>
-    </ol>
-</section>
-
-<hr />
-
-<div id="kivanas">
-    A nyelvtanulás tehát nemcsak a nyelvi készségeinket fejleszti, hanem szélesíti a látókörünket és gazdagítja életünket!
-</div>
-<div>
-	<a href="#tartalomjegyzek">Vissza az oldal elejére</a>
-</div>
+    </body>
+</html>
