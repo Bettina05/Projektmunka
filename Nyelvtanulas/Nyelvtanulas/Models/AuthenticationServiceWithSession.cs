@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-﻿using Microsoft.AspNetCore.Http;
-using Lingarix_Database;
+﻿using Lingarix_Database;
 using System.Text;
 using Lingarix_Database.Entities;
 

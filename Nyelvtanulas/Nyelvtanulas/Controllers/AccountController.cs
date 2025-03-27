@@ -1,14 +1,10 @@
 ﻿
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Nyelvtanulas.Models;
 using System.Security.Cryptography;
 using Lingarix_Database;
 using Lingarix_Database.Entities;
 using System.Text;
-using System.IO;
-using System.Linq;
 
 
 namespace Nyelvtanulas.Controllers
@@ -17,14 +13,14 @@ namespace Nyelvtanulas.Controllers
     {
         private IUserManager userManager;
         private IEncryptionService encryptionService;
-        private Models.IAuthenticationService authenticationService;
+        private IAuthenticationService authenticationService;
 
-        public AccountController(IUserManager userManager, IEncryptionService encryptionService, Models.IAuthenticationService authenticationService)
+        public AccountController(IUserManager userManager, IEncryptionService encryptionService, IAuthenticationService authenticationService)
         { 
             this.userManager = userManager;
             this.encryptionService = encryptionService;
             this.authenticationService = authenticationService;
-        }
+        } 
         public IActionResult Register()
         {
             return View();
@@ -49,7 +45,7 @@ namespace Nyelvtanulas.Controllers
         
         //Bejelentkezés feldolgozása
         [HttpPost]
-        public IActionResult Login(string username, string password)
+        public IActionResult Login(string username, string password, string captcha)
         {
             if (authenticationService.TryLogIn(username, password))
             {
