@@ -3,56 +3,48 @@ using System;
 using System.IO;
 using Lingarix_Database;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication;
+using Nyelvtanulas.Models;
+using IAuthenticationService = Nyelvtanulas.Models.IAuthenticationService;
 
 namespace NyelvtanuloMVC.Controllers
 {
-    [Route("api/statistics")]
     [ApiController]
     public class StatController : Controller
     {
         private readonly LingarixDbContext DBcontext;
-
-        public StatController(LingarixDbContext context)
+        private IAuthenticationService authenticationService;
+        public StatController(LingarixDbContext context, IAuthenticationService authenticationService)
         {
+            //// új beszúrás
+            //DBcontext.UserStatistics.Add(new Lingarix_Database.Entities.UserStatistics() { });
+            //DBcontext.SaveChanges();
             DBcontext = context;
-        }
-        [HttpGet]
-        public IActionResult GetStatistics()
-        {
-            var stats = DBcontext.users.Select(u => new
-            {
-                Username = u.Username,
-                //Points = u.Points
-            }).ToList();
-            return Ok(stats);
+            this.authenticationService = authenticationService;
         }
 
-        [HttpPost]
-        public IActionResult UpdateScore([FromBody] UserScoreUpdateModel model)
-        {
-            Lingarix_Database.Entities.Users? user = DBcontext.users.FirstOrDefault(u => u.Username == model.Username);
-            if (user == null)
-            {
-                return NotFound();
-            }
-            //user.Points = model.Points;
-            DBcontext.SaveChanges();
-            return Ok(user);
-        }
-        //public IActionResult Statistics()
+        //[HttpPost]
+        //public IActionResult UpdateScore([FromBody] UserScoreUpdateModel model)
         //{
-        //    var userName = User.Identity.Name; // Bejelentkezett felhasználó neve
-        //    var statistics = DBcontext.UserStatistics
-        //                            .Where(s => s.UserName == userName)
-        //                            .OrderByDescending(s => s.Date)
-        //                            .ToList();
-        //    return View();
+        //    Lingarix_Database.Entities.Users? user = DBcontext.users.FirstOrDefault(u => u.Username == model.Username);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    //user.Points = model.Points;
+        //    DBcontext.SaveChanges();
+        //    return Ok(user);
         //}
+        [Route("Stat/Statistics")]
+        public IActionResult Statistics()
+        {
+            var userName = authenticationService.UserName; // Bejelentkezett felhasználó neve
+            var statistics = DBcontext.UserStatistics
+                                    .Where(s => s.UserName == userName)
+                                    .OrderByDescending(s => s.Date)
+                                    .ToList();
+            return View(statistics);
+        }
 
-    }
-    public class UserScoreUpdateModel
-    {
-        public string Username { get; set; }
-        public int Points { get; set; }
     }
 }

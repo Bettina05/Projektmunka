@@ -14,9 +14,9 @@ namespace Lingarix
             string username = "";
             if (args.Length > 0)
             {
-                Console.WriteLine("Üdvözlünk" + args[0] + "!");
+                Console.WriteLine("Üdvözlünk " + args[0] + "!");
                 username = args[0];
-                return;
+                
             }
             ///<summary>
             /// Osztályok példányosítása

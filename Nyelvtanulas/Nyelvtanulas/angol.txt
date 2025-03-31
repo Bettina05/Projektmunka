@@ -1,0 +1,50 @@
+family tree;családfa;család
+mother;anya;család
+father;apa;család
+sibling;testvér;család
+sister;nővér;család
+brother;fiú testvér;család
+husband;férj;család
+wife;feleség;család
+grandchild;unoka;család
+twin;iker;család
+data;adat;informatika
+motherboard;alaplap;informatika
+keyboard;billentyűzet;informatika
+network;hálózat;informatika
+video card;videókártya;informatika
+home page;kezdőlap;informatika
+paragraph;bekezdés;informatika
+sample;minta;informatika
+record;rekord;informatika
+firewall;tűzfal;informatika
+airport;reptér;utazás
+passport;útlevél;utazás
+ferry;komp;utazás
+reception;recepció;utazás
+offer;ajánlat;utazás
+backpack;hátizsák;utazás
+arrival;érkezés;utazás
+suitcase;bőrönd;utazás
+customs;vám;utazás
+timetable;menetrend;utazás
+sunshine;napsütés;időjárás
+humidity;pára;időjárás
+rainbow;szivárvány;időjárás
+temperature;hőmérséklet;időjárás
+degrees;fok;időjárás
+flood;árvíz;időjárás
+windy;szeles;időjárás
+moisture;csapadék;időjárás
+snow;hó;időjárás
+rain;eső;időjárás
+roommate;szobatárs;lakóhely
+house;ház;lakóhely
+rent;bérel;lakóhely
+moving;költöz;lakóhely
+balcony;erkély;lakóhely
+room;szoba;lakóhely
+floor;emelet;lakóhely
+bed;ágy;lakóhely
+sofa;kanapé;lakóhely
+garage;garázs;lakóhely
