@@ -14,9 +14,14 @@ namespace Lingarix
             string username = "";
             if (args.Length > 0)
             {
-                Console.WriteLine("Üdvözlünk " + args[0] + "!");
                 username = args[0];
-                
+                Console.WriteLine($"               Üdvözlünk {username} a Lingarixben!            ");
+                Console.WriteLine("                 _______________________");
+                Console.WriteLine("                 |                     |");
+                Console.WriteLine("                 | Használati utasítás |");
+                Console.WriteLine("                 |_____________________|");
+                Console.WriteLine("Írja be a nyelvet amiben szeretne tanulni \n majd azt a számot amilyen témában tanulni szeretne!");
+                Console.ResetColor();
             }
             ///<summary>
             /// Osztályok példányosítása
@@ -32,15 +37,6 @@ namespace Lingarix
 
             string language;
             Stopwatch stopwatch = Stopwatch.StartNew();
-
-
-            Console.WriteLine($"               Üdvözlünk {username} a Lingarixben!            ");
-            Console.WriteLine("                 _______________________");
-            Console.WriteLine("                 |                     |");
-            Console.WriteLine("                 | Használati utasítás |");
-            Console.WriteLine("                 |_____________________|");
-            Console.WriteLine("Írja be a nyelvet amiben szeretne tanulni \n majd azt a számot amilyen témában tanulni szeretne!");
-            Console.ResetColor();
 
             do
             {
@@ -67,6 +63,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
+                        Console.WriteLine(" 5. Tükörfordítás");
+                        Console.WriteLine(" 6. Mondat rendezése");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intENGLISH = Convert.ToInt16(Console.ReadLine());
@@ -90,6 +88,16 @@ namespace Lingarix
                         {
                             used.Add("Angol_SzoKereso", "igen");
                             English.SzoKereso();
+                        }
+                        if (intENGLISH == 5)
+                        {
+                            used.Add("Angol_TukorForditas", "igen");
+                            English.TukorForditas();
+                        }
+                        if (intENGLISH == 5)
+                        {
+                            used.Add("Angol_MondatRendezes", "igen");
+                            English.MondatRendezes();
                         }
                         English.Pontok();
                         break;
