@@ -20,7 +20,9 @@ namespace Lingarix
                 Console.WriteLine("                 |                     |");
                 Console.WriteLine("                 | Használati utasítás |");
                 Console.WriteLine("                 |_____________________|");
-                Console.WriteLine("Írja be a nyelvet amiben szeretne tanulni \n majd azt a számot amilyen témában tanulni szeretne!");
+                Console.WriteLine("Írja be a nyelvet amelyet tanulni szeretne,  \n majd azt a számot amilyen témában tanulni szeretne! \n A választások után kiválaszthatja, hogy milyen formában szeretné.");
+                Console.WriteLine("Lehetősége van 6 játékmód közül választani.\nAz egyes feladatokról rövid leírást találhat a feladat elindításánál.");
+                Console.WriteLine("Köszönjük, hogy minket választott!");
                 Console.ResetColor();
             }
             ///<summary>
@@ -94,10 +96,10 @@ namespace Lingarix
                             used.Add("Angol_TukorForditas", "igen");
                             English.TukorForditas();
                         }
-                        if (intENGLISH == 5)
+                        if (intENGLISH == 6)
                         {
                             used.Add("Angol_MondatRendezes", "igen");
-                            English.MondatRendezes();
+                            English.MondatRendezes ();
                         }
                         English.Pontok();
                         break;
@@ -110,29 +112,41 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
+                        Console.WriteLine(" 5. Tükörfordítás");
+                        Console.WriteLine(" 6. Mondat rendezése");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
-                        int IntGERMAN = Convert.ToInt16(Console.ReadLine());
+                        int intGERMAN = Convert.ToInt16(Console.ReadLine());
                         Console.WriteLine("-----------------------------------------");
-                        if (IntGERMAN == 1)
+                        if (intGERMAN == 1)
                         {
                             used.Add("Nemet_ABC", "igen");
                             Deutsch.ABC();
                         }
-                        if (IntGERMAN == 2)
+                        if (intGERMAN == 2)
                         {
                             used.Add("Nemet_Akasztofa", "igen");
                             Deutsch.Akasztofa();
                         }
-                        if (IntGERMAN == 3)
+                        if (intGERMAN == 3)
                         {
                             used.Add("Nemet_SzoParositas", "igen");
                             Deutsch.SzoParositas();
                         }
-                        if (IntGERMAN == 4)
+                        if (intGERMAN == 4)
                         {
                             used.Add("Nemet_SzoKereso", "igen");
                             Deutsch.SzoKereso();
+                        }
+                        if (intGERMAN == 5)
+                        {
+                            used.Add("Angol_TukorForditas", "igen");
+                            Deutsch.TukorForditas();
+                        }
+                        if (intGERMAN == 6)
+                        {
+                            used.Add("Angol_MondatRendezes", "igen");
+                            Deutsch.MondatRendezes();
                         }
                         Deutsch.Pontok();
                         break;
@@ -145,6 +159,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
+                        Console.WriteLine(" 5. Tükörfordítás");
+                        Console.WriteLine(" 6. Mondat rendezése");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intSPAIN = Convert.ToInt16(Console.ReadLine());
@@ -169,6 +185,16 @@ namespace Lingarix
                             used.Add("Spanyol_SzoKereso", "igen");
                             Spain.SzoKereso();
                         }
+                        if (intSPAIN == 5)
+                        {
+                            used.Add("Angol_TukorForditas", "igen");
+                            Spain.TukorForditas();
+                        }
+                        if (intSPAIN == 6)
+                        {
+                            used.Add("Angol_MondatRendezes", "igen");
+                            Spain.MondatRendezes();
+                        }
                         Spain.Pontok();
                         break;
 
@@ -180,6 +206,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
+                        Console.WriteLine(" 5. Tükörfordítás");
+                        Console.WriteLine(" 6. Mondat rendezése");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intITALY = Convert.ToInt16(Console.ReadLine());
@@ -204,6 +232,16 @@ namespace Lingarix
                             used.Add("Olasz_SzoKereso", "igen");
                             Italy.SzoKereso();
                         }
+                        if (intITALY == 5)
+                        {
+                            used.Add("Angol_TukorForditas", "igen");
+                            Italy.TukorForditas();
+                        }
+                        if (intITALY == 6)
+                        {
+                            used.Add("Angol_MondatRendezes", "igen");
+                            Italy.MondatRendezes();
+                        }
                         Italy.Pontok();
                         break;
 
@@ -215,6 +253,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
+                        Console.WriteLine(" 5. Tükörfordítás");
+                        Console.WriteLine(" 6. Mondat rendezése");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intFRENCH = Convert.ToInt16(Console.ReadLine());
@@ -239,6 +279,16 @@ namespace Lingarix
                             used.Add("Francia_ABC", "igen");
                             French.SzoKereso();
                         }
+                        if (intFRENCH == 5)
+                        {
+                            used.Add("Angol_TukorForditas", "igen");
+                            French.TukorForditas();
+                        }
+                        if (intFRENCH == 6)
+                        {
+                            used.Add("Angol_MondatRendezes", "igen");
+                            French.MondatRendezes();
+                        }
                         French.Pontok();
                         break;
                 }
@@ -258,7 +308,7 @@ namespace Lingarix
                 {
                     Console.Write($"{item.Key}: {item.Value}\n");
                 }
-                using (StreamWriter writer = new StreamWriter("Hasznaltnyelv_es_feladatok"))
+                using (StreamWriter writer = new StreamWriter("Hasznaltnyelv_es_feladatok.txt"))
                 {
                     foreach (var pair in used)
                     {

@@ -44,8 +44,17 @@ namespace Lingarix
         /// A pontokat itt számoljuk a szókereső feladathoz
         /// </summary>
         int scoreSZOKERESO;
+
+        /// <summary>
+        /// A pontokat itt számoljuk a tükörfordításos feladathoz
+        /// </summary>
         int scoreTUKORFORDITAS;
+
+        /// <summary>
+        /// A pontokat itt számoljuk a mondat rendezéses feladathoz
+        /// </summary>
         int scoreMONDATRENDEZES;
+
         /// <summary>
         /// Itt adják meg a feladat sorszámát
         /// </summary>
@@ -57,36 +66,10 @@ namespace Lingarix
         string word = "";
 
         /// <summary>
-        /// A kitalálandó szavak magyar megfelelőjét, megfejtését tároljuk benne
-        /// </summary>
-        string right_answear;
-
-        /// <summary>
         /// A kitalálandó szavakat tároljuk benne, minden egyes feladatban magyar nyelvű
         /// </summary>
         string hun_word;
 
-        int index = 0;
-
-        /// <summary>
-        /// A szópárosításhoz tartozó szavak betűi abc sorrendbe rendezve
-        /// </summary>
-        string abc_sorted_char;
-
-        /// <summary>
-        /// A szópárosításhoz tartozó megoldás a felhasználó által beírva
-        /// </summary>
-        string word_finder;
-
-        /// <summary>
-        /// Témaköröket tároljuk benne
-        /// </summary>
-        string topic = "";
-
-        /// <summary>
-        /// Megakadályozza, hogy a megfejtendő szavak ismétlődjenek
-        /// </summary>
-        Random r = new Random();
         //A dokumentumból beolvassuk a szavakat és a témaköröket
         public void Beolvas(string felhasznalonev)
         {
@@ -124,12 +107,13 @@ namespace Lingarix
 
             Console.WriteLine("--------------------");
         }
+        
         //1. feladatunk: A-B-C lehetőség van a kiírt fordítás helyes megfejtésére
         public void ABC()
         {
             Random rnd = new Random();
             HashSet<int> used_index = new HashSet<int>(); // Tárolja a már kiválasztott szavakat
-
+            Console.WriteLine("A - B - C feladat: A felhasználónak három lehetőség közül kell kiválasztania a helyes fordítást a megadott szóra.");
             do
             {
                 Console.WriteLine("  Témák:  ");
@@ -249,9 +233,11 @@ namespace Lingarix
             int rajzIndex = maxHP - Math.Max(0, Math.Min(maxHP, eletSzam));
             Console.WriteLine(akasztofaRajz[rajzIndex]);
         }
+        
         //2. feladatunk: Akasztófa játék, a felhasználónak kell kitalálnia a szót
         public void Akasztofa()
         {
+            Console.WriteLine("Akasztófa játék: A felhasználónak ki kell találnia a keresett szót betűnként tippelve, akárcsak a klasszikus akasztófajátékban.");
             do
             {
                 Console.WriteLine("  Témák:  ");
@@ -370,6 +356,7 @@ namespace Lingarix
         //3. feladatunk: Az idegennyelvű szót megjelenítjük a felhasználónak, majd a magyar megfelelőjét kell begépelnie
         public void SzoParositas()
         {
+            Console.WriteLine("Szópárosítás: A program megjeleníti az idegen nyelvű szót, és a felhasználónak be kell írnia a helyes magyar megfelelőjét.");
             Random rnd = new Random();
 
             do
@@ -452,9 +439,11 @@ namespace Lingarix
 
             } while (serial_number != 7);
         }
-        //4. feladatunk: A felhasználó kiválasztotta a témakört és a szót megkapja ABC sorrendbe állítva, majd ezután kell helyes srrendben állítania őket, hogy megkaphassa a helyes megfejtést
+        
+        //4. feladatunk: A felhasználó kiválasztotta a témakört és a szót megkapja ABC sorrendbe állítva, majd ezután kell helyes sorrendbe állítania őket, hogy megkaphassa a helyes megfejtést
         public void SzoKereso()
         {
+            Console.WriteLine("Szókereső: A megadott témakörből kapott szavakat a program összekeveri ABC sorrendben, a felhasználónak pedig helyes sorrendbe kell állítania őket.");
             Random szam = new Random();
 
             do
@@ -564,9 +553,11 @@ namespace Lingarix
             Console.WriteLine($"Köszönjük {username}, hogy a Lingarixel tanultál!");
             Console.WriteLine($"{username} összesen {Pontok()} pontot gyűjtött! Gratulálunk :)");
         }
+        
         //5. feladat: Egy tömbbe bele teszünk 5 a témával kapcsolatos mondatot adott nyelven és tükörfordítással a magyar megfelelőjét 
         public void TukorForditas()
         {
+            Console.WriteLine("Tükörfordítás: Egy adott nyelvű mondatot és annak szó szerinti magyar megfelelőjét kapja meg a felhasználó, így gyakorolva a nyelvi szerkezeteket.");
             List<string> Tukorforditas_magyar = new List<string>();
             List<string> Tukorforditas_angol = new List<string>();
             string[] adatok = File.ReadAllLines("mondatok_angol.txt");
@@ -633,9 +624,11 @@ namespace Lingarix
                 Console.WriteLine("-------------------");
             }
         }
+        
         //6. feladat: Egy tömbbe 5 mondatot bele teszünk majd a programba meg kerverjük a mondat el rendezését és a felhasználónak be kell írnia a helyesen leírt mondatot
         public void MondatRendezes()
         {
+            Console.WriteLine("Mondatrendezés: Egy összekevert mondatrészletekből álló mondatot kell a felhasználónak helyesen visszaállítania az eredeti formájába.");
             List<string> mondatRendezes_magyar = new List<string>();
             List<string> mondatRendezes_angol = new List<string>();
 
