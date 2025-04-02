@@ -4,6 +4,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Lingarix_Database;
+using Lingarix_Database.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Lingarix
 {
@@ -11,6 +14,12 @@ namespace Lingarix
     {
         static void Main(string[] args)
         {
+            var services = new ServiceCollection();
+            services.AddDbContext<LingarixDbContext>(options =>
+            options.UseSqlServer("Server=(localdb);Database=UsersDatabase;Trusted_Connection=True;"));
+            var serviceProvider = services.BuildServiceProvider();
+            var context = serviceProvider.GetRequiredService<LingarixDbContext>();
+
             string username = "";
             if (args.Length > 0)
             {
@@ -73,32 +82,32 @@ namespace Lingarix
                         Console.WriteLine("-----------------------------------------");
                         if (intENGLISH == 1)
                         {
-                            used.Add("Angol_ABC", "igen");
+                            used.Add("Angol: ABC", "igen");
                             English.ABC();
                         }
                         if (intENGLISH == 2)
                         {
-                            used.Add("Angol_Akasztofa", "igen");
+                            used.Add("Angol: Akasztófa", "igen");
                             English.Akasztofa();
                         }
                         if (intENGLISH == 3)
                         {
-                            used.Add("Angol", "SzoParositas");
+                            used.Add("Angol: Szópárosítás", "igen");
                             English.SzoParositas();
                         }
                         if (intENGLISH == 4)
                         {
-                            used.Add("Angol_SzoKereso", "igen");
+                            used.Add("Angol: Szókereső", "igen");
                             English.SzoKereso();
                         }
                         if (intENGLISH == 5)
                         {
-                            used.Add("Angol_TukorForditas", "igen");
+                            used.Add("Angol: Tükörfordítás", "igen");
                             English.TukorForditas();
                         }
                         if (intENGLISH == 6)
                         {
-                            used.Add("Angol_MondatRendezes", "igen");
+                            used.Add("Angol: Mondat rendezés", "igen");
                             English.MondatRendezes ();
                         }
                         English.Pontok();
@@ -120,32 +129,32 @@ namespace Lingarix
                         Console.WriteLine("-----------------------------------------");
                         if (intGERMAN == 1)
                         {
-                            used.Add("Nemet_ABC", "igen");
+                            used.Add("Német: ABC", "igen");
                             Deutsch.ABC();
                         }
                         if (intGERMAN == 2)
                         {
-                            used.Add("Nemet_Akasztofa", "igen");
+                            used.Add("Német: Akasztófa", "igen");
                             Deutsch.Akasztofa();
                         }
                         if (intGERMAN == 3)
                         {
-                            used.Add("Nemet_SzoParositas", "igen");
+                            used.Add("Német: Szópárosítás", "igen");
                             Deutsch.SzoParositas();
                         }
                         if (intGERMAN == 4)
                         {
-                            used.Add("Nemet_SzoKereso", "igen");
+                            used.Add("Német: Szókereső", "igen");
                             Deutsch.SzoKereso();
                         }
                         if (intGERMAN == 5)
                         {
-                            used.Add("Angol_TukorForditas", "igen");
+                            used.Add("Német: Tükörfordítás", "igen");
                             Deutsch.TukorForditas();
                         }
                         if (intGERMAN == 6)
                         {
-                            used.Add("Angol_MondatRendezes", "igen");
+                            used.Add("Német: Mondat rendezés", "igen");
                             Deutsch.MondatRendezes();
                         }
                         Deutsch.Pontok();
@@ -167,32 +176,32 @@ namespace Lingarix
                         Console.WriteLine("-----------------------------------------");
                         if (intSPAIN == 1)
                         {
-                            used.Add("Spanyol_ABC", "igen");
+                            used.Add("Spanyol: ABC", "igen");
                             Spain.ABC();
                         }
                         if (intSPAIN == 2)
                         {
-                            used.Add("Spanyol_Akasztofa", "igen");
+                            used.Add("Spanyol: Akasztófa", "igen");
                             Spain.Akasztofa();
                         }
                         if (intSPAIN == 3)
                         {
-                            used.Add("Spanyol_SzoParositas", "igen");
+                            used.Add("Spanyol: Szópárosítás", "igen");
                             Spain.SzoParositas();
                         }
                         if (intSPAIN == 4)
                         {
-                            used.Add("Spanyol_SzoKereso", "igen");
+                            used.Add("Spanyol: Szókereső", "igen");
                             Spain.SzoKereso();
                         }
                         if (intSPAIN == 5)
                         {
-                            used.Add("Angol_TukorForditas", "igen");
+                            used.Add("Spanyol: Tükorfordítás", "igen");
                             Spain.TukorForditas();
                         }
                         if (intSPAIN == 6)
                         {
-                            used.Add("Angol_MondatRendezes", "igen");
+                            used.Add("Spanyol: Mondat rendezés", "igen");
                             Spain.MondatRendezes();
                         }
                         Spain.Pontok();
@@ -214,32 +223,32 @@ namespace Lingarix
                         Console.WriteLine("-----------------------------------------");
                         if (intITALY == 1)
                         {
-                            used.Add("Olasz_ABC", "igen");
+                            used.Add("Olasz: ABC", "igen");
                             Italy.ABC();
                         }
                         if (intITALY == 2)
                         {
-                            used.Add("Olasz_Akasztofa", "igen");
+                            used.Add("Olasz: Akasztófa", "igen");
                             Italy.Akasztofa();
                         }
                         if (intITALY == 3)
                         {
-                            used.Add("Olasz_SzoParositas", "igen");
+                            used.Add("Olasz: Szópárosítás", "igen");
                             Italy.SzoParositas();
                         }
                         if (intITALY == 4)
                         {
-                            used.Add("Olasz_SzoKereso", "igen");
+                            used.Add("Olasz: Szókereső", "igen");
                             Italy.SzoKereso();
                         }
                         if (intITALY == 5)
                         {
-                            used.Add("Angol_TukorForditas", "igen");
+                            used.Add("Olasz: Tükörfordítás", "igen");
                             Italy.TukorForditas();
                         }
                         if (intITALY == 6)
                         {
-                            used.Add("Angol_MondatRendezes", "igen");
+                            used.Add("Olasz: Mondat rendezés", "igen");
                             Italy.MondatRendezes();
                         }
                         Italy.Pontok();
@@ -261,32 +270,32 @@ namespace Lingarix
                         Console.WriteLine("-----------------------------------------");
                         if (intFRENCH == 1)
                         {
-                            used.Add("Francia_ABC", "igen");
+                            used.Add("Francia: ABC", "igen");
                             French.ABC();
                         }
                         if (intFRENCH == 2)
                         {
-                            used.Add("Francia_ABC", "igen");
+                            used.Add("Francia: Akasztófa", "igen");
                             French.Akasztofa();
                         }
                         if (intFRENCH == 3)
                         {
-                            used.Add("Francia_ABC", "igen");
+                            used.Add("Francia_: Szópárosítás", "igen");
                             French.SzoParositas();
                         }
                         if (intFRENCH == 4)
                         {
-                            used.Add("Francia_ABC", "igen");
+                            used.Add("Francia: Szókereső", "igen");
                             French.SzoKereso();
                         }
                         if (intFRENCH == 5)
                         {
-                            used.Add("Angol_TukorForditas", "igen");
+                            used.Add("Francia: Tükörfordítás", "igen");
                             French.TukorForditas();
                         }
                         if (intFRENCH == 6)
                         {
-                            used.Add("Angol_MondatRendezes", "igen");
+                            used.Add("Francia: Mondat rendezés", "igen");
                             French.MondatRendezes();
                         }
                         French.Pontok();
@@ -298,46 +307,37 @@ namespace Lingarix
                 Console.WriteLine("Köszönjük " + username + ", hogy a Lingarixet választotta!");
                 Console.WriteLine("Készítők: Gunics Bettina Virág, Páll Márk Hunor");
                 DateTime today = DateTime.Now;
-                Console.WriteLine($"Mai dátum: {today.ToString("yyyy-MM-dd")}");
-                double elapsedHours = stopwatch.Elapsed.TotalMinutes;
-                Console.WriteLine($"A program futásának ideje: {Math.Round(elapsedHours),4} perc");
-                DateTime Date = DateTime.Now;
+
                 int Score = English.Pontok() + Italy.Pontok() + French.Pontok() + Deutsch.Pontok() + Spain.Pontok();
+                double elapsedHours = stopwatch.Elapsed.TotalMinutes;
+                context.UserStatistics.Add(new UserStatistics 
+                {
+                    Username = username, 
+                    Score = Score,
+                    Date = today,
+                    Exercises = string.Join(",",used.Keys.ToList()),
+                    StudyTime = elapsedHours
+                });
+                context.SaveChanges();
+
+                Console.WriteLine("Adatok sikeresen beszúrva az adatbázisba!");
+                Console.WriteLine("-----------------------------");
+                Console.WriteLine("A gyakorlásod statisztikája:");
+                Console.WriteLine($"Mai dátum: {today.ToString("yyyy-MM-dd")}");
+                
+                Console.WriteLine($"A program futásának ideje: {Math.Round(elapsedHours),4} perc");
+                
                 Console.WriteLine("Elért pontok:" + Score);
+                Console.WriteLine("Elvégzett feladataid: ");
                 foreach (var item in used)
                 {
                     Console.Write($"{item.Key}: {item.Value}\n");
                 }
-                using (StreamWriter writer = new StreamWriter("Hasznaltnyelv_es_feladatok.txt"))
-                {
-                    foreach (var pair in used)
-                    {
-                        writer.WriteLine($"{pair.Key}: {pair.Value}");
-                    }
-                }
+                
             }
             Console.WriteLine("\nNyomj meg egy gombot a kilépéshez...");
             Console.ReadKey();
         }
-        // Adatbázis kontextus osztály
-        //public class UserDbContext : DbContext
-        //{
-        //    public DbSet<User> Users { get; set; }
-
-        //    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //    {
-        //        options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;");
-        //    }
-        //}
-
-        //// Felhasználó osztály
-        //public class User
-        //{
-        //    public int Id { get; set; }
-        //    public string Username { get; set; }
-        //    public bool IsLoggedIn { get; set; } // Ez az oszlop jelzi, ki van bejelentkezve
-        //}
-
     }
 }
 

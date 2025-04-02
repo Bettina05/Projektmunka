@@ -570,11 +570,8 @@ namespace Lingarix
             for (int i = 0; i < adatok.Length; i++)
             {
                 string[] sor = adatok[i].Split(';');
-                if (sor[2] == "angol")
-                {
-                    Tukorforditas_angol.Add(sor[0]);
-                    Tukorforditas_magyar.Add(sor[1]);
-                }
+                Tukorforditas_angol.Add(sor[0]);
+                Tukorforditas_magyar.Add(sor[1]);
             }
             string felhasznalotippje;
             int elet = 3;

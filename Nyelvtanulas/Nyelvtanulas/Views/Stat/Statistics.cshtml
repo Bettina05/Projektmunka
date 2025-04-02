@@ -5,18 +5,33 @@
     ViewData["Title"] = "Statisztika";
 }
 
-<h2>Üdvözöllek, @Context.Session.GetString("UserName")!</h2>
-<h3>Napi Statisztikáid:</h3>
-<table>
-    <tr>
-        <th>Dátum</th>
-        <th>Pontszám</th>
-    </tr>
-    @foreach (var stat in Model)
-    {
-        <tr>
-            <td>@stat.Date.ToShortDateString()</td>
-            <td>@stat.Score</td>
-        </tr>
-    }
-</table>
+<div class="container mt-5">
+    <h2 class="text-center">Üdvözöllek, @Context.Session.GetString("UserName")!</h2>
+    <h3 class="text-center">Napi Statisztikáid</h3>
+
+    <table class="table table-striped table-bordered mt-4">
+        <thead class="table-dark">
+            <tr>
+                <th>Dátum</th>
+                <th>Pontszám</th>
+                <th>Feladatok</th>
+                <th>Tanulással töltött idő (perc)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var stat in Model)
+            {
+                <tr>
+                    <td>@stat.Date.ToShortDateString()</td>
+                    <td>@stat.Score</td>
+                    <td>@stat.Exercises</td>
+                    <td>@stat.StudyTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-center mt-4">
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Vissza a főoldalra</a>
+    </div>
+</div>
