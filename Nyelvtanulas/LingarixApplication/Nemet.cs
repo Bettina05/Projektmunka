@@ -49,7 +49,7 @@ namespace Lingarix
         /// <summary>
         /// A pontokat itt számoljuk a tükörfordításos feladathoz
         /// </summary>
-        int scoreTUKORFORDITAS;
+        int scoreHELYESFORDITAS;
 
         /// <summary>
         /// A pontokat itt számoljuk a mondat rendezéses feladathoz
@@ -560,16 +560,16 @@ namespace Lingarix
         }
 
         //5. feladat: Egy tömbbe bele teszünk 5 a témával kapcsolatos mondatot adott nyelven és tükörfordítással a magyar megfelelőjét 
-        public void TukorForditas()
+        public void MondatRendezes()
         {
-            Console.WriteLine("Tükörfordítás: Egy adott nyelvű mondatot és annak szó szerinti magyar megfelelőjét kapja meg a felhasználó, így gyakorolva a nyelvi szerkezeteket.");
+            Console.WriteLine("Mondatrendezés: Egy összekevert mondatrészletekből álló mondatot kell a felhasználónak helyesen visszaállítania az eredeti formájába.");
             List<string> Tukorforditas_magyar = new List<string>();
-            List<string> Tukorforditas_angol = new List<string>();
-            string[] adatok = File.ReadAllLines("mondatok_angol.txt");
+            List<string> Tukorforditas_olasz = new List<string>();
+            string[] adatok = File.ReadAllLines("mondatok_olasz.txt");
             for (int i = 0; i < adatok.Length; i++)
             {
                 string[] sor = adatok[i].Split(';');
-                Tukorforditas_angol.Add(sor[0]);
+                Tukorforditas_olasz.Add(sor[0]);
                 Tukorforditas_magyar.Add(sor[1]);
             }
             string felhasznalotippje;
@@ -584,28 +584,28 @@ namespace Lingarix
 
             do
             {
-                int randomkivalasztott_mondat_indexe = rnd.Next(0, Tukorforditas_angol.Count());
+                int randomkivalasztott_mondat_indexe = rnd.Next(0, Tukorforditas_olasz.Count());
                 string magyar_helyes_mondat = Tukorforditas_magyar[randomkivalasztott_mondat_indexe];
-                string angol_keverni_kivant_mondat = Tukorforditas_angol[randomkivalasztott_mondat_indexe];
-                Console.WriteLine(angol_keverni_kivant_mondat);
+                string olasz_keverni_kivant_mondat = Tukorforditas_olasz[randomkivalasztott_mondat_indexe];
+                Console.WriteLine(olasz_keverni_kivant_mondat);
                 // Spliteljük a kiválasztott idegennyelvű mondatot
-                string[] splitteltszo = angol_keverni_kivant_mondat.Split(' ');
+                string[] splitteltszo = olasz_keverni_kivant_mondat.Split(' ');
                 // Megkeverjük a mondatot 
-                string[] angolul_kevert_szavak = splitteltszo.OrderBy(x => rnd.Next()).ToArray();
+                string[] olasz_kevert_szavak = splitteltszo.OrderBy(x => rnd.Next()).ToArray();
                 // Egy stringbe fűzzük a kevert mondatot
-                string angol_osszekevert_mondat = string.Join(" ", angolul_kevert_szavak);
+                string olasz_osszekevert_mondat = string.Join(" ", olasz_kevert_szavak);
                 Console.WriteLine("Élet:" + elet);
-                Console.WriteLine(angol_osszekevert_mondat);
+                Console.WriteLine(olasz_osszekevert_mondat);
                 felhasznalotippje = Console.ReadLine();
 
                 // A válaszok szótárának ellenőrzése (figyelmen kívül hagyva a szavak sorrendjét)
-                if (felhasznalotippje.Split(' ').OrderBy(s => s).SequenceEqual(angol_osszekevert_mondat.Split(' ').OrderBy(s => s)))
+                if (felhasznalotippje.Split(' ').OrderBy(s => s).SequenceEqual(olasz_osszekevert_mondat.Split(' ').OrderBy(s => s)))
                 {
                     Console.WriteLine("Helyes válasz!");
                     //elet++;
                     //Console.WriteLine("Élet: " + elet);
-                    scoreTUKORFORDITAS += 2;
-                    Console.WriteLine("Pontok: " + scoreTUKORFORDITAS);
+                    scoreHELYESFORDITAS += 2;
+                    Console.WriteLine("Pontok: " + scoreHELYESFORDITAS);
                     Console.WriteLine("-------------------");
                     Console.WriteLine();
                 }
@@ -628,21 +628,18 @@ namespace Lingarix
         }
 
         //6. feladat: Egy tömbbe 5 mondatot bele teszünk majd a programba meg kerverjük a mondat el rendezését és a felhasználónak be kell írnia a helyesen leírt mondatot
-        public void MondatRendezes()
+        public void Helyesforditas()
         {
             Console.WriteLine("Mondatrendezés: Egy összekevert mondatrészletekből álló mondatot kell a felhasználónak helyesen visszaállítania az eredeti formájába.");
             List<string> mondatRendezes_magyar = new List<string>();
-            List<string> mondatRendezes_angol = new List<string>();
+            List<string> mondatRendezes_olasz = new List<string>();
 
-            string[] adatok = File.ReadAllLines("mondatok_angol.txt");
+            string[] adatok = File.ReadAllLines("mondatok_olasz.txt");
             for (int i = 0; i < adatok.Length; i++)
             {
                 string[] sor = adatok[i].Split(';');
-                if (sor[2] == "angol")
-                {
-                    mondatRendezes_angol.Add(sor[0]);
-                    mondatRendezes_magyar.Add(sor[1]);
-                }
+                mondatRendezes_olasz.Add(sor[0]);
+                mondatRendezes_magyar.Add(sor[1]);
             }
 
             int rounds = 5;
@@ -650,7 +647,7 @@ namespace Lingarix
             Random rnd = new Random();
             List<int> usedIndices = new List<int>();
 
-            Console.WriteLine($"Angol-magyar mondat kvíz ({rounds} kör)");
+            Console.WriteLine($"Olasz-magyar mondat kvíz ({rounds} kör)");
             Console.WriteLine("------------------------------\n");
 
             for (int round = 1; round <= rounds; round++)
@@ -660,7 +657,7 @@ namespace Lingarix
                 int currentIndex;
                 do
                 {
-                    currentIndex = rnd.Next(0, mondatRendezes_angol.Count);
+                    currentIndex = rnd.Next(0, mondatRendezes_olasz.Count);
                 }
                 while (usedIndices.Contains(currentIndex));
                 usedIndices.Add(currentIndex);
@@ -668,16 +665,16 @@ namespace Lingarix
                 int wrongIndex;
                 do
                 {
-                    wrongIndex = rnd.Next(0, mondatRendezes_angol.Count);
+                    wrongIndex = rnd.Next(0, mondatRendezes_olasz.Count);
                 }
                 while (wrongIndex == currentIndex || usedIndices.Contains(wrongIndex));
 
                 string magyar_kivalasztott_mondat = mondatRendezes_magyar[currentIndex];
-                string helyes_angol_valasz = mondatRendezes_angol[currentIndex];
+                string helyes_olasz_valasz = mondatRendezes_olasz[currentIndex];
 
                 bool helyes_elso = rnd.Next(2) == 0;
-                string elso_opcio = helyes_elso ? mondatRendezes_angol[currentIndex] : mondatRendezes_angol[wrongIndex];
-                string masodik_opcio = helyes_elso ? mondatRendezes_angol[wrongIndex] : mondatRendezes_angol[currentIndex];
+                string elso_opcio = helyes_elso ? mondatRendezes_olasz[currentIndex] : mondatRendezes_olasz[wrongIndex];
+                string masodik_opcio = helyes_elso ? mondatRendezes_olasz[wrongIndex] : mondatRendezes_olasz[currentIndex];
 
                 Console.WriteLine("\nA magyar mondat: " + magyar_kivalasztott_mondat);
                 Console.WriteLine("\nLehetőségek:");
@@ -694,7 +691,7 @@ namespace Lingarix
                 }
                 else
                 {
-                    Console.WriteLine($" Helytelen válasz! A helyes válasz: {helyes_angol_valasz}");
+                    Console.WriteLine($" Helytelen válasz! A helyes válasz: {helyes_olasz_valasz}");
                 }
 
                 Console.WriteLine($"Pontszám: {scoreMONDATRENDEZES}/{round}\n");
@@ -711,7 +708,7 @@ namespace Lingarix
         //Összeszámolja, hogy összesen hány pontot gyűjtött a felhasználó a gyakorlással
         public int Pontok()
         {
-            int pontok = scoreABC + scoreAKASZTOFA + scorePAROSITAS + scoreSZOKERESO + scoreTUKORFORDITAS + scoreMONDATRENDEZES;
+            int pontok = scoreABC + scoreAKASZTOFA + scorePAROSITAS + scoreSZOKERESO + scoreHELYESFORDITAS + scoreMONDATRENDEZES;
             return pontok;
         }
     }

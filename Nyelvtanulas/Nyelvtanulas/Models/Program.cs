@@ -23,11 +23,13 @@ builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceWithSess
 
 builder.Services.AddDbContext<LingarixDbContext>();
 
-builder.Services.AddSession(); // Szükséges a CAPTCHA tárolásához
+builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
 // Adatbázis beállítás
-builder.Services.AddDbContext<LingarixDbContext>();
+builder.Services.AddDbContext<LingarixDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 // Itt kell befejezni a konfigurációt!
 var app = builder.Build();

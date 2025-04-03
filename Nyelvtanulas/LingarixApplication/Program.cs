@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
+﻿using System.Diagnostics;
 using Lingarix_Database;
 using Lingarix_Database.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +12,7 @@ namespace Lingarix
         {
             var services = new ServiceCollection();
             services.AddDbContext<LingarixDbContext>(options =>
-            options.UseSqlServer("Server=(localdb);Database=UsersDatabase;Trusted_Connection=True;"));
+            options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;"));
             var serviceProvider = services.BuildServiceProvider();
             var context = serviceProvider.GetRequiredService<LingarixDbContext>();
 
@@ -74,8 +70,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
-                        Console.WriteLine(" 5. Tükörfordítás");
-                        Console.WriteLine(" 6. Mondat rendezése");
+                        Console.WriteLine(" 5. Mondat rendezése");
+                        Console.WriteLine(" 6. Helyes fordítás");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intENGLISH = Convert.ToInt16(Console.ReadLine());
@@ -102,13 +98,13 @@ namespace Lingarix
                         }
                         if (intENGLISH == 5)
                         {
-                            used.Add("Angol: Tükörfordítás", "igen");
-                            English.TukorForditas();
+                            used.Add("Angol: Mondat rendezés", "igen");
+                            English.MondatRendezes();
                         }
                         if (intENGLISH == 6)
                         {
-                            used.Add("Angol: Mondat rendezés", "igen");
-                            English.MondatRendezes ();
+                            used.Add("Angol: Helyes fordítás", "igen");
+                            English.Helyesforditas();
                         }
                         English.Pontok();
                         break;
@@ -121,8 +117,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
-                        Console.WriteLine(" 5. Tükörfordítás");
-                        Console.WriteLine(" 6. Mondat rendezése");
+                        Console.WriteLine(" 5. Mondat rendezése");
+                        Console.WriteLine(" 6. Helyes fordítás");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intGERMAN = Convert.ToInt16(Console.ReadLine());
@@ -149,13 +145,13 @@ namespace Lingarix
                         }
                         if (intGERMAN == 5)
                         {
-                            used.Add("Német: Tükörfordítás", "igen");
-                            Deutsch.TukorForditas();
+                            used.Add("Német: Mondat rendezés", "igen");
+                            Deutsch.MondatRendezes();
                         }
                         if (intGERMAN == 6)
                         {
-                            used.Add("Német: Mondat rendezés", "igen");
-                            Deutsch.MondatRendezes();
+                            used.Add("Német: Helyes fordítás", "igen");
+                            Deutsch.Helyesforditas();
                         }
                         Deutsch.Pontok();
                         break;
@@ -168,8 +164,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
-                        Console.WriteLine(" 5. Tükörfordítás");
-                        Console.WriteLine(" 6. Mondat rendezése");
+                        Console.WriteLine(" 5. Mondat rendezése");
+                        Console.WriteLine(" 6. Helyes fordítás");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intSPAIN = Convert.ToInt16(Console.ReadLine());
@@ -196,13 +192,13 @@ namespace Lingarix
                         }
                         if (intSPAIN == 5)
                         {
-                            used.Add("Spanyol: Tükorfordítás", "igen");
-                            Spain.TukorForditas();
+                            used.Add("Spanyol: Mondat rendezés", "igen");
+                            Spain.MondatRendezes();
                         }
                         if (intSPAIN == 6)
                         {
-                            used.Add("Spanyol: Mondat rendezés", "igen");
-                            Spain.MondatRendezes();
+                            used.Add("Spanyol: Helyes fordítás", "igen");
+                            Spain.Helyesforditas();
                         }
                         Spain.Pontok();
                         break;
@@ -215,8 +211,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
-                        Console.WriteLine(" 5. Tükörfordítás");
-                        Console.WriteLine(" 6. Mondat rendezése");
+                        Console.WriteLine(" 5. Mondat rendezése");
+                        Console.WriteLine(" 6. Helyes fordítás");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intITALY = Convert.ToInt16(Console.ReadLine());
@@ -243,13 +239,13 @@ namespace Lingarix
                         }
                         if (intITALY == 5)
                         {
-                            used.Add("Olasz: Tükörfordítás", "igen");
-                            Italy.TukorForditas();
+                            used.Add("Olasz: Mondat rendezés", "igen");
+                            Italy.MondatRendezes();
                         }
                         if (intITALY == 6)
                         {
-                            used.Add("Olasz: Mondat rendezés", "igen");
-                            Italy.MondatRendezes();
+                            used.Add("Olasz: Helyes fordítás", "igen");
+                            Italy.Helyesforditas();
                         }
                         Italy.Pontok();
                         break;
@@ -262,8 +258,8 @@ namespace Lingarix
                         Console.WriteLine(" 2. Akasztófa");
                         Console.WriteLine(" 3. Szópárosítás");
                         Console.WriteLine(" 4. Szó kereső");
-                        Console.WriteLine(" 5. Tükörfordítás");
-                        Console.WriteLine(" 6. Mondat rendezése");
+                        Console.WriteLine(" 5. Mondat rendezése");
+                        Console.WriteLine(" 6. Helyes fordítás");
                         Console.WriteLine("-----------------------------------------");
                         Console.Write(" Adja meg a választott feladat sorszámát: ");
                         int intFRENCH = Convert.ToInt16(Console.ReadLine());
@@ -290,13 +286,13 @@ namespace Lingarix
                         }
                         if (intFRENCH == 5)
                         {
-                            used.Add("Francia: Tükörfordítás", "igen");
-                            French.TukorForditas();
+                            used.Add("Francia: Mondat rendezés", "igen");
+                            French.MondatRendezes();
                         }
                         if (intFRENCH == 6)
                         {
-                            used.Add("Francia: Mondat rendezés", "igen");
-                            French.MondatRendezes();
+                            used.Add("Francia: Helyes fordítás", "igen");
+                            French.Helyesforditas();
                         }
                         French.Pontok();
                         break;
@@ -310,12 +306,12 @@ namespace Lingarix
 
                 int Score = English.Pontok() + Italy.Pontok() + French.Pontok() + Deutsch.Pontok() + Spain.Pontok();
                 double elapsedHours = stopwatch.Elapsed.TotalMinutes;
-                context.UserStatistics.Add(new UserStatistics 
+                context.UserStatistics.Add(new UserStatistics
                 {
-                    Username = username, 
+                    Username = username,
                     Score = Score,
                     Date = today,
-                    Exercises = string.Join(",",used.Keys.ToList()),
+                    Exercises = string.Join(",", used.Keys.ToList()),
                     StudyTime = elapsedHours
                 });
                 context.SaveChanges();
@@ -324,16 +320,16 @@ namespace Lingarix
                 Console.WriteLine("-----------------------------");
                 Console.WriteLine("A gyakorlásod statisztikája:");
                 Console.WriteLine($"Mai dátum: {today.ToString("yyyy-MM-dd")}");
-                
+
                 Console.WriteLine($"A program futásának ideje: {Math.Round(elapsedHours),4} perc");
-                
+
                 Console.WriteLine("Elért pontok:" + Score);
                 Console.WriteLine("Elvégzett feladataid: ");
                 foreach (var item in used)
                 {
                     Console.Write($"{item.Key}: {item.Value}\n");
                 }
-                
+
             }
             Console.WriteLine("\nNyomj meg egy gombot a kilépéshez...");
             Console.ReadKey();
