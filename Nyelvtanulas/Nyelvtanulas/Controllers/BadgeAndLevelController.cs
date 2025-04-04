@@ -1,27 +1,33 @@
 ﻿using Lingarix_Database;
 using Lingarix_Database.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Nyelvtanulas.Repositories;
 
 namespace Nyelvtanulas.Controllers
 {
     public class BadgeAndLevelController : Controller
     {
-        private readonly LingarixDbContext DBcontext;
+        private readonly BadgeRepository _badgeRepository;
+        private readonly LevelRepository _levelRepository;
 
-        public BadgeAndLevelController()
+        public BadgeAndLevelController(BadgeRepository badgeRepository, LevelRepository levelRepository)
         {
-            
+            _badgeRepository = badgeRepository;
+            _levelRepository = levelRepository;
         }
 
-        public async Task<List<UserBadge>> GetBadgesByUser(string username)
+        public async Task<IActionResult> Badge()
         {
-            return await DBcontext.UserBadge.Where(b => b.Username == username).ToListAsync();
+            string username = User.Identity.Name;
+            var badges = await _badgeRepository.GetBadgesByUser(username);
+            return View(badges);
         }
-
-        public async Task AddBadge(UserBadge badge)
+        public async Task<IActionResult> Level()
         {
-            DBcontext.UserBadges.Add(badge);
-            await DBcontext.SaveChangesAsync();
+            string username = User.Identity.Name;
+            var level = await _levelRepository.GetLevelByUser(username);
+            return View(level);
         }
     }
 }
