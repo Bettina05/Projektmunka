@@ -25,7 +25,7 @@ namespace NyelvtanuloMVC.Controllers
             string currentUsername = authenticationService.UserName;
             if (string.IsNullOrEmpty(currentUsername))
             {
-                return RedirectToAction("Login", "Account"); // Ha nincs bejelentkezve, irány a login oldalra
+                return RedirectToAction("Login", "Account");
             }
             var userStatistics = DBcontext.UserStatistics
                 .Where(x => x.Username == currentUsername)
@@ -34,6 +34,18 @@ namespace NyelvtanuloMVC.Controllers
 
             return View(userStatistics);
         }
+        public IActionResult Ranglist()
+        {
+            var leaderboard = DBcontext.UserRangList
+                .OrderByDescending(l => l.Points)
+                .ToList();
 
+            return View(leaderboard);
+        }
+        public IActionResult Achievement()
+        {
+            var achievements = DBcontext.Achievements.ToList();
+            return View(achievements);
+        }
     }
 }

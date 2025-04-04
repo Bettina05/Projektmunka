@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Lingarix_Database;
 using Lingarix_Database.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,11 +11,9 @@ namespace Lingarix
     {
         static void Main(string[] args)
         {
-            var services = new ServiceCollection();
-            services.AddDbContext<LingarixDbContext>(options =>
-            options.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;"));
-            var serviceProvider = services.BuildServiceProvider();
-            var context = serviceProvider.GetRequiredService<LingarixDbContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<LingarixDbContext>();
+            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;");
+            var context = new LingarixDbContext(optionsBuilder.Options);
 
             string username = "";
             if (args.Length > 0)
@@ -302,10 +301,11 @@ namespace Lingarix
             {
                 Console.WriteLine("Köszönjük " + username + ", hogy a Lingarixet választotta!");
                 Console.WriteLine("Készítők: Gunics Bettina Virág, Páll Márk Hunor");
-                DateTime today = DateTime.Now;
-
+                
                 int Score = English.Pontok() + Italy.Pontok() + French.Pontok() + Deutsch.Pontok() + Spain.Pontok();
                 double elapsedHours = stopwatch.Elapsed.TotalMinutes;
+                DateTime today = DateTime.Now;
+                
                 context.UserStatistics.Add(new UserStatistics
                 {
                     Username = username,
@@ -316,6 +316,25 @@ namespace Lingarix
                 });
                 context.SaveChanges();
 
+                var leaderboardEntry = context.UserRangList.FirstOrDefault(l => l.Username == username);
+                if (leaderboardEntry != null)
+                {
+                    leaderboardEntry.Points += Score;
+                }
+                else
+                {
+                    context.UserRangList.Add(new UserRangList
+                    {
+                        Username = username,
+                        Points = Score
+                    });
+                }
+
+                context.SaveChanges();
+
+                AddAchievement(username, "Első 100 pont elérése");
+                Console.WriteLine("Ranglista frissítve!");
+                Console.WriteLine("Eredmény hozzáadva!");
                 Console.WriteLine("Adatok sikeresen beszúrva az adatbázisba!");
                 Console.WriteLine("-----------------------------");
                 Console.WriteLine("A gyakorlásod statisztikája:");
@@ -333,6 +352,23 @@ namespace Lingarix
             }
             Console.WriteLine("\nNyomj meg egy gombot a kilépéshez...");
             Console.ReadKey();
+        }
+        static void AddAchievement(string username, string achievementName)
+        {
+            string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;";
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "INSERT INTO Achievements (Username, AchievementName, DateEarned) VALUES (@Username, @AchievementName, GETDATE())";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    cmd.Parameters.AddWithValue("@AchievementName", achievementName);
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

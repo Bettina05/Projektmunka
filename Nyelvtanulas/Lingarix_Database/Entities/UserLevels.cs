@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Lingarix_Database.Entities
 {
-    public class UserRangList
+    public class UserLevels
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        public int Points { get; set; }
+        public int Level { get; set; }
+        public int Experience { get; set; }
+        public DateTime LastUpdated { get; set; }
     }
 }

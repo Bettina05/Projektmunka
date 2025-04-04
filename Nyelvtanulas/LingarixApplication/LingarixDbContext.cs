@@ -8,5 +8,6 @@ namespace LingarixApplication
         public LingarixDbContext(DbContextOptions<LingarixDbContext> options) : base(options) { }
 
         public DbSet<UserStatistics> UserStatistics { get; set; }
+        public DbSet<UserRangList> userRangLists { get; set; }
     }
 }
