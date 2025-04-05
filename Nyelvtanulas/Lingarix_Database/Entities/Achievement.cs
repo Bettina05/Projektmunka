@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace Lingarix_Database.Entities
 {
-    public class Achievements
+    public class Achievement
     {
+        [Key]
         public int Id { get; set; }
 
         public string Username { get; set; }

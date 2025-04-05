@@ -8,7 +8,7 @@ namespace Lingarix_Database
         public DbSet<Users> users { get; set; }
         public DbSet<UserStatistics> UserStatistics { get; set; }
         public DbSet<UserRangList> UserRangList { get; set; }
-        public DbSet<Achievements> Achievements { get; set; }
+        public DbSet<Achievement> Achievements { get; set; }
         public DbSet<UserBadge> Badges { get; set; }
         public DbSet<UserLevels> Levels { get; set; }
         public LingarixDbContext(DbContextOptions<LingarixDbContext> options) : base(options) { }

@@ -47,5 +47,13 @@ namespace NyelvtanuloMVC.Controllers
             var achievements = DBcontext.Achievements.ToList();
             return View(achievements);
         }
+        public IActionResult Badge()
+        {
+           return View();
+        }
+        public IActionResult Level()
+        {
+            return View();
+        }
     }
 }
