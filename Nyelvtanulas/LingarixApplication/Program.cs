@@ -330,15 +330,6 @@ namespace Lingarix
                     });
                 }
 
-                if (user.CompletedExercises == 1)
-                {
-                    dbContext.UserBadge.Add(new UserBadge
-                    {
-                        Username = user.Username,
-                        BadgeName = "First Steps",
-                        DateEarned = DateTime.Now
-                    });
-                }
                 context.SaveChanges();
 
                 AddAchievement(username, "Első 100 pont elérése");
@@ -360,7 +351,7 @@ namespace Lingarix
 
             }
             Console.WriteLine("\nNyomj meg egy gombot a kilépéshez...");
-            Console.ReadKey();
+            Console.ReadKey(true);
         }
         static void AddAchievement(string username, string achievementName)
         {

@@ -33,7 +33,7 @@
 
                             <!-- Egy link/gomb lenne amivel el tudnánk indítani a konzolos felületünket-->
                             <li class="nav-item">
-                                <a class="nav-link btn btn-primary text-white px-3 py-2 mx-2" asp-area="" asp-controller="App" asp-action="LaunchConsoleApp">Tanulás megkezdése</a>
+                                <a class="btn btn-primary text-white px-3 py-2 mx-2 custom-button" asp-area="" asp-controller="App" asp-action="LaunchConsoleApp">Tanulás megkezdése</a>
                             </li>
 
                             <!-- Hasznos tippek -->
@@ -49,11 +49,6 @@
                             <!-- Rólunk oldal -->
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">Rólunk</a>
-                            </li>
-
-                            <!-- Kijelentkezés -->
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Kijelentkezés</a>
                             </li>
                         }
                         else
@@ -84,6 +79,14 @@
                             </li>
                         }
                     </ul>
+                    @if (authService.IsAuthenticated)
+                    {
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">Kijelentkezés</a>
+                            </li>
+                        </ul>
+                    }
                 </div>
             </div>
         </nav>
