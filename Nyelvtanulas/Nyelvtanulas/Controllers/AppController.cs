@@ -40,7 +40,7 @@ namespace Nyelvtanulas.Controllers
                 process.WaitForExit();  
             }
             // Visszairányítás a statisztika oldalára
-            return View("Statistics");
+            return View("Statistics", "Stat");
         }
     }
 }
