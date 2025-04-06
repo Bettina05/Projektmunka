@@ -1,8 +1,12 @@
-﻿@using Nyelvtanulas.Models
-@model List<UserBadges>
+﻿@using Lingarix_Database.Entities
+@model List<UserLevels>
 
 
 <h2>Szint és XP</h2>
-
-<p>Szint: @Model.Level</p>
-<p>XP: @Model.Experience</p>
+<ul>
+    @foreach (var levels in Model)
+    {
+        <li>Szint: @levels.Level</li>
+        <li>XP: @levels.Experience</li>
+    }
+</ul>

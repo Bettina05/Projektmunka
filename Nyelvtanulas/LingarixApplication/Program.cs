@@ -330,6 +330,15 @@ namespace Lingarix
                     });
                 }
 
+                if (user.CompletedExercises == 1)
+                {
+                    dbContext.UserBadge.Add(new UserBadge
+                    {
+                        Username = user.Username,
+                        BadgeName = "First Steps",
+                        DateEarned = DateTime.Now
+                    });
+                }
                 context.SaveChanges();
 
                 AddAchievement(username, "Első 100 pont elérése");

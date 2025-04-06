@@ -14,6 +14,6 @@ namespace Lingarix_Database.Entities
         public string Username { get; set; }
         public int Level { get; set; }
         public int Experience { get; set; }
-        public DateTime LastUpdated { get; set; }
+        public string Description { get; set; }
     }
 }

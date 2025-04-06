@@ -15,6 +15,7 @@ namespace Lingarix_Database.Entities
         public int Id { get; set; }
         public string Username { get; set; }
         public string BadgeName { get; set; }
-        public DateTime DateEarned { get; set; }
+        public string Description { get; set; }
+        public string Condition { get; set; }
     }
 }

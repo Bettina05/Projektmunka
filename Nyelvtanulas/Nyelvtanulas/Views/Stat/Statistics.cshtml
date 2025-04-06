@@ -44,7 +44,7 @@
                         <td>@stat.Date.ToShortDateString()</td>
                         <td>@stat.Score</td>
                         <td>@stat.Exercises</td>
-                        <td>@Math.Round(stat.StudyTime, 2)</td>
+                        <td>@Math.Floor(stat.StudyTime)</td>
                     </tr>
                 }
             </tbody>
