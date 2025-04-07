@@ -1,15 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Nyelvtanulas.Models;
+using Lingarix_Database;
 
 namespace Nyelvtanulas.Controllers
 {
     public class AppController : Controller
     {
         private readonly IAuthenticationService authenticationService;
-        public AppController(IAuthenticationService authenticationService)
+        private readonly Lingarix_Database.LingarixDbContext DBcontext;
+        public AppController(IAuthenticationService authenticationService, LingarixDbContext DBcontext)
         {
             this.authenticationService = authenticationService;
+            this.DBcontext = DBcontext;
         }
         public IActionResult LaunchConsoleApp()
         {
@@ -29,7 +32,7 @@ namespace Nyelvtanulas.Controllers
             ProcessStartInfo processStartInfo = new ProcessStartInfo
             {
                 FileName = "cmd.exe",
-                Arguments = $"/k \" {consoleAppPath} {username}\"",
+                Arguments = $"/c \" {consoleAppPath} {username}\"",
                 UseShellExecute = true,
                 WindowStyle = ProcessWindowStyle.Normal
             };
@@ -40,7 +43,16 @@ namespace Nyelvtanulas.Controllers
                 process.WaitForExit();  
             }
             // Visszairányítás a statisztika oldalára
-            return View("Statistics");
+            string currentUsername = authenticationService.UserName;
+            var userStatistics = DBcontext.UserStatistics
+                .Where(x => x.Username == currentUsername)
+                .OrderByDescending(x => x.Date)
+                .ToList();
+
+            return View(userStatistics);
+
+            //return View("Statistics");
+            //return View(DBcontext);
         }
     }
 }

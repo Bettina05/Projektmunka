@@ -20,20 +20,6 @@ namespace NyelvtanuloMVC.Controllers
             this.authenticationService = authenticationService;
         }
 
-        public IActionResult Statistics()
-        {
-            string currentUsername = authenticationService.UserName;
-            if (string.IsNullOrEmpty(currentUsername))
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            var userStatistics = DBcontext.UserStatistics
-                .Where(x => x.Username == currentUsername)
-                .OrderByDescending(x => x.Date)
-                .ToList();
-
-            return View(userStatistics);
-        }
         public IActionResult Ranglist()
         {
             var leaderboard = DBcontext.UserRangList
@@ -43,7 +29,11 @@ namespace NyelvtanuloMVC.Controllers
         }
         public IActionResult Achievement()
         {
-            var achievements = DBcontext.Achievements.ToList();
+            string currentUsername = authenticationService.UserName;
+            var achievements = DBcontext.Achievements
+                .Where(x => x.Username == currentUsername)
+                .OrderByDescending(x => x.DateEarned)
+                .ToList();
             return View(achievements);
         }
         public IActionResult Badge()
