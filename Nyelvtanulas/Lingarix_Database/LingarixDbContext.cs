@@ -7,6 +7,10 @@ namespace Lingarix_Database
 {
     public class LingarixDbContext : DbContext
     {
+        public LingarixDbContext()
+        {
+            Database.EnsureCreated();
+        }
         public DbSet<Users> users { get; set; }
         public DbSet<UserStatistics> UserStatistics { get; set; }
         public DbSet<UserRangList> UserRangList { get; set; }
