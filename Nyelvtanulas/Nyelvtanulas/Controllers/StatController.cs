@@ -39,7 +39,6 @@ namespace NyelvtanuloMVC.Controllers
             var leaderboard = DBcontext.UserRangList
                 .OrderByDescending(l => l.Points)
                 .ToList();
-
             return View(leaderboard);
         }
         public IActionResult Achievement()

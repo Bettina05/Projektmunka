@@ -26,16 +26,6 @@
                     <ul class="navbar-nav flex-grow-1">
                         @if (authService.IsAuthenticated)
                         {
-                            <!-- Statisztika -->
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Stat" asp-action="Statistics">Statisztika</a>
-                            </li>
-
-                            <!-- Egy link/gomb lenne amivel el tudnánk indítani a konzolos felületünket-->
-                            <li class="nav-item">
-                                <a class="btn btn-primary text-white px-3 py-2 mx-2 custom-button" asp-area="" asp-controller="App" asp-action="LaunchConsoleApp">Tanulás megkezdése</a>
-                            </li>
-
                             <!-- Hasznos tippek -->
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Information" asp-action="Tips">Hasznos tippek</a>
@@ -49,6 +39,21 @@
                             <!-- Rólunk oldal -->
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="AboutUs">Rólunk</a>
+                            </li>
+
+                            <!-- Statisztika -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Stat" asp-action="Statistics">Statisztika</a>
+                            </li>
+
+                            <!-- Ranglista -->
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Stat" asp-action="Ranglist">Ranglista</a>
+                            </li>
+
+                            <!-- Egy link/gomb lenne amivel el tudnánk indítani a konzolos felületünket-->
+                            <li class="nav-item">
+                                <a class="btn btn-primary text-white px-3 py-2 mx-2 custom-button" asp-area="" asp-controller="App" asp-action="LaunchConsoleApp">Tanulás megkezdése</a>
                             </li>
                         }
                         else
