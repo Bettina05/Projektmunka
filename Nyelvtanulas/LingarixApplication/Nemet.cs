@@ -9,67 +9,28 @@ namespace Lingarix
 {
     internal class Nemet
     {
-        //Idegennyelvű szavak
         List<string> family_german = new List<string>();
         List<string> it_german = new List<string>();
         List<string> travel_german = new List<string>();
         List<string> weather_german = new List<string>();
         List<string> home_german = new List<string>();
 
-        //Magyar szavak
         List<string> family_hun = new List<string>();
         List<string> it_hun = new List<string>();
         List<string> travel_hun = new List<string>();
         List<string> weather_hun = new List<string>();
         List<string> home_hun = new List<string>();
 
-        ///<summary>
-        /// A felhasználó felhasználóneve
-        /// </summary>
         string username = "";
-        /// A pontokat itt számoljuk az ABC feladatnál
-        /// </summary>
-        int scoreABC;
-
-        /// <summary>
-        /// A pontokat itt számoljuk a szópárosításos feladatnál
-        /// </summary>
-        int scorePAROSITAS;
-
-        /// <summary>
-        /// A pontokat itt számoljuk az akasztófa feladathoz
-        /// </summary>
-        int scoreAKASZTOFA;
-
-        /// <summary>
-        /// A pontokat itt számoljuk a szókereső feladathoz
-        /// </summary>
-        int scoreSZOKERESO;
-
-        /// <summary>
-        /// A pontokat itt számoljuk a tükörfordításos feladathoz
-        /// </summary>
-        int scoreHELYESFORDITAS;
-
-        /// <summary>
-        /// A pontokat itt számoljuk a mondat rendezéses feladathoz
-        /// </summary>
-        int scoreMONDATRENDEZES;
-
-        /// <summary>
-        /// Itt adják meg a feladat sorszámát
-        /// </summary>
-        int serial_number;
-
-        /// <summary>
-        /// A kitalálandó szavakat tároljuk benne, minden egyes feladatban idegennyelvű
-        /// </summary>
         string word = "";
-
-        /// <summary>
-        /// A kitalálandó szavakat tároljuk benne, minden egyes feladatban magyar nyelvű
-        /// </summary>
         string hun_word;
+        int scoreABC;
+        int scorePAROSITAS;
+        int scoreAKASZTOFA;
+        int scoreSZOKERESO;
+        int scoreHELYESFORDITAS;
+        int scoreMONDATRENDEZES;
+        int serial_number;
 
         //A dokumentumból beolvassuk a szavakat és a témaköröket
         public void Beolvas(string felhasznalonev)
@@ -112,7 +73,6 @@ namespace Lingarix
         //1. feladatunk: A-B-C lehetőség van a kiírt fordítás helyes megfejtésére
         public void ABC()
         {
-            Console.WriteLine("A - B - C feladat: A felhasználónak három lehetőség közül kell kiválasztania a helyes fordítást a megadott szóra.");
             Random rnd = new Random();
             HashSet<int> used_index = new HashSet<int>(); // Tárolja a már kiválasztott szavakat
 
@@ -138,35 +98,11 @@ namespace Lingarix
 
                 switch (serial_number)
                 {
-                    case 1:
-                        topic_german = family_german;
-                        topic_hun = family_hun;
-                        topic = "család";
-                        break;
-
-                    case 2:
-                        topic_german = it_german;
-                        topic_hun = it_hun;
-                        topic = "informatika";
-                        break;
-
-                    case 3:
-                        topic_german = travel_german;
-                        topic_hun = travel_hun;
-                        topic = "utazás";
-                        break;
-
-                    case 4:
-                        topic_german = weather_german;
-                        topic_hun = weather_hun;
-                        topic = "időjárás";
-                        break;
-
-                    case 5:
-                        topic_german = home_german;
-                        topic_hun = home_hun;
-                        topic = "lakóhely";
-                        break;
+                    case 1: topic_german = family_german;   topic_hun = family_hun;     topic = "család";       break;
+                    case 2: topic_german = it_german;       topic_hun = it_hun;         topic = "informatika";  break;
+                    case 3: topic_german = travel_german;   topic_hun = travel_hun;     topic = "utazás";       break;
+                    case 4: topic_german = weather_german;  topic_hun = weather_hun;    topic = "időjárás";     break;
+                    case 5: topic_german = home_german;     topic_hun = home_hun;       topic = "lakóhely";     break;
                     case 6:
                         Console.WriteLine("Köszönjük, hogy velünk tanultál, {0}!", username);
                         return;
@@ -174,11 +110,11 @@ namespace Lingarix
                         Console.WriteLine("Érvénytelen választás, próbáld újra!");
                         continue;
                 }
-                used_index.Clear(); // Minden új témánál töröljük a korábbi szavakat
+                used_index.Clear();
 
-                for (int i = 0; i < 5; i++) // 5 szó bekérése egy témából
+                for (int i = 0; i < 5; i++)
                 {
-                    if (used_index.Count == topic_german.Count) // Ha minden szó elfogyott, újra kezdjük
+                    if (used_index.Count == topic_german.Count)
                     {
                         used_index.Clear();
                     }
@@ -187,14 +123,14 @@ namespace Lingarix
                     do
                     {
                         index = rnd.Next(topic_german.Count);
-                    } while (used_index.Contains(index)); // Ellenőrizzük, hogy ne ismétlődjön
+                    } while (used_index.Contains(index));
 
-                    used_index.Add(index); // Elmentjük a felhasznált indexet
+                    used_index.Add(index);
 
                     word = topic_german[index];
                     hun_word = topic_hun[index];
-
-                    Console.WriteLine("\nA {0} témában válassza ki a megfelelő választ az 'a/b/c' lehetőségek közül!", topic);
+                    Console.WriteLine("A - B - C feladat: A felhasználónak három lehetőség közül kell kiválasztania a helyes fordítást a megadott szóra.");
+                    Console.WriteLine("\nA {0} témát választotta.", topic);
                     Console.WriteLine("A német szó: " + word);
 
                     List<string> antoher_HUN = topic_hun.Where((value, idx) => idx != index).ToList();
@@ -244,7 +180,6 @@ namespace Lingarix
         //2. feladatunk: Akasztófa játék, a felhasználónak kell kitalálnia a szót
         public void Akasztofa()
         {
-            Console.WriteLine("Akasztófa játék: A felhasználónak ki kell találnia a keresett szót betűnként tippelve, akárcsak a klasszikus akasztófajátékban.");
             do
             {
                 Console.WriteLine("  Témák:  ");
@@ -259,7 +194,7 @@ namespace Lingarix
                 Console.Write(" -- Téma sorszáma: ");
                 serial_number = Convert.ToInt16(Console.ReadLine());
 
-                if (serial_number == 6) break; // Kilépés esetén kilépünk a ciklusból
+                if (serial_number == 6) break;
 
                 Random rnd = new Random();
                 List<string> word_list = new List<string>();
@@ -267,11 +202,11 @@ namespace Lingarix
 
                 switch (serial_number)
                 {
-                    case 1: word_list = family_german; topic = "Család"; break;
-                    case 2: word_list = it_german; topic = "Informatika"; break;
-                    case 3: word_list = travel_german; topic = "Utazás"; break;
-                    case 4: word_list = weather_german; topic = "Időjárás"; break;
-                    case 5: word_list = home_german; topic = "Lakóhely"; break;
+                    case 1: word_list = family_german;  topic = "Család";       break;
+                    case 2: word_list = it_german;      topic = "Informatika";  break;
+                    case 3: word_list = travel_german;  topic = "Utazás";       break;
+                    case 4: word_list = weather_german; topic = "Időjárás";     break;
+                    case 5: word_list = home_german;    topic = "Lakóhely";     break;
                     default: Console.WriteLine("Hibás választás!"); continue;
                 }
 
@@ -285,7 +220,7 @@ namespace Lingarix
                 int HP = missing_word.Length + 5;
                 HashSet<char> used_chars = new HashSet<char>();
                 HashSet<char> correct_chars = new HashSet<char>();
-
+                Console.WriteLine("Akasztófa játék: A felhasználónak ki kell találnia a keresett szót betűnként tippelve,\n akárcsak a klasszikus akasztófajátékban.");
                 Console.WriteLine($"\nAkasztófa játék - Téma: {topic}");
                 Console.WriteLine($"A szó {missing_word.Length} betűből áll. Kezdésre {HP} életed van.");
 
@@ -310,7 +245,7 @@ namespace Lingarix
                     if (missing_char == 0)
                     {
                         Console.WriteLine("\n Gratulálok! Megnyerted a játékot! ");
-                        scoreAKASZTOFA += missing_word.Length; // Pontszám növelése
+                        scoreAKASZTOFA += missing_word.Length;
                         break;
                     }
 
@@ -363,7 +298,6 @@ namespace Lingarix
         //3. feladatunk: Az idegennyelvű szót megjelenítjük a felhasználónak, majd a magyar megfelelőjét kell begépelnie
         public void SzoParositas()
         {
-            Console.WriteLine("Szópárosítás: A program megjeleníti az idegen nyelvű szót, és a felhasználónak be kell írnia a helyes magyar megfelelőjét.");
             Random rnd = new Random();
 
             do
@@ -386,31 +320,11 @@ namespace Lingarix
 
                 switch (serial_number)
                 {
-                    case 1:
-                        german_list = family_german;
-                        hun_list = family_hun;
-                        topic = "család";
-                        break;
-                    case 2:
-                        german_list = it_german;
-                        hun_list = it_hun;
-                        topic = "informatika";
-                        break;
-                    case 3:
-                        german_list = travel_german;
-                        hun_list = travel_hun;
-                        topic = "utazás";
-                        break;
-                    case 4:
-                        german_list = weather_german;
-                        hun_list = weather_hun;
-                        topic = "időjárás";
-                        break;
-                    case 5:
-                        german_list = home_german;
-                        hun_list = home_hun;
-                        topic = "lakóhely";
-                        break;
+                    case 1:german_list = family_german;     hun_list = family_hun;      topic = "család";       break;
+                    case 2:german_list = it_german;         hun_list = it_hun;          topic = "informatika";  break;
+                    case 3:german_list = travel_german;     hun_list = travel_hun;      topic = "utazás";       break;
+                    case 4:german_list = weather_german;    hun_list = weather_hun;     topic = "időjárás";     break;
+                    case 5:german_list = home_german;       hun_list = home_hun;        topic = "lakóhely";     break;
                     case 6:
                         Console.WriteLine("Köszönjük, hogy velünk tanultál, {0}!", username);
                         return;
@@ -418,12 +332,12 @@ namespace Lingarix
                         Console.WriteLine("Érvénytelen választás, próbáld újra!");
                         continue;
                 }
+                Console.WriteLine("Szópárosítás: A program megjeleníti az idegen nyelvű szót, és a felhasználónak be kell írnia a helyes magyar megfelelőjét.");
+                Console.WriteLine($"A {topic} témát választotta!");
 
-                Console.WriteLine($"Adja meg az német szó magyar megfelelőjét a {topic} témához kapcsolódva!");
-
-                for (int i = 0; i < 5; i++)  // 5 szót kérünk le
+                for (int i = 0; i < 5; i++)
                 {
-                    int index = rnd.Next(german_list.Count);  // Véletlenszerű index
+                    int index = rnd.Next(german_list.Count);
                     string word = german_list[index];
                     string hun_word = hun_list[index];
 
@@ -449,7 +363,6 @@ namespace Lingarix
         //4. feladatunk: A felhasználó kiválasztotta a témakört és a szót megkapja ABC sorrendbe állítva, majd ezután kell helyes sorrendbe állítania őket, hogy megkaphassa a helyes megfejtést
         public void SzoKereso()
         { 
-            Console.WriteLine("Szókereső: A megadott témakörből kapott szavakat a program összekeveri ABC sorrendben, a felhasználónak pedig helyes sorrendbe kell állítania őket.");
             Random rnd = new Random();
 
             do
@@ -472,30 +385,11 @@ namespace Lingarix
                 string topic = "";
                 switch (serial_number)
                 {
-                    case 1:
-                        topic_german = family_german;
-                        topic = "család";
-                        break;
-
-                    case 2:
-                        topic_german = it_german;
-                        topic = "informatika";
-                        break;
-
-                    case 3:
-                        topic_german = travel_german;
-                        topic = "utazás";
-                        break;
-
-                    case 4:
-                        topic_german = weather_german;
-                        topic = "időjárás";
-                        break;
-
-                    case 5:
-                        topic_german = home_german;
-                        topic = "lakóhely";
-                        break;
+                    case 1: topic_german = family_german;   topic = "család";       break;
+                    case 2: topic_german = it_german;       topic = "informatika";  break;
+                    case 3: topic_german = travel_german;   topic = "utazás";       break;
+                    case 4: topic_german = weather_german;  topic = "időjárás";     break;
+                    case 5: topic_german = home_german;     topic = "lakóhely";     break;
                     case 6:
                         Console.WriteLine("Köszönjük, hogy velünk tanultál, {0}!", username);
                         return;
@@ -505,11 +399,10 @@ namespace Lingarix
                 }
 
                 HashSet<int> used_index = new HashSet<int>();
-
+                Console.WriteLine("Szókereső: A megadott témakörből kapott szavakat a program összekeveri ABC sorrendben,\n a felhasználónak pedig helyes sorrendbe kell állítania őket.");
                 Console.WriteLine("\nTémakör: " + topic);
-                Console.WriteLine("A megadott betűk alapján találja ki a szót és írja be a kijelölt helyre!");
 
-                for (int i = 0; i < 5; i++) // 5 különböző szó kiválasztása
+                for (int i = 0; i < 5; i++)
                 {
                     if (used_index.Count == topic_german.Count)
                     {
@@ -525,9 +418,9 @@ namespace Lingarix
                     used_index.Add(index);
                     string word = topic_german[index];
 
-                    char[] betuk = word.ToCharArray();
-                    Array.Sort(betuk);
-                    string abc_rendezett_betuk = new string(betuk);
+                    char[] words = word.ToCharArray();
+                    Array.Sort(words);
+                    string abc_rendezett_betuk = new string(words);
 
                     Console.WriteLine("--------------------");
                     Console.WriteLine(abc_rendezett_betuk);
@@ -562,7 +455,6 @@ namespace Lingarix
         //5. feladat: Egy tömbbe bele teszünk 5 a témával kapcsolatos mondatot adott nyelven és tükörfordítással a magyar megfelelőjét 
         public void MondatRendezes()
         {
-            Console.WriteLine("Mondatrendezés: Egy összekevert mondatrészletekből álló mondatot kell a felhasználónak helyesen visszaállítania az eredeti formájába.");
             List<string> Tukorforditas_magyar = new List<string>();
             List<string> Tukorforditas_olasz = new List<string>();
             string[] adatok = File.ReadAllLines("mondatok_olasz.txt");
@@ -574,13 +466,12 @@ namespace Lingarix
             }
             string felhasznalotippje;
             int elet = 3;
-            Console.WriteLine("Ebben a feladatban egy mondatot fog kapni amely össze van keverve.");
-            Console.WriteLine("Ezt kell helyes sorrendbe megadni!");
+            Console.WriteLine("Mondatrendezés: Egy összekevert mondatrészletekből álló mondatot kell a felhasználónak\n helyesen visszaállítania az eredeti formájába.");
             Console.WriteLine("Ha nem tudja kitalálni a mondatot akkor írjon be egy 'x' karaktert");
             Console.WriteLine("------------------------");
             Console.WriteLine("Kevert mondat:");
 
-            Random rnd = new Random(); // Random példány egyszeri létrehozása
+            Random rnd = new Random();
 
             do
             {
@@ -588,22 +479,16 @@ namespace Lingarix
                 string magyar_helyes_mondat = Tukorforditas_magyar[randomkivalasztott_mondat_indexe];
                 string olasz_keverni_kivant_mondat = Tukorforditas_olasz[randomkivalasztott_mondat_indexe];
                 Console.WriteLine(olasz_keverni_kivant_mondat);
-                // Spliteljük a kiválasztott idegennyelvű mondatot
                 string[] splitteltszo = olasz_keverni_kivant_mondat.Split(' ');
-                // Megkeverjük a mondatot 
                 string[] olasz_kevert_szavak = splitteltszo.OrderBy(x => rnd.Next()).ToArray();
-                // Egy stringbe fűzzük a kevert mondatot
                 string olasz_osszekevert_mondat = string.Join(" ", olasz_kevert_szavak);
                 Console.WriteLine("Élet:" + elet);
                 Console.WriteLine(olasz_osszekevert_mondat);
                 felhasznalotippje = Console.ReadLine();
 
-                // A válaszok szótárának ellenőrzése (figyelmen kívül hagyva a szavak sorrendjét)
                 if (felhasznalotippje.Split(' ').OrderBy(s => s).SequenceEqual(olasz_osszekevert_mondat.Split(' ').OrderBy(s => s)))
                 {
                     Console.WriteLine("Helyes válasz!");
-                    //elet++;
-                    //Console.WriteLine("Élet: " + elet);
                     scoreHELYESFORDITAS += 2;
                     Console.WriteLine("Pontok: " + scoreHELYESFORDITAS);
                     Console.WriteLine("-------------------");
@@ -619,7 +504,7 @@ namespace Lingarix
                 }
             }
             while (elet > 0 || felhasznalotippje != "x");
-            if (felhasznalotippje == "x") // Kilépés az 'x' gomb megnyomásával
+            if (felhasznalotippje == "x")
             {
                 Console.WriteLine("Köszönjük a játékot!");
                 Console.WriteLine("Maradt élet:" + elet);
@@ -630,11 +515,10 @@ namespace Lingarix
         //6. feladat: Egy tömbbe 5 mondatot bele teszünk majd a programba meg kerverjük a mondat el rendezését és a felhasználónak be kell írnia a helyesen leírt mondatot
         public void Helyesforditas()
         {
-            Console.WriteLine("Mondatrendezés: Egy összekevert mondatrészletekből álló mondatot kell a felhasználónak helyesen visszaállítania az eredeti formájába.");
             List<string> mondatRendezes_magyar = new List<string>();
             List<string> mondatRendezes_olasz = new List<string>();
 
-            string[] adatok = File.ReadAllLines("mondatok_olasz.txt");
+            string[] adatok = File.ReadAllLines("mondatok_nemet.txt");
             for (int i = 0; i < adatok.Length; i++)
             {
                 string[] sor = adatok[i].Split(';');
@@ -643,11 +527,10 @@ namespace Lingarix
             }
 
             int rounds = 5;
-
             Random rnd = new Random();
             List<int> usedIndices = new List<int>();
-
-            Console.WriteLine($"Olasz-magyar mondat kvíz ({rounds} kör)");
+            Console.WriteLine("Mondatrendezés: Egy összekevert mondatrészletekből álló mondatot kell a felhasználónak\n helyesen visszaállítania az eredeti formájába.");
+            Console.WriteLine($"Német-magyar mondat kvíz ({rounds} kör)");
             Console.WriteLine("------------------------------\n");
 
             for (int round = 1; round <= rounds; round++)
@@ -671,7 +554,6 @@ namespace Lingarix
 
                 string magyar_kivalasztott_mondat = mondatRendezes_magyar[currentIndex];
                 string helyes_olasz_valasz = mondatRendezes_olasz[currentIndex];
-
                 bool helyes_elso = rnd.Next(2) == 0;
                 string elso_opcio = helyes_elso ? mondatRendezes_olasz[currentIndex] : mondatRendezes_olasz[wrongIndex];
                 string masodik_opcio = helyes_elso ? mondatRendezes_olasz[wrongIndex] : mondatRendezes_olasz[currentIndex];
