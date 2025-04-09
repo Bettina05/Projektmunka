@@ -99,7 +99,6 @@
                         Console.WriteLine("Érvénytelen választás, próbáld újra!");
                         continue;
                 }
-
                 used_index.Clear();
 
                 for (int i = 0; i < 5; i++)
@@ -151,19 +150,20 @@
 
         public void RajzolAkasztofa(int eletSzam)
         {
-            string[] akasztofaRajz = {
-            "  +---+  \n  |   |  \n      |  \n      |  \n      |  \n      |  \n=========",
-            "  +---+  \n  |   |  \n  O   |  \n      |  \n      |  \n      |  \n=========",
-            "  +---+  \n  |   |  \n  O   |  \n  |   |  \n      |  \n      |  \n=========",
-            "  +---+  \n  |   |  \n  O   |  \n /|   |  \n      |  \n      |  \n=========",
-            "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n      |  \n      |  \n=========",
-            "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n /    |  \n      |  \n=========",
-            "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n / \\  |  \n      |  \n========="
+            string[] hangmanDrawing = 
+            {
+                "  +---+  \n  |   |  \n      |  \n      |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n      |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n  |   |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n /|   |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n /    |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n / \\  |  \n      |  \n========="
             };
 
-            int maxLifeNumber = 6;
-            int rajzIndex = maxLifeNumber - Math.Max(0, Math.Min(maxLifeNumber, eletSzam));
-            Console.WriteLine(akasztofaRajz[rajzIndex]);
+            int maxHP = 6;
+            int drawingIndex = maxHP - Math.Max(0, Math.Min(maxHP, eletSzam));
+            Console.WriteLine(hangmanDrawing[drawingIndex]);
         }
 
         //2. feladatunk: Akasztófa játék, a felhasználónak kell kitalálnia a szót
@@ -347,10 +347,8 @@
                         Console.WriteLine($" Hibás! A helyes válasz: {word_hun}");
                     }
                 }
-
                 Console.WriteLine("\nEddigi Score: " + scorePAROSITAS + " pont");
                 Console.WriteLine();
-
             }
             while (serial_number != 7);
         }
@@ -374,7 +372,6 @@
                 serial_number = Convert.ToInt16(Console.ReadLine());
 
                 if (serial_number == 6) break;
-
                 List<string> topic_spain = new List<string>();
                 string topic = "";
 
@@ -436,11 +433,9 @@
                         Console.WriteLine("********************");
                     }
                 }
-
                 Console.WriteLine();
                 Console.WriteLine("Eddigi Score: " + scoreSZOKERESO + " pont");
                 Console.WriteLine();
-
             }
             while (true);
 
@@ -555,7 +550,6 @@
 
                 string hungarian_choosen_sentence = sentenceOrdering_Hungarian[currentIndex];
                 string correct_spain_sentences = sentenceOrderin_Spain[currentIndex];
-
                 bool correct_one = rnd.Next(2) == 0;
                 string option1 = correct_one ? sentenceOrderin_Spain[currentIndex] : sentenceOrderin_Spain[wrongIndex];
                 string option2 = correct_one ? sentenceOrderin_Spain[wrongIndex] : sentenceOrderin_Spain[currentIndex];
@@ -595,6 +589,5 @@
             int Score = scoreABC + scoreAKASZTOFA + scorePAROSITAS + scoreSZOKERESO + scoreMONDATRENDEZES + scoreHELYESFORDITAS;
             return Score;
         }
-
     }
 }

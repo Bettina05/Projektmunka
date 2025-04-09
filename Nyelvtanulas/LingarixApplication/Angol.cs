@@ -150,19 +150,20 @@
 
         public void RajzolAkasztofa(int eletSzam)
         {
-            string[] akasztofaRajz = {
-        "  +---+  \n  |   |  \n      |  \n      |  \n      |  \n      |  \n=========",
-        "  +---+  \n  |   |  \n  O   |  \n      |  \n      |  \n      |  \n=========",
-        "  +---+  \n  |   |  \n  O   |  \n  |   |  \n      |  \n      |  \n=========",
-        "  +---+  \n  |   |  \n  O   |  \n /|   |  \n      |  \n      |  \n=========",
-        "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n      |  \n      |  \n=========",
-        "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n /    |  \n      |  \n=========",
-        "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n / \\  |  \n      |  \n========="
-    };
+            string[] hangmanDrawing = 
+            {
+                "  +---+  \n  |   |  \n      |  \n      |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n      |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n  |   |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n /|   |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n      |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n /    |  \n      |  \n=========",
+                "  +---+  \n  |   |  \n  O   |  \n /|\\  |  \n / \\  |  \n      |  \n========="
+            };
 
             int maxHP = 6;
-            int rajzIndex = maxHP - Math.Max(0, Math.Min(maxHP, eletSzam));
-            Console.WriteLine(akasztofaRajz[rajzIndex]);
+            int drawingIndex = maxHP - Math.Max(0, Math.Min(maxHP, eletSzam));
+            Console.WriteLine(hangmanDrawing[drawingIndex]);
         }
         
         //2. feladatunk: Akasztófa játék, a felhasználónak kell kitalálnia a szót
@@ -212,7 +213,6 @@
                 int user_HP = WORD_Hangman.Length + 5;
                 HashSet<char> triedChar = new HashSet<char>();
                 HashSet<char> correct_answers = new HashSet<char>();
-
                 Console.WriteLine("Akasztófa játék: A felhasználónak ki kell találnia a keresett szót betűnként tippelve,\n akárcsak a klasszikus akasztófajátékban.");
                 Console.WriteLine($"\nTéma: {topic}");
                 Console.WriteLine($"A szó {WORD_Hangman.Length} betűből áll. Kezdésre {user_HP} életed van.");
@@ -347,10 +347,8 @@
                         Console.WriteLine($" Hibás! A helyes válasz: {word_hun}");
                     }
                 }
-
                 Console.WriteLine("\nEddigi Score: " + scorePAROSITAS + " pont");
                 Console.WriteLine();
-
             }
             while (serial_number != 7);
         }
@@ -358,7 +356,7 @@
         //4. feladatunk: A felhasználó kiválasztotta a témakört és a szót megkapja ABC sorrendbe állítva, majd ezután kell helyes sorrendbe állítania őket, hogy megkaphassa a helyes megfejtést
         public void SzoKereso()
         {
-            Random szam = new Random();
+            Random rnd = new Random();
             do
             {
                 Console.WriteLine("  Témák:  ");
@@ -374,7 +372,6 @@
                 serial_number = Convert.ToInt16(Console.ReadLine());
 
                 if (serial_number == 6) break;
-
                 List<string> topic_english = new List<string>();
                 string topic = "";
 
@@ -407,7 +404,7 @@
                     int index;
                     do
                     {
-                        index = szam.Next(topic_english.Count);
+                        index = rnd.Next(topic_english.Count);
                     } 
                     while (used_index.Contains(index));
 
@@ -415,10 +412,10 @@
                     string word = topic_english[index];
                     char[] Words_Char = word.ToCharArray();
                     Array.Sort(Words_Char);
-                    string abc_ordered_words = new string(Words_Char);
+                    string abc_ordered_chars = new string(Words_Char);
 
                     Console.WriteLine("--------------------");
-                    Console.WriteLine(abc_ordered_words);
+                    Console.WriteLine(abc_ordered_chars);
                     Console.WriteLine("--------------------");
 
                     string word_finder = Console.ReadLine();
@@ -436,11 +433,9 @@
                         Console.WriteLine("********************");
                     }
                 }
-
                 Console.WriteLine();
                 Console.WriteLine("Eddigi Score: " + scoreSZOKERESO + " pont");
                 Console.WriteLine();
-
             }
             while (true);
 
@@ -555,7 +550,6 @@
 
                 string hungarian_choosen_sentence = sentenceOrdering_Hungarian[currentIndex];
                 string correct_english_sentence = sentenceOrdering_English[currentIndex];
-
                 bool correct_one = rnd.Next(2) == 0;
                 string option1 = correct_one ? sentenceOrdering_English[currentIndex] : sentenceOrdering_English[wrongIndex];
                 string option2 = correct_one ? sentenceOrdering_English[wrongIndex] : sentenceOrdering_English[currentIndex];
@@ -595,6 +589,5 @@
             int Score = scoreABC + scoreAKASZTOFA + scorePAROSITAS + scoreSZOKERESO + scoreMONDATRENDEZES + scoreHELYESFORDITAS;
             return Score;
         }
-
     }
 }
