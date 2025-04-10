@@ -132,23 +132,10 @@ footer p
     background-color: #0056b3;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-.image-container 
-{
-    display: flex;
-    justify-content: flex-start;
-    gap: 10px;
-    margin-bottom: 20px;
-}
 
-.image-container img 
-{
-    width: 200px;
+.custom-img {
+    max-width: 48%;
     height: auto;
-}
-
-.text-with-images 
-{
-    display: flex;
-    align-items: center;
-    gap: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
