@@ -376,7 +376,7 @@ namespace Lingarix
                         break;
 
                     case "francia":
-                        French.Beolvas();
+                        French.Beolvas(username);
                         Console.WriteLine("-----------------------------------------");
                         Console.WriteLine("  Választható feladatok:");
                         Console.WriteLine(" 1. ABC választási lehetőség");

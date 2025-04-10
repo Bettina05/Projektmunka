@@ -36,13 +36,14 @@ namespace NyelvtanuloMVC.Controllers
                 .ToList();
             return View(achievements);
         }
-        public IActionResult Badge()
+        public IActionResult Statistics()
         {
-           return View();
-        }
-        public IActionResult Level()
-        {
-            return View();
+            string currentUsername = authenticationService.UserName;
+            var userStatistics = DBcontext.UserStatistics
+                .Where(x => x.Username == currentUsername)
+                .OrderByDescending(x => x.Date)
+                .ToList();
+            return View(userStatistics);
         }
     }
 }

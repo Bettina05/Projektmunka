@@ -48,11 +48,7 @@ namespace Nyelvtanulas.Controllers
                 .Where(x => x.Username == currentUsername)
                 .OrderByDescending(x => x.Date)
                 .ToList();
-
             return View(userStatistics);
-
-            //return View("Statistics");
-            //return View(DBcontext);
         }
     }
 }
