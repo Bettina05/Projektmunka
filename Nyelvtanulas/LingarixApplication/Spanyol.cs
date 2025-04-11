@@ -468,7 +468,6 @@
                 int randomSelectedSentence_English = rnd.Next(0, order_spain.Count());
                 string correctSentence_Hungarian = order_hungarian[randomSelectedSentence_English];
                 string Spain_ToBeMixed_sentence  = order_spain[randomSelectedSentence_English];
-                Console.WriteLine(Spain_ToBeMixed_sentence);
                 string[] broken_WOrd = Spain_ToBeMixed_sentence.Split(' ');
                 string[] Spain_mixed_words = broken_WOrd.OrderBy(x => rnd.Next()).ToArray();
                 string Spain_mixed_sentences = string.Join(" ", Spain_mixed_words);
