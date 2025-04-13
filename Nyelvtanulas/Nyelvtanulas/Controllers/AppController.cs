@@ -16,10 +16,8 @@ namespace Nyelvtanulas.Controllers
         }
         public IActionResult LaunchConsoleApp()
         {
-            // Bejelentkezett felhasználó neve
             string username = authenticationService.UserName; 
 
-            // A konzolos alkalmazás relatív elérési útja
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
 
             string consoleAppPath = Path.Combine(basePath, "LingarixApplication.exe");
@@ -42,7 +40,7 @@ namespace Nyelvtanulas.Controllers
                 process.Start();
                 process.WaitForExit();  
             }
-            // Visszairányítás a statisztika oldalára
+
             string currentUsername = authenticationService.UserName;
             var userStatistics = DBcontext.UserStatistics
                 .Where(x => x.Username == currentUsername)

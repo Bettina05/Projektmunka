@@ -5,9 +5,6 @@ namespace Nyelvtanulas.Models
 {
     public class SHA256EncryptionService : IEncryptionService
     {
-        /// <summary>
-        /// SHA256 titkosítás
-        /// </summary>
         public string HashPassword(string password)
         {
             using (var sha256 = SHA256.Create())

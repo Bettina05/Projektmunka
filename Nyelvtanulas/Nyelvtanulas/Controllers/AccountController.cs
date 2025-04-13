@@ -34,28 +34,21 @@ namespace Nyelvtanulas.Controllers
         {
             return userManager.GetAll().ToList();
         }
-        // Regisztrációs form feldolgozása
+
         public IActionResult RegisterUser(Users user)
         {
             user.PasswordHash = encryptionService.HashPassword(user.PasswordHash);
             userManager.Add(user);
-            ViewBag.Message = "Sikeres regisztráció!";
             return RedirectToAction("Login"); 
         }
         
-        //Bejelentkezés feldolgozása
         [HttpPost]
         public IActionResult Login(string username, string password, string captcha)
         {
             if (authenticationService.TryLogIn(username, password))
             {
-                // Sikerült a bejelentkezés
-                ViewBag.Message = "Sikeres bejelentkezés!";
                 return RedirectToAction("Index","Home");
             }
-
-            // Nem sikerült a bejelentkezés
-            ViewBag.Message = "Sikertelen bejelentkezés!";
             return RedirectToAction("Login");
         }
 
@@ -73,13 +66,10 @@ namespace Nyelvtanulas.Controllers
             }
         }
 
-        //Kijelentkezés, majd a Logout nézetre visszatér
         public IActionResult Logout()
         {
             authenticationService.LogOut();
             return RedirectToAction("Logout", "Home");
         }
-
-
     }
 }

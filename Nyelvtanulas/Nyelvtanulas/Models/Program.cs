@@ -4,10 +4,8 @@ using Nyelvtanulas.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
-// Session regisztráció
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddSession(options =>
 {
@@ -16,7 +14,6 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
 });
 
-// IoC container - Dependency Injection
 builder.Services.AddScoped<IUserManager, DatabaseUserManager>();
 builder.Services.AddScoped<IEncryptionService, SHA256EncryptionService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationServiceWithSession>();
@@ -26,15 +23,11 @@ builder.Services.AddDbContext<LingarixDbContext>();
 builder.Services.AddSession();
 builder.Services.AddHttpContextAccessor();
 
-// Adatbázis beállítás
 builder.Services.AddDbContext<LingarixDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
-// Itt kell befejezni a konfigurációt!
 var app = builder.Build();
 
-// Middleware konfiguráció
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

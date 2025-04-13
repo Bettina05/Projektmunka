@@ -9,13 +9,11 @@ namespace Nyelvtanulas.Controllers
             return View();
         }
 
-        // Tippek nézetet ad vissza
         public IActionResult Tips()
         {
             return View("~/Views/Information/Tips.cshtml");
         }
 
-        // Infomrációk nézetet ad vissza
         public IActionResult Info()
         {
             return View("~/Views/Information/Inform.cshtml");
