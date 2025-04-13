@@ -21,8 +21,5 @@ namespace Lingarix_Database
         {
             optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=UsersDatabase;Trusted_Connection=True;");
         }
-        
     }
-
-    
 }

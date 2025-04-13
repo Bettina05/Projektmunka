@@ -37,7 +37,6 @@ namespace Nyelvtanulas.Models
 
         public void LogOut()
         {
-            // Töröljük a session tartalmát
             httpContextAccessor.HttpContext.Session.Clear();
         }
 
@@ -45,22 +44,19 @@ namespace Nyelvtanulas.Models
         {
             Users? foundUser = userManager.GetAll()
                 .FirstOrDefault(user => user.Username == userName);
-            
-            // Ha nincs az email az adatbázisban
+
             if (foundUser is null) 
             {
                 return false;
             }
 
             string hashedPassword = encryptionService.HashPassword(password);
-            
-            // Nem jó jelszót adott meg
+
             if (foundUser.PasswordHash != hashedPassword)
             {
                 return false;
             }
 
-            // Sikerült, letároljuk a sessionbe
             httpContextAccessor.HttpContext.Session.Set("username", Encoding.UTF8.GetBytes(userName));
 
             return true;
